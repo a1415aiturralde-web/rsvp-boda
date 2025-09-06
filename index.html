@@ -44,8 +44,8 @@
       padding: 28px 28px 18px;
       background: linear-gradient(180deg, rgba(184,123,90,.10), rgba(255,255,255,1));
     }
-    .title { font-size: clamp(24px, 3.2vw, 32px); margin: 0 0 6px; color: var(--brand); letter-spacing: .5px; }
-    .subtitle { margin: 0; color: var(--muted); font-size: 15px; }
+    .title { font-size: clamp(22px, 3.2vw, 32px); margin: 0 0 6px; color: var(--brand); letter-spacing: .5px; }
+    .subtitle { margin: 0; color: var(--muted); font-size: clamp(14px, 4vw, 18px); }
 
     form { padding: 22px 24px 28px; }
 
@@ -54,7 +54,7 @@
 
     label {
       display: block;
-      font-size: 18px;
+      font-size: 20px;
       color: #000000;
       margin: 12px 0 6px;
       font-weight: bold;
@@ -120,6 +120,13 @@
           <label for="nombre">Nombre y apellidos *</label>
           <input id="nombre" name="nombre" type="text" required placeholder="Ej. Ana Pérez" />
         </div>
+          <div class="row">
+          <label>¿Asistirás a la boda? *</label>
+          <div class="radio-row">
+            <label class="chip"><input type="radio" name="asistencia" value="sí" required /> Sí</label>
+            <label class="chip"><input type="radio" name="asistencia" value="no" required /> No</label>
+          </div>
+        </div>
         <div class="row">
           <label for="acompanantes">¿Cuántos acompañantes?</label>
           <input id="acompanantes" name="acompanantes" type="number" min="0" max="10" value="0" />
@@ -127,13 +134,6 @@
       </div>
 
       <div class="grid">
-        <div class="row">
-          <label>¿Asistirás a la boda? *</label>
-          <div class="radio-row">
-            <label class="chip"><input type="radio" name="asistencia" value="sí" required /> Sí</label>
-            <label class="chip"><input type="radio" name="asistencia" value="no" required /> No</label>
-          </div>
-        </div>
         <div class="row" id="busRow">
           <label>¿Utilizarás el servicio de autobús?</label>
           <div class="radio-row">
@@ -142,6 +142,10 @@
           </div>
         </div>
       </div>
+      <div class="row" id="alergiasRow" style="display:none;">
+  <label for="alergias">Tienes alguna alergia o intolerancias alimentarias?</label>
+  <input id="alergias" name="alergias" type="text" placeholder="Ej. sin gluten, frutos secos, marisco..." />
+</div>
 
       <div class="grid" id="extrasSiAsiste" style="display:none;">
         <div class="row">
@@ -189,6 +193,7 @@
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
        
+
 
 
 
