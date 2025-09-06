@@ -32,8 +32,8 @@
     }
     .card {
       width: 100%;
-      max-width: 100%
-      background: rgba(255, 255, 255, 0.6);
+      max-width: 720px
+      background: #fff;
       border-radius: var(--radius);
       box-shadow: 0 10px 30px rgba(0,0,0,.08);
       overflow: hidden;
@@ -55,9 +55,10 @@
     label {
       display: block;
       font-size: 13px;
-      color: #000;
+      color: #000000;
       margin: 12px 0 6px;
       font-weight: bold;
+      opacity: 1;
     }
 
     input, select, textarea {
@@ -68,7 +69,8 @@
       font-size: 15px;
       background: #fff;
       font-weight: bold;
-      color: #000;
+      color: #000000;
+      opacity: 1;
     }
     textarea { min-height: 96px; resize: vertical; }
 
@@ -187,6 +189,7 @@
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
        
+
 
 
 
