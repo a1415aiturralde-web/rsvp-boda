@@ -32,7 +32,7 @@
     }
     .card {
       width: 100%;
-      max-width: 720px
+      max-width: 720px;
       background: #fff;
       border-radius: var(--radius);
       box-shadow: 0 10px 30px rgba(0,0,0,.08);
@@ -41,11 +41,19 @@
       margin: 0 auto;
     }
     .header {
-      padding: 28px 28px 18px;
+      padding: 16px;
       background: linear-gradient(180deg, rgba(184,123,90,.10), rgba(255,255,255,1));
+      text-align: center;
     }
     .title { font-size: clamp(22px, 3.2vw, 32px); margin: 0 0 6px; color: var(--brand); letter-spacing: .5px; }
-    .subtitle { margin: 0; color: var(--muted); font-size: clamp(14px, 4vw, 18px); }
+    .subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(14px, 4vw, 18px);
+  line-height: 1.4; /* más espacio entre líneas */
+  word-wrap: break-word; /* divide palabras largas */
+}
+
 
     form { padding: 22px 24px 28px; }
 
@@ -108,7 +116,7 @@
   <main class="card" role="main">
     <div class="header">
       <h1 class="title">Confirmación de Asistencia</h1>
-      <p class="subtitle">Queremos que disfrutéis al máximo nuestra celebración, sin preocupaciones. Por eso, hemos preparado este formulario para conocer vuestras preferencias y asegurar que todo este perfecto para vosotros.</p>
+      <p class="subtitle">Queremos que disfrutéis al máximo nuestra celebración, sin preocupaciones. Por eso, hemos preparado este formulario para conocer vuestras preferencias y asegurar que todo esté perfecto para vosotros.</p>
     </div>
 
     <form id="rsvpForm" action="https://formspree.io/f/xeolvqqb" method="POST" novalidate>
@@ -120,7 +128,7 @@
           <label for="nombre">Nombre y apellidos *</label>
           <input id="nombre" name="nombre" type="text" required placeholder="Ej. Ana Pérez" />
         </div>
-          <div class="row">
+        <div class="row">
           <label>¿Asistirás a la boda? *</label>
           <div class="radio-row">
             <label class="chip"><input type="radio" name="asistencia" value="sí" required /> Sí</label>
@@ -142,16 +150,10 @@
           </div>
         </div>
       </div>
-      <div class="row" id="alergiasRow" style="display:none;">
-  <label for="alergias">Tienes alguna alergia o intolerancias alimentarias?</label>
-  <input id="alergias" name="alergias" type="text" placeholder="Ej. sin gluten, frutos secos, marisco..." />
-</div>
 
-      <div class="grid" id="extrasSiAsiste" style="display:none;">
-        <div class="row">
-          <label for="dietas">Restricciones/alergias alimentarias</label>
-          <input id="dietas" name="dietas" type="text" placeholder="Ej. vegetariano, sin gluten…" />
-        </div>
+      <div class="row">
+        <label for="alergias">¿Tienes alguna alergia o intolerancia alimentaria?</label>
+        <input id="alergias" name="alergias" type="text" placeholder="Ej. sin gluten, frutos secos, marisco..." />
       </div>
 
       <div class="row">
@@ -183,16 +185,32 @@
       const form = document.getElementById('rsvpForm');
       const successBox = document.getElementById('successBox');
       const errorBox = document.getElementById('errorBox');
-      const extras = document.getElementById('extrasSiAsiste');
-
-      form.addEventListener('change', () => {
-        const asiste = new FormData(form).get('asistencia');
-        extras.style.display = asiste === 'sí' ? 'grid' : 'none';
-      });
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-       
+        const data = new FormData(form);
+        try {
+          const response = await fetch(form.action, {
+            method: form.method,
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (response.ok) {
+            form.style.display = 'none';
+            successBox.style.display = 'block';
+          } else {
+            throw new Error('Error en el envío');
+          }
+        } catch (err) {
+          form.style.display = 'none';
+          errorBox.style.display = 'block';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
+
 
 
 
