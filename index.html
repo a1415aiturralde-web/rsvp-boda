@@ -28,16 +28,17 @@
         url('/rsvp-boda/mi_foto_boda_v2.JPG') center/cover no-repeat;
       display: grid;
       place-items: center;
-      padding: 24px;
+      padding: 16px;
     }
     .card {
       width: 100%;
-      max-width: 720px;
+      max-width: 100%
       background: rgba(255, 255, 255, 0.6);
       border-radius: var(--radius);
       box-shadow: 0 10px 30px rgba(0,0,0,.08);
       overflow: hidden;
       border: 1px solid rgba(0,0,0,.06);
+      margin: 0 auto;
     }
     .header {
       padding: 28px 28px 18px;
@@ -48,13 +49,13 @@
 
     form { padding: 22px 24px 28px; }
 
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    @media (min-width: 640px) { .grid { grid-template-columns: 1fr 1fr; gap:16px; } }
 
     label {
       display: block;
       font-size: 13px;
-      color: var(--muted);
+      color: #000;
       margin: 12px 0 6px;
       font-weight: bold;
     }
@@ -67,6 +68,7 @@
       font-size: 15px;
       background: #fff;
       font-weight: bold;
+      color: #000;
     }
     textarea { min-height: 96px; resize: vertical; }
 
@@ -185,6 +187,7 @@
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
        
+
 
 
 
