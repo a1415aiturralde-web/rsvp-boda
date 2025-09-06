@@ -76,28 +76,61 @@
     </div>
 
     <form id="rsvpForm" action="https://formspree.io/f/REEMPLAZA_AQUI_TU_ENDPOINT" method="POST" novalidate>
+      <!-- Anti-spam oculto -->
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" />
       <input type="hidden" name="_subject" value="Nueva confirmación de asistencia" />
+
+      <!-- Nombre -->
       <label for="nombre">Nombre y apellidos *</label>
       <input id="nombre" name="nombre" type="text" required placeholder="Ej. Ana Pérez" />
+
+      <!-- Email -->
       <label for="email">Correo electrónico</label>
       <input id="email" name="_replyto" type="email" placeholder="ana@mail.com" />
+
+      <!-- Asistencia -->
       <label>¿Asistirás a la boda? *</label>
       <div class="radio-row">
         <label class="chip"><input type="radio" name="asistencia" value="sí" required /> Sí</label>
         <label class="chip"><input type="radio" name="asistencia" value="no" required /> No</label>
       </div>
-      <label>¿Haras uso del servicio de autobus?</label>
+
+      <!-- Transporte en autobús -->
+      <label>¿Quieres venir en autobús?</label>
       <div class="radio-row">
         <label class="chip"><input type="radio" name="autobus" value="sí" /> Sí</label>
         <label class="chip"><input type="radio" name="autobus" value="no" /> No</label>
       </div>
+
+      <!-- Acompañantes -->
       <label for="acompanantes">¿Cuántos acompañantes?</label>
       <input id="acompanantes" name="acompanantes" type="number" min="0" max="10" value="0" />
+
+      <!-- Restricciones alimentarias -->
       <label for="dietas">Restricciones/alergias alimentarias</label>
       <input id="dietas" name="dietas" type="text" placeholder="Ej. vegetariano, sin gluten…" />
-      <label for="mensaje">Dinos una canción que te guste para la fiesta</label>
+
+      <!-- Pregunta nueva: Participación en el baile -->
+      <label>¿Participarás en el baile?</label>
+      <div class="radio-row">
+        <label class="chip"><input type="radio" name="baile" value="sí" /> Sí</label>
+        <label class="chip"><input type="radio" name="baile" value="no" /> No</label>
+      </div>
+
+      <!-- Pregunta nueva: Plato preferido -->
+      <label for="menu">¿Qué plato prefieres? *</label>
+      <select id="menu" name="menu" required>
+        <option value="">Selecciona...</option>
+        <option value="carne">Carne</option>
+        <option value="pescado">Pescado</option>
+        <option value="vegetariano">Vegetariano</option>
+      </select>
+
+      <!-- Mensaje para los novios -->
+      <label for="mensaje">Mensaje para los novios</label>
       <textarea id="mensaje" name="mensaje" placeholder="¡Escribe algo bonito!"></textarea>
+
+      <!-- Botón de envío -->
       <div class="actions">
         <span class="note">Tus datos solo se usarán para la organización del evento.</span>
         <button type="submit">Enviar confirmación</button>
@@ -114,7 +147,7 @@
       <p>Inténtalo de nuevo en unos segundos o avisa a los novios.</p>
     </div>
 
-    <div class="footer">© Boda Alejandro & Andrea</div>
+    <div class="footer">© Boda · RSVP</div>
   </main>
 
   <script>
@@ -137,7 +170,6 @@
   </script>
 </body>
 </html>
-
 
 
 
