@@ -8,95 +8,64 @@
   <meta name="theme-color" content="#b87b5a" />
   <style>
     :root {
-      --brand: #b87b5a;       /* Tono cobre/terracota elegante */
-      --brand-2: #e8d8cc;     /* Fondo cálido */
-      --ink: #2b2b2b;
-      --muted: #6b6b6b;
-      --ok: #2f8f5b;
-      --error: #b33a3a;
+      --brand: #b87b5a;
+      --ink: #fff;
+      --muted: #eaeaea;
       --radius: 16px;
     }
     * { box-sizing: border-box; }
-    html, body { height: 100%; }
-   body {
-  margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-  color: white;
-  background: 
-    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
-    url('mi_foto_boda.jpg') center/cover no-repeat;
-  height: 100%;
-}
-
+    html, body { height: 100%; margin:0; }
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+        url('/rsvp-boda/mi_foto_boda.jpg') center/cover no-repeat;
+      display: grid;
+      place-items: center;
+      padding: 24px;
     }
-  .card {
-  width: 100%;
-  max-width: 720px;
-  background: rgba(255, 255, 255, 0.85); /* Antes era #fff */
-  border-radius: var(--radius);
-  box-shadow: 0 10px 30px rgba(0,0,0,.08);
-  overflow: hidden;
-  border: 1px solid rgba(0,0,0,.06);
-}
-
+    .card {
+      width: 100%;
+      max-width: 720px;
+      background: rgba(255,255,255,0.85);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(0,0,0,.2);
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,.06);
+      color: #333;
     }
-.header {
-  padding: 28px 28px 18px;
-  background: linear-gradient(180deg, rgba(184,123,90,.10), rgba(255,255,255,1));
-
-}
-
+    .header {
+      padding: 28px 28px 18px;
+      text-align: center;
     }
     .title { font-size: clamp(24px, 3.2vw, 32px); margin: 0 0 6px; color: var(--brand); letter-spacing: .5px; }
-    .subtitle { margin: 0; color: var(--muted); font-size: 15px; }
+    .subtitle { margin: 0; color: #555; font-size: 15px; }
 
     form { padding: 22px 24px 28px; }
-
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
-
-    label { display: block; font-size: 13px; color: var(--muted); margin: 12px 0 6px; }
-
-    input[type="text"], input[type="email"], input[type="number"], select, textarea {
+    label { display: block; font-size: 13px; color: #555; margin: 12px 0 6px; }
+    input, select, textarea {
       width: 100%;
       padding: 12px 14px;
       border: 1px solid #e4e4e7;
       border-radius: 12px;
       font-size: 15px;
-      transition: border-color .2s, box-shadow .2s;
       background: #fff;
     }
     textarea { min-height: 96px; resize: vertical; }
-
-    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 4px rgba(184,123,90,.15); }
-
-    .radio-row { display: flex; gap: 8px; flex-wrap: wrap; }
-    .chip {
-      display: inline-flex; align-items: center; gap: 8px;
-      border: 1px solid #e4e4e7; padding: 8px 12px; border-radius: 999px; cursor: pointer; user-select: none;
-      transition: background .15s, border-color .15s;
-    }
+    input:focus, select:focus, textarea:focus { outline:none; border-color:var(--brand); box-shadow:0 0 0 4px rgba(184,123,90,.15); }
+    .radio-row { display:flex; gap:8px; flex-wrap:wrap; }
+    .chip { display:inline-flex; align-items:center; gap:8px; border:1px solid #e4e4e7; padding:8px 12px; border-radius:999px; cursor:pointer; transition: background .15s, border-color .15s; }
     .chip input { accent-color: var(--brand); }
-    .chip:hover { background: #faf7f5; border-color: #e7d7cc; }
-
-    .row { margin-top: 8px; }
-
-    .actions { display: flex; gap: 12px; align-items: center; justify-content: flex-end; margin-top: 20px; }
-    button[type="submit"] {
-      padding: 12px 18px; border: 0; border-radius: 999px; background: var(--brand); color: #fff; font-weight: 600; font-size: 15px; cursor: pointer;
-      box-shadow: 0 6px 14px rgba(184,123,90,.28);
-    }
+    .chip:hover { background:#faf7f5; border-color:#e7d7cc; }
+    .actions { display:flex; gap:12px; align-items:center; justify-content:flex-end; margin-top:20px; }
+    button[type="submit"] { padding:12px 18px; border:0; border-radius:999px; background:var(--brand); color:#fff; font-weight:600; cursor:pointer; }
     button[type="submit"]:hover { filter: brightness(.97); }
-
-    .note { font-size: 12px; color: var(--muted); }
-
-    .success, .error { padding: 26px; }
-    .success { display: none; }
-    .success h3 { margin: 0 0 6px; color: var(--ok); }
-    .error { display: none; }
-    .error h3 { margin: 0 0 6px; color: var(--error); }
-
-    .footer { padding: 12px 24px 24px; text-align: center; font-size: 12px; color: var(--muted); }
+    .note { font-size:12px; color:#555; text-align:center; }
+    .success, .error { padding:26px; display:none; text-align:center; }
+    .success h3 { margin:0 0 6px; color:#2f8f5b; }
+    .error h3 { margin:0 0 6px; color:#b33a3a; }
+    .footer { padding:12px 24px 24px; text-align:center; font-size:12px; color:#555; }
   </style>
 </head>
 <body>
@@ -107,55 +76,28 @@
     </div>
 
     <form id="rsvpForm" action="https://formspree.io/f/REEMPLAZA_AQUI_TU_ENDPOINT" method="POST" novalidate>
-      <!-- Campo trampa anti-spam (oculto) -->
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" />
-      <!-- Asunto para emails de Formspree -->
       <input type="hidden" name="_subject" value="Nueva confirmación de asistencia" />
-
-      <div class="grid">
-        <div class="row">
-          <label for="nombre">Nombre y apellidos *</label>
-          <input id="nombre" name="nombre" type="text" required placeholder="Ej. Ana Pérez" />
-        </div>
-        <div class="row">
-          <label for="email">Correo electrónico (para confirmación)</label>
-          <input id="email" name="_replyto" type="email" placeholder="ana@mail.com" />
-        </div>
+      <label for="nombre">Nombre y apellidos *</label>
+      <input id="nombre" name="nombre" type="text" required placeholder="Ej. Ana Pérez" />
+      <label for="email">Correo electrónico</label>
+      <input id="email" name="_replyto" type="email" placeholder="ana@mail.com" />
+      <label>¿Asistirás a la boda? *</label>
+      <div class="radio-row">
+        <label class="chip"><input type="radio" name="asistencia" value="sí" required /> Sí</label>
+        <label class="chip"><input type="radio" name="asistencia" value="no" required /> No</label>
       </div>
-
-      <div class="grid">
-        <div class="row">
-          <label>¿Asistirás a la boda? *</label>
-          <div class="radio-row">
-            <label class="chip"><input type="radio" name="asistencia" value="sí" required /> Sí</label>
-            <label class="chip"><input type="radio" name="asistencia" value="no" required /> No</label>
-          </div>
-        </div>
-        <div class="row" id="busRow">
-          <label>¿Quieres venir en autobús?</label>
-          <div class="radio-row">
-            <label class="chip"><input type="radio" name="autobus" value="sí" /> Sí</label>
-            <label class="chip"><input type="radio" name="autobus" value="no" /> No</label>
-          </div>
-        </div>
+      <label>¿Quieres venir en autobús?</label>
+      <div class="radio-row">
+        <label class="chip"><input type="radio" name="autobus" value="sí" /> Sí</label>
+        <label class="chip"><input type="radio" name="autobus" value="no" /> No</label>
       </div>
-
-      <div class="grid" id="extrasSiAsiste" style="display:none;">
-        <div class="row">
-          <label for="acompanantes">¿Cuántos acompañantes?</label>
-          <input id="acompanantes" name="acompanantes" type="number" min="0" max="10" value="0" />
-        </div>
-        <div class="row">
-          <label for="dietas">Restricciones/alergias alimentarias</label>
-          <input id="dietas" name="dietas" type="text" placeholder="Ej. vegetariano, sin gluten…" />
-        </div>
-      </div>
-
-      <div class="row">
-        <label for="mensaje">Mensaje para los novios</label>
-        <textarea id="mensaje" name="mensaje" placeholder="¡Escribe algo bonito!"></textarea>
-      </div>
-
+      <label for="acompanantes">¿Cuántos acompañantes?</label>
+      <input id="acompanantes" name="acompanantes" type="number" min="0" max="10" value="0" />
+      <label for="dietas">Restricciones/alergias alimentarias</label>
+      <input id="dietas" name="dietas" type="text" placeholder="Ej. vegetariano, sin gluten…" />
+      <label for="mensaje">Mensaje para los novios</label>
+      <textarea id="mensaje" name="mensaje" placeholder="¡Escribe algo bonito!"></textarea>
       <div class="actions">
         <span class="note">Tus datos solo se usarán para la organización del evento.</span>
         <button type="submit">Enviar confirmación</button>
@@ -180,55 +122,23 @@
       const form = document.getElementById('rsvpForm');
       const successBox = document.getElementById('successBox');
       const errorBox = document.getElementById('errorBox');
-      const extras = document.getElementById('extrasSiAsiste');
-
-      // Mostrar campos extra solo si asiste = "sí"
-      form.addEventListener('change', () => {
-        const asiste = new FormData(form).get('asistencia');
-        extras.style.display = asiste === 'sí' ? 'grid' : 'none';
-      });
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-
-        // Validación simple
-        const nombre = form.querySelector('#nombre');
-        const asistencia = new FormData(form).get('asistencia');
-        if (!nombre.value.trim() || !asistencia) {
-          form.reportValidity();
-          return;
-        }
-
         const endpoint = form.getAttribute('action');
-        if (endpoint.includes('https://formspree.io/f/xeolvqqb')) {
-          alert('⚠️ Antes de enviar, sustituye la URL del action por tu endpoint de Formspree.');
-          return;
-        }
-
         const data = new FormData(form);
         try {
-          const res = await fetch(endpoint, {
-            method: 'POST',
-            headers: { 'Accept': 'application/json' },
-            body: data
-          });
-
-          if (res.ok) {
-            form.style.display = 'none';
-            successBox.style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          } else {
-            throw new Error('Respuesta no OK');
-          }
-        } catch (err) {
-          errorBox.style.display = 'block';
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+          const res = await fetch(endpoint, { method:'POST', headers:{ 'Accept':'application/json' }, body: data });
+          if(res.ok){ form.style.display='none'; successBox.style.display='block'; window.scrollTo({ top: 0, behavior:'smooth' }); }
+          else throw new Error();
+        } catch { errorBox.style.display='block'; window.scrollTo({ top: 0, behavior:'smooth' }); }
       });
     })();
   </script>
 </body>
 </html>
+
+
 
 
 
