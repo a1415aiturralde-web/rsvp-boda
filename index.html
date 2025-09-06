@@ -28,7 +28,7 @@
     .card {
       width: 100%;
       max-width: 720px;
-      background: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.50);
       border-radius: var(--radius);
       box-shadow: 0 10px 30px rgba(0,0,0,.2);
       overflow: hidden;
@@ -43,7 +43,7 @@
     .subtitle { margin: 0; color: #555; font-size: 15px; }
 
     form { padding: 22px 24px 28px; }
-    label { display: block; font-size: 13px; color: #555; margin: 12px 0 6px; }
+    label { display: block; font-size: 13px; color: #555; margin: 12px 0 6px;font-weight: bold; }
     input, select, textarea {
       width: 100%;
       padding: 12px 14px;
@@ -84,9 +84,6 @@
       <label for="nombre">Nombre y apellidos *</label>
       <input id="nombre" name="nombre" type="text" required placeholder="Ej. Ana Pérez" />
 
-      <!-- Email -->
-      <label for="email">Correo electrónico</label>
-      <input id="email" name="_replyto" type="email" placeholder="ana@mail.com" />
 
       <!-- Asistencia -->
       <label>¿Asistirás a la boda? *</label>
@@ -96,7 +93,7 @@
       </div>
 
       <!-- Transporte en autobús -->
-      <label>¿Quieres venir en autobús?</label>
+      <label>¿Utilizaras el servicio de autobus?</label>
       <div class="radio-row">
         <label class="chip"><input type="radio" name="autobus" value="sí" /> Sí</label>
         <label class="chip"><input type="radio" name="autobus" value="no" /> No</label>
@@ -110,24 +107,9 @@
       <label for="dietas">Restricciones/alergias alimentarias</label>
       <input id="dietas" name="dietas" type="text" placeholder="Ej. vegetariano, sin gluten…" />
 
-      <!-- Pregunta nueva: Participación en el baile -->
-      <label>¿Participarás en el baile?</label>
-      <div class="radio-row">
-        <label class="chip"><input type="radio" name="baile" value="sí" /> Sí</label>
-        <label class="chip"><input type="radio" name="baile" value="no" /> No</label>
-      </div>
-
-      <!-- Pregunta nueva: Plato preferido -->
-      <label for="menu">¿Qué plato prefieres? *</label>
-      <select id="menu" name="menu" required>
-        <option value="">Selecciona...</option>
-        <option value="carne">Carne</option>
-        <option value="pescado">Pescado</option>
-        <option value="vegetariano">Vegetariano</option>
-      </select>
 
       <!-- Mensaje para los novios -->
-      <label for="mensaje">Mensaje para los novios</label>
+      <label for="mensaje">Dinos una canción que te guste para la fiesta</label>
       <textarea id="mensaje" name="mensaje" placeholder="¡Escribe algo bonito!"></textarea>
 
       <!-- Botón de envío -->
@@ -170,6 +152,7 @@
   </script>
 </body>
 </html>
+
 
 
 
