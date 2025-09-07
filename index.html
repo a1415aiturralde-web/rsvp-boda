@@ -29,29 +29,21 @@
       padding: 0;
     }
 
-    body {
-      margin: 0;
-      font-family: ui-sans-serif, system-ui, ...;
-      color: var(--ink);
+   body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, ...;
+  color: var(--ink);
 
-      /* imagen y overlays */
-      background-image:
-        radial-gradient(60rem 60rem at 120% -10%, rgba(184,123,90,.12), transparent 60%),
-        radial-gradient(60rem 60rem at -20% 110%, rgba(184,123,90,.10), transparent 60%),
-        url('mi_foto_boda_v6.JPG');
+  background-image: url('mi_foto_boda_v6.JPG');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;       /* que siempre cubra todo */
+  background-attachment: scroll; /* estático al hacer scroll */
 
-      background-repeat: no-repeat, no-repeat, no-repeat;
-      background-position: center center, center center, center center;
-      background-size: cover, cover, cover;
+  min-height: 100vh;
+  padding: 24px;
+  display: block;
 
-      /* IMPORTANT: quitar fixed para evitar parallax/zoom al hacer scroll */
-      background-attachment: scroll, scroll, scroll;
-
-      min-height: 100vh;
-      padding: 24px;
-      display: block;
-      /* fallback color por si no carga la imagen */
-      background-color: #efe6df;
     }
 
     .card {
@@ -336,6 +328,7 @@
   </script>
 </body>
 </html>
+
 
 
 
