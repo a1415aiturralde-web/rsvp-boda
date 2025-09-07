@@ -209,6 +209,35 @@
       .header { padding: 32px 48px; }
       .title { font-size: 60px !important; }
       .subtitle { font-size: 18px; }
+      .info-icon {
+      cursor: pointer;
+      margin-left: 8px;
+      font-size: 18px;
+    }
+
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 1000; 
+      left: 0; top: 0; 
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background: #fff;
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 12px;
+      width: 80%;
+      max-width: 400px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .close {
+      float: right;
+      font-size: 24px;
+      cursor: pointer;
     }
 
   </style>
@@ -251,19 +280,34 @@
       </div>
 
       <div class="grid">
-        <div class="row" id="busRow">
-          <label>¿Utilizarás el servicio de autobús?</label>
-          <div class="radio-row">
-            <label class="chip">
-              <input type="radio" name="autobus" value="sí" />
-              <span>Sí</span>
-            </label>
-            <label class="chip">
-              <input type="radio" name="autobus" value="no" />
-              <span>No</span>
-            </label>
-          </div>
-        </div>
+       <div class="row" id="busRow">
+  <label>¿Utilizarás el servicio de autobús?</label>
+  <span class="info-icon" onclick="toggleModal()">ℹ️</span>
+
+  <div class="radio-row">
+    <label class="chip">
+      <input type="radio" name="autobus" value="sí" />
+      <span>Sí</span>
+    </label>
+    <label class="chip">
+      <input type="radio" name="autobus" value="no" />
+      <span>No</span>
+    </label>
+  </div>
+</div>
+
+<!-- Modal oculto -->
+<div id="busModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="toggleModal()">&times;</span>
+    <h3>Horarios y paradas del autobús</h3>
+    <ul>
+      <li><b>13:30</b> – Cuesta labrit (Parada de autobus)</li>
+    </ul>
+    <p>Regreso a las 02:00 desde el Palacio de Olloqui con parada en Hotel tres reyes.</p>
+  </div>
+</div>
+
       </div>
 
       <div class="row">
@@ -325,6 +369,7 @@
   </script>
 </body>
 </html>
+
 
 
 
