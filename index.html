@@ -154,7 +154,13 @@
       display: inline-block;
     }
 
-    .actions { display: flex; gap: 12px; align-items: center; justify-content: flex-end; margin-top: 20px; }
+  .actions {
+  display: flex;
+  flex-direction: column;       /* elementos en columna */
+  align-items: center;          /* centrado horizontal */
+  gap: 12px;                    /* espacio entre nota y botón */
+  margin-top: 20px;
+}
 
     button[type="submit"] {
       padding: 12px 18px;
@@ -319,6 +325,7 @@
   </script>
 </body>
 </html>
+
 
 
 
