@@ -247,6 +247,11 @@ body::before {
       .header { padding: 32px 48px; }
       .title { font-size: 60px !important; }
       .subtitle { font-size: 18px; }
+      @media (max-width: 768px) {
+  body {
+    background-attachment: scroll; /* no fijo en móviles */
+    background-position: center top; /* opcional, centra la imagen */
+  }
     }
 
   </style>
@@ -411,6 +416,7 @@ body::before {
   </script>
 </body>
 </html>
+
 
 
 
