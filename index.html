@@ -18,7 +18,6 @@
       --ok: #2f8f5b;
       --error: #b33a3a;
       --radius: 16px;
-      --vh: 1vh; /* variable para altura real de la pantalla */
     }
 
     * { box-sizing: border-box; }
@@ -30,24 +29,21 @@
     }
 
     body {
-      margin: 0;
       font-family: ui-sans-serif, system-ui, ...;
       color: var(--ink);
       min-height: 100vh;
-      padding: 24px;
-      display: block;
       position: relative;
       overflow-x: hidden;
+      padding: 24px;
     }
 
-    /* Fondo con variable vh */
     body::before {
       content: "";
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: calc(var(--vh, 1vh) * 100);
+      height: 100%;
       background:
         radial-gradient(60rem 60rem at 120% -10%, rgba(184,123,90,.12), transparent 60%),
         radial-gradient(60rem 60rem at -20% 110%, rgba(184,123,90,.10), transparent 60%),
@@ -61,10 +57,9 @@
       margin: 40px auto;
       background: transparent;
       border-radius: var(--radius);
-      box-shadow: 0 10px 30px rgba(0,0,0,.00);
-      overflow: hidden;
-      border: 1px solid rgba(0,0,0,.00);
+      box-shadow: 0 10px 30px rgba(0,0,0,0);
       padding: 16px;
+      overflow: hidden;
     }
 
     .header {
@@ -93,16 +88,14 @@
     }
 
     label {
-      display: block;
+      display: inline-block;
       font-size: 20px;
       color: #000000;
       margin: 12px 0 6px;
       font-weight: bold;
-      opacity: 1;
       background: rgba(255, 255, 255, 0.6);
       padding: 2px 6px;
       border-radius: 4px;
-      display: inline-block;
     }
 
     input, select, textarea {
@@ -113,8 +106,7 @@
       font-size: 15px;
       background: rgba(255, 255, 255, 0.6);
       font-weight: bold;
-      color: #000000;
-      opacity: 1;
+      color: #000;
     }
 
     textarea { min-height: 96px; resize: vertical; }
@@ -185,11 +177,21 @@
     .error { display: none; }
     .error h3 { margin: 0 0 6px; color: var(--error); }
 
-    .footer { padding: 12px 24px 24px; text-align: center; font-size: 12px; color: #ffffff; }
+    .footer { padding: 12px 24px 24px; text-align: center; font-size: 12px; color: #fff; }
 
-    /* ===== Responsive móvil ===== */
+    /* ===== Responsive móviles ===== */
     @media (max-width: 480px) {
-      .card { width: 95%; max-width: 100%; margin: 10px auto; padding: 12px; }
+      body {
+        padding: 12px;
+        overflow: hidden; /* Evita scroll del body */
+      }
+
+      main.card {
+        max-height: calc(100vh - 24px);
+        overflow-y: auto; /* Scroll interno si es necesario */
+        padding: 12px;
+      }
+
       .title { font-size: 48px !important; }
       .subtitle { font-size: 18px; line-height: 1.4; }
       label { font-size: 18px; }
@@ -197,9 +199,9 @@
       button[type="submit"] { font-size: 16px; padding: 14px 20px; }
     }
 
+    /* ===== Responsive tablet y escritorio ===== */
     @media (min-width: 600px) { .row { flex: 1 1 48%; } }
     @media (min-width: 1024px) { body { padding: 40px; } .header { padding: 32px 48px; } .title { font-size: 60px !important; } .subtitle { font-size: 18px; } }
-
   </style>
 </head>
 <body>
@@ -233,13 +235,10 @@
         </div>
       </div>
 
-      <!-- Pregunta autobús con modal -->
+      <!-- Pregunta autobús -->
       <div class="grid">
         <div class="row" id="busRow" style="background: rgba(255, 255, 255, 0.6); padding: 12px; border-radius: 8px;">
-          <label>
-            ¿Utilizarás el servicio de autobús?
-            <span id="infoIcon" style="cursor:pointer; margin-left:8px; color:#b87b5a; font-weight:bold;">ℹ️</span>
-          </label>
+          <label>¿Utilizarás el servicio de autobús? <span id="infoIcon" style="cursor:pointer; margin-left:8px; color:#b87b5a; font-weight:bold;">ℹ️</span></label>
           <div class="radio-row">
             <label class="chip"><input type="radio" name="autobus" value="sí" /><span>Sí</span></label>
             <label class="chip"><input type="radio" name="autobus" value="no" /><span>No</span></label>
@@ -247,7 +246,7 @@
         </div>
       </div>
 
-      <!-- Modal -->
+      <!-- Modal autobús -->
       <div id="infoModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6);">
         <div style="background:rgba(255,255,255,0.9); margin:10% auto; padding:20px; border-radius:12px; max-width:500px; position:relative;">
           <span id="closeModal" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:18px; font-weight:bold;">✖</span>
@@ -286,28 +285,32 @@
     <div class="footer">© Alejandro & Andrea</div>
   </main>
 
-  <!-- Scripts -->
   <script>
-    // Ajustar variable vh para móviles
-    function setVh() {
-      document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
-    }
-    setVh();
-    window.addEventListener('resize', setVh);
-
     // Formulario
     (function () {
       const form = document.getElementById('rsvpForm');
       const successBox = document.getElementById('successBox');
       const errorBox = document.getElementById('errorBox');
+
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const data = new FormData(form);
         try {
-          const response = await fetch(form.action, { method: form.method, body: data, headers: { 'Accept': 'application/json' } });
-          if (response.ok) { form.style.display = 'none'; successBox.style.display = 'block'; }
-          else { throw new Error('Error en el envío'); }
-        } catch (err) { form.style.display = 'none'; errorBox.style.display = 'block'; }
+          const response = await fetch(form.action, {
+            method: form.method,
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (response.ok) {
+            form.style.display = 'none';
+            successBox.style.display = 'block';
+          } else {
+            throw new Error('Error en el envío');
+          }
+        } catch (err) {
+          form.style.display = 'none';
+          errorBox.style.display = 'block';
+        }
       });
     })();
 
@@ -319,11 +322,18 @@
 
     infoIcon.addEventListener("click", () => { infoModal.style.display = "block"; });
     closeBtn.addEventListener("click", () => { infoModal.style.display = "none"; });
-    window.addEventListener("click", e => { if(e.target===infoModal) infoModal.style.display="none"; });
-    autobusRadios.forEach(radio => { radio.addEventListener("change", () => { if(radio.value==="sí" && radio.checked) infoModal.style.display="block"; }); });
+    window.addEventListener("click", (e) => { if(e.target===infoModal){infoModal.style.display="none";} });
+    autobusRadios.forEach(radio => {
+      radio.addEventListener("change", () => {
+        if(radio.value==="sí" && radio.checked){ infoModal.style.display="block"; }
+      });
+    });
   </script>
 </body>
 </html>
+
+
+
 
 
 
