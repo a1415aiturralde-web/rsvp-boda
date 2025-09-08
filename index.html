@@ -1,306 +1,331 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Boda Alejandro & Andrea | Boda</title>
-<meta name="description" content="Formulario de confirmación de asistencia a la boda (RSVP)." />
-<meta name="theme-color" content="#b87b5a" />
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Boda Alejandro & Andrea | Boda</title>
+  <meta name="description" content="Formulario de confirmación de asistencia a la boda (RSVP)." />
+  <meta name="theme-color" content="#b87b5a" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
-<style>
-:root {
-  --brand: #b87b5a;
-  --brand-2: #e8d8cc;
-  --ink: #2b2b2b;
-  --muted: #6b6b6b;
-  --ok: #2f8f5b;
-  --error: #b33a3a;
-  --radius: 16px;
-}
-
-* { box-sizing: border-box; }
-
-html, body { margin:0; padding:0; height:100%; }
-
-body {
-  font-family: ui-sans-serif, system-ui, ...;
-  color: var(--ink);
-  min-height: 100vh;
-  padding: 24px;
-  position: relative;
-  overflow-x: hidden;
-}
-
-/* Fondo fijo con pseudo-elemento, evita zoom en móviles */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background:
-    radial-gradient(60rem 60rem at 120% -10%, rgba(184,123,90,.12), transparent 60%),
-    radial-gradient(60rem 60rem at -20% 110%, rgba(184,123,90,.10), transparent 60%),
-    url('mi_foto_boda_v6.JPG') center/cover no-repeat;
-  z-index: -1;
-}
-
-.card {
-  max-width: 720px;
-  width: 90%;
-  margin: 40px auto;
-  background: transparent;
-  border-radius: var(--radius);
-  overflow: hidden;
-  padding: 16px;
-}
-
-.header {
-  background: rgba(255,255,255,0.5);
-  padding: 16px 24px;
-  text-align: center;
-  border-radius: 24px;
-  display: inline-block;
-}
-
-.title {
-  font-family: 'Great Vibes', cursive;
-  font-size: 55px!important;
-  font-weight: 700;
-  color: var(--brand);
-  margin: 0 0 12px 0;
-}
-
-.subtitle {
-  font-family: 'Playfair Display', serif;
-  font-size: 18px!important;
-  line-height: 1.5;
-  margin: 0;
-  color: var(--ink);
-  font-weight: 400;
-}
-
-label {
-  display: inline-block;
-  font-size: 20px;
-  color: #000;
-  margin: 12px 0 6px;
-  font-weight: bold;
-  background: rgba(255,255,255,0.6);
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-input, select, textarea {
-  width: 100%;
-  padding: 12px 14px;
-  border-radius: 12px;
-  border:1px solid #e4e4e7;
-  font-size: 15px;
-  background: rgba(255,255,255,0.6);
-  font-weight: bold;
-  color: #000;
-}
-
-textarea { min-height: 96px; resize: vertical; }
-
-.grid { display:flex; flex-wrap:wrap; gap:16px; }
-.row { flex:1 1 100%; margin-top:8px; }
-.radio-row { display:flex; flex-wrap:wrap; gap:12px; }
-
-.chip {
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:10px 18px;
-  border:2px solid var(--brand);
-  border-radius:999px;
-  cursor:pointer; user-select:none;
-  font-weight:bold;
-  transition: background .15s, border-color .15s, color .15s;
-  color: var(--ink);
-  position: relative;
-}
-
-.chip input { position:absolute; opacity:0; pointer-events:none; }
-.chip input:checked + span {
-  background: var(--brand);
-  color:#fff;
-  border-color: var(--brand);
-  border-radius:999px;
-  padding:10px 18px;
-  display:inline-block;
-}
-
-.actions {
-  display:flex; flex-direction:column; align-items:center; gap:12px; margin-top:20px;
-}
-
-button[type="submit"] {
-  padding:12px 18px;
-  border:0;
-  border-radius:999px;
-  background: var(--brand);
-  color:#fff;
-  font-weight:600;
-  font-size:15px;
-  cursor:pointer;
-  box-shadow:0 6px 14px rgba(184,123,90,.28);
-}
-
-button[type="submit"]:hover { filter: brightness(.97); }
-
-.note { font-size:12px; color: var(--muted); }
-
-.success, .error { padding:26px; }
-.success { display:none; }
-.success h3 { margin:0 0 6px; color:var(--ok); }
-.error { display:none; }
-.error h3 { margin:0 0 6px; color:var(--error); }
-
-.footer { padding:12px 24px 24px; text-align:center; font-size:12px; color:#fff; }
-
-/* ===== Responsive móvil ===== */
-@media (max-width:480px){
-  .card { width:95%; max-width:100%; margin:10px auto; padding:12px; }
-  .title { font-size:48px!important; }
-  .subtitle { font-size:18px; line-height:1.4; }
-  label { font-size:18px; }
-  input, select, textarea { font-size:16px; padding:14px 16px; }
-  button[type="submit"] { font-size:16px; padding:14px 20px; }
-}
-
-/* ===== Responsive tablet/escritorio ===== */
-@media (min-width:600px){ .row { flex:1 1 48%; } }
-@media (min-width:1024px){ body { padding:40px; } .header{padding:32px 48px;} .title{font-size:60px!important;} .subtitle{font-size:18px;} }
-
-</style>
-</head>
-
-<body>
-<main class="card" role="main">
-  <div class="header">
-    <h1 class="title">Boda Alejandro y Andrea</h1>
-    <p class="subtitle">
-      Queremos que disfrutéis al máximo nuestra celebración, sin preocupaciones. Por eso, hemos preparado este formulario para conocer vuestras preferencias y asegurar que todo esté perfecto para vosotros.
-    </p>
-  </div>
-
-  <form id="rsvpForm" action="https://formspree.io/f/xeolvqqb" method="POST" novalidate>
-    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" />
-    <input type="hidden" name="_subject" value="Nueva confirmación de asistencia" />
-
-    <div class="grid">
-      <div class="row">
-        <label for="nombre">Nombre y apellidos *</label>
-        <input id="nombre" name="nombre" type="text" required placeholder="Ej. Ana Pérez" />
-      </div>
-
-      <div class="row">
-        <label>¿Asistirás a la boda? *</label>
-        <div class="radio-row">
-          <label class="chip"><input type="radio" name="asistencia" value="sí" required /><span>Sí</span></label>
-          <label class="chip"><input type="radio" name="asistencia" value="no" required /><span>No</span></label>
-        </div>
-      </div>
-
-      <div class="row">
-        <label for="acompanantes">¿Cuántos acompañantes?</label>
-        <input id="acompanantes" name="acompanantes" type="number" min="0" max="10" value="0" />
-      </div>
-    </div>
-
-    <!-- Autobús con modal -->
-    <div class="grid">
-      <div class="row" style="background: rgba(255,255,255,0.6); padding:12px; border-radius:8px;">
-        <label>
-          ¿Utilizarás el servicio de autobús?
-          <span id="infoIcon" style="cursor:pointer; margin-left:8px; color:#b87b5a; font-weight:bold;">ℹ️</span>
-        </label>
-        <div class="radio-row">
-          <label class="chip"><input type="radio" name="autobus" value="sí" /><span>Sí</span></label>
-          <label class="chip"><input type="radio" name="autobus" value="no" /><span>No</span></label>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal autobús -->
-    <div id="infoModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6);">
-      <div style="background:rgba(255,255,255,0.9); margin:10% auto; padding:20px; border-radius:12px; max-width:500px; position:relative;">
-        <span id="closeModal" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:18px; font-weight:bold;">✖</span>
-        <h3>Horarios y paradas del autobús</h3>
-        <p><strong>Ida:</strong> 13:30 desde La Cuesta Labrit (parada de autobuses).</p>
-        <p><strong>Vuelta:</strong> 02:00 desde Palacio de Olloqui hasta Hotel Tres Reyes, Pamplona.</p>
-      </div>
-    </div>
-
-    <div class="row">
-      <label for="alergias">¿Tienes alguna alergia, intolerancia o preferencia alimentaria?</label>
-      <input id="alergias" name="alergias" type="text" placeholder="Ej. sin gluten, frutos secos, vegetariano..." />
-    </div>
-
-    <div class="row">
-      <label for="mensaje">¿Qué canción te gusta para que suene en la fiesta?</label>
-      <textarea id="mensaje" name="mensaje" placeholder=" "></textarea>
-    </div>
-
-    <div class="actions">
-      <span class="note"> </span>
-      <button type="submit">Enviar confirmación</button>
-    </div>
-  </form>
-
-  <div class="success" id="successBox" role="status" aria-live="polite">
-    <h3>¡Gracias por tu respuesta! 💌</h3>
-    <p>Hemos registrado tu confirmación. Puedes cerrar esta página.</p>
-  </div>
-
-  <div class="error" id="errorBox" role="alert">
-    <h3>Vaya, algo no ha ido bien…</h3>
-    <p>Inténtalo de nuevo en unos segundos o avisa a los novios.</p>
-  </div>
-
-  <div class="footer">© Alejandro & Andrea</div>
-</main>
-
-<script>
-(function(){
-  const form = document.getElementById('rsvpForm');
-  const successBox = document.getElementById('successBox');
-  const errorBox = document.getElementById('errorBox');
-
-  form.addEventListener('submit', async (e)=>{
-    e.preventDefault();
-    const data = new FormData(form);
-    try{
-      const response = await fetch(form.action,{
-        method: form.method,
-        body: data,
-        headers: {'Accept':'application/json'}
-      });
-      if(response.ok){
-        form.style.display='none';
-        successBox.style.display='block';
-      } else throw new Error('Error en el envío');
-    }catch(err){
-      form.style.display='none';
-      errorBox.style.display='block';
+  <style>
+    :root {
+      --brand: #b87b5a;       
+      --brand-2: #e8d8cc;     
+      --ink: #2b2b2b;
+      --muted: #6b6b6b;
+      --ok: #2f8f5b;
+      --error: #b33a3a;
+      --radius: 16px;
+      --vh: 1vh; /* variable para altura real de la pantalla */
     }
-  });
-})();
 
-// Modal autobús
-const infoIcon = document.getElementById("infoIcon");
-const infoModal = document.getElementById("infoModal");
-const closeBtn = document.getElementById("closeModal");
-const autobusRadios = document.querySelectorAll('input[name="autobus"]');
+    * { box-sizing: border-box; }
 
-infoIcon.addEventListener("click",()=>{infoModal.style.display="block";});
-closeBtn.addEventListener("click",()=>{infoModal.style.display="none";});
-window.addEventListener("click",(e)=>{if(e.target===infoModal){infoModal.style.display="none";}});
-autobusRadios.forEach(radio=>{radio.addEventListener("change",()=>{if(radio.value==="sí"&&radio.checked){infoModal.style.display="block";}})});
-</script>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, ...;
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 24px;
+      display: block;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Fondo con variable vh */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: calc(var(--vh, 1vh) * 100);
+      background:
+        radial-gradient(60rem 60rem at 120% -10%, rgba(184,123,90,.12), transparent 60%),
+        radial-gradient(60rem 60rem at -20% 110%, rgba(184,123,90,.10), transparent 60%),
+        url('mi_foto_boda_v6.JPG') center/cover no-repeat;
+      z-index: -1;
+    }
+
+    .card {
+      max-width: 720px;
+      width: 90%;
+      margin: 40px auto;
+      background: transparent;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(0,0,0,.00);
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,.00);
+      padding: 16px;
+    }
+
+    .header {
+      background: rgba(255, 255, 255, 0.5);
+      padding: 16px 24px;
+      text-align: center;
+      border-radius: 24px;
+      display: inline-block;
+    }
+
+    .title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 55px!important;
+      font-weight: 700;
+      color: var(--brand);
+      margin: 0 0 12px 0;
+    }
+
+    .subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px!important;
+      line-height: 1.5;
+      margin: 0;
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    label {
+      display: block;
+      font-size: 20px;
+      color: #000000;
+      margin: 12px 0 6px;
+      font-weight: bold;
+      opacity: 1;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #e4e4e7;
+      border-radius: 12px;
+      font-size: 15px;
+      background: rgba(255, 255, 255, 0.6);
+      font-weight: bold;
+      color: #000000;
+      opacity: 1;
+    }
+
+    textarea { min-height: 96px; resize: vertical; }
+
+    .grid { display: flex; flex-wrap: wrap; gap: 16px; }
+
+    .row { flex: 1 1 100%; margin-top: 8px; }
+
+    .radio-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border: 2px solid var(--brand);
+      border-radius: 999px;
+      cursor: pointer;
+      user-select: none;
+      font-weight: bold;
+      transition: background .15s, border-color .15s, color .15s;
+      color: var(--ink);
+      position: relative;
+    }
+
+    .chip input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .chip input:checked + span {
+      background: var(--brand);
+      color: #fff;
+      border-color: var(--brand);
+      border-radius: 999px;
+      padding: 10px 18px;
+      display: inline-block;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    button[type="submit"] {
+      padding: 12px 18px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--brand);
+      color: #fff;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(184,123,90,.28);
+    }
+
+    button[type="submit"]:hover { filter: brightness(.97); }
+
+    .note { font-size: 12px; color: var(--muted); }
+
+    .success, .error { padding: 26px; }
+    .success { display: none; }
+    .success h3 { margin: 0 0 6px; color: var(--ok); }
+    .error { display: none; }
+    .error h3 { margin: 0 0 6px; color: var(--error); }
+
+    .footer { padding: 12px 24px 24px; text-align: center; font-size: 12px; color: #ffffff; }
+
+    /* ===== Responsive móvil ===== */
+    @media (max-width: 480px) {
+      .card { width: 95%; max-width: 100%; margin: 10px auto; padding: 12px; }
+      .title { font-size: 48px !important; }
+      .subtitle { font-size: 18px; line-height: 1.4; }
+      label { font-size: 18px; }
+      input, select, textarea { font-size: 16px; padding: 14px 16px; }
+      button[type="submit"] { font-size: 16px; padding: 14px 20px; }
+    }
+
+    @media (min-width: 600px) { .row { flex: 1 1 48%; } }
+    @media (min-width: 1024px) { body { padding: 40px; } .header { padding: 32px 48px; } .title { font-size: 60px !important; } .subtitle { font-size: 18px; } }
+
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <div class="header">
+      <h1 class="title">Boda Alejandro y Andrea</h1>
+      <p class="subtitle">
+        Queremos que disfrutéis al máximo nuestra celebración, sin preocupaciones. Por eso, hemos preparado este formulario para conocer vuestras preferencias y asegurar que todo esté perfecto para vosotros.
+      </p>
+    </div>
+
+    <form id="rsvpForm" action="https://formspree.io/f/xeolvqqb" method="POST" novalidate>
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" />
+      <input type="hidden" name="_subject" value="Nueva confirmación de asistencia" />
+
+      <div class="grid">
+        <div class="row">
+          <label for="nombre">Nombre y apellidos *</label>
+          <input id="nombre" name="nombre" type="text" required placeholder="Ej. Ana Pérez" />
+        </div>
+        <div class="row">
+          <label>¿Asistirás a la boda? *</label>
+          <div class="radio-row">
+            <label class="chip"><input type="radio" name="asistencia" value="sí" required /><span>Sí</span></label>
+            <label class="chip"><input type="radio" name="asistencia" value="no" required /><span>No</span></label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="acompanantes">¿Cuántos acompañantes?</label>
+          <input id="acompanantes" name="acompanantes" type="number" min="0" max="10" value="0" />
+        </div>
+      </div>
+
+      <!-- Pregunta autobús con modal -->
+      <div class="grid">
+        <div class="row" id="busRow" style="background: rgba(255, 255, 255, 0.6); padding: 12px; border-radius: 8px;">
+          <label>
+            ¿Utilizarás el servicio de autobús?
+            <span id="infoIcon" style="cursor:pointer; margin-left:8px; color:#b87b5a; font-weight:bold;">ℹ️</span>
+          </label>
+          <div class="radio-row">
+            <label class="chip"><input type="radio" name="autobus" value="sí" /><span>Sí</span></label>
+            <label class="chip"><input type="radio" name="autobus" value="no" /><span>No</span></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div id="infoModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6);">
+        <div style="background:rgba(255,255,255,0.9); margin:10% auto; padding:20px; border-radius:12px; max-width:500px; position:relative;">
+          <span id="closeModal" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:18px; font-weight:bold;">✖</span>
+          <h3>Horarios y paradas del autobús</h3>
+          <p><strong>Ida:</strong> 13:30 desde La Cuesta Labrit (parada de autobuses).</p>
+          <p><strong>Vuelta:</strong> 02:00 desde Palacio de Olloqui hasta Hotel Tres Reyes, Pamplona.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <label for="alergias">¿Tienes alguna alergia, intolerancia o preferencia alimentaria?</label>
+        <input id="alergias" name="alergias" type="text" placeholder="Ej. sin gluten, frutos secos, vegetariano..." />
+      </div>
+
+      <div class="row">
+        <label for="mensaje">¿Qué canción te gusta para que suene en la fiesta?</label>
+        <textarea id="mensaje" name="mensaje" placeholder=" "></textarea>
+      </div>
+
+      <div class="actions">
+        <span class="note"> </span>
+        <button type="submit">Enviar confirmación</button>
+      </div>
+    </form>
+
+    <div class="success" id="successBox" role="status" aria-live="polite">
+      <h3>¡Gracias por tu respuesta! 💌</h3>
+      <p>Hemos registrado tu confirmación. Puedes cerrar esta página.</p>
+    </div>
+
+    <div class="error" id="errorBox" role="alert">
+      <h3>Vaya, algo no ha ido bien…</h3>
+      <p>Inténtalo de nuevo en unos segundos o avisa a los novios.</p>
+    </div>
+
+    <div class="footer">© Alejandro & Andrea</div>
+  </main>
+
+  <!-- Scripts -->
+  <script>
+    // Ajustar variable vh para móviles
+    function setVh() {
+      document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+    }
+    setVh();
+    window.addEventListener('resize', setVh);
+
+    // Formulario
+    (function () {
+      const form = document.getElementById('rsvpForm');
+      const successBox = document.getElementById('successBox');
+      const errorBox = document.getElementById('errorBox');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        try {
+          const response = await fetch(form.action, { method: form.method, body: data, headers: { 'Accept': 'application/json' } });
+          if (response.ok) { form.style.display = 'none'; successBox.style.display = 'block'; }
+          else { throw new Error('Error en el envío'); }
+        } catch (err) { form.style.display = 'none'; errorBox.style.display = 'block'; }
+      });
+    })();
+
+    // Modal autobús
+    const infoIcon = document.getElementById("infoIcon");
+    const infoModal = document.getElementById("infoModal");
+    const closeBtn = document.getElementById("closeModal");
+    const autobusRadios = document.querySelectorAll('input[name="autobus"]');
+
+    infoIcon.addEventListener("click", () => { infoModal.style.display = "block"; });
+    closeBtn.addEventListener("click", () => { infoModal.style.display = "none"; });
+    window.addEventListener("click", e => { if(e.target===infoModal) infoModal.style.display="none"; });
+    autobusRadios.forEach(radio => { radio.addEventListener("change", () => { if(radio.value==="sí" && radio.checked) infoModal.style.display="block"; }); });
+  </script>
 </body>
 </html>
+
+
 
 
 
