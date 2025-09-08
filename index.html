@@ -288,21 +288,69 @@ body::before {
         </div>
       </div>
 
-      <div class="grid">
-        <div class="row" id="busRow">
-          <label>¿Utilizarás el servicio de autobús?</label>
-          <div class="radio-row">
-            <label class="chip">
-              <input type="radio" name="autobus" value="sí" />
-              <span>Sí</span>
-            </label>
-            <label class="chip">
-              <input type="radio" name="autobus" value="no" />
-              <span>No</span>
-            </label>
-          </div>
-        </div>
-      </div>
+    <!-- Pregunta del autobús con icono de información -->
+<div class="grid">
+  <div class="row" id="busRow" style="background: rgba(255, 255, 255, 0.6); padding: 12px; border-radius: 8px;">
+    <label>
+      ¿Utilizarás el servicio de autobús?
+      <span id="infoIcon" style="cursor:pointer; margin-left:8px; color:#b87b5a; font-weight:bold;">ℹ️</span>
+    </label>
+    <div class="radio-row">
+      <label class="chip">
+        <input type="radio" name="autobus" value="sí" />
+        <span>Sí</span>
+      </label>
+      <label class="chip">
+        <input type="radio" name="autobus" value="no" />
+        <span>No</span>
+      </label>
+    </div>
+  </div>
+</div>
+
+<!-- Modal oculto inicialmente -->
+<div id="infoModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6);">
+  <div style="background:rgba(255,255,255,0.9); margin:10% auto; padding:20px; border-radius:12px; max-width:500px; position:relative;">
+    <span id="closeModal" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:18px; font-weight:bold;">✖</span>
+    <h3>Horarios y paradas del autobús</h3>
+    <p><strong>Ida:</strong> 13:30 desde La Cuesta Labrit (parada de autobuses).</p>
+    <p><strong>Vuelta:</strong> 02:00 desde Palacio de Olloqui hasta Hotel Tres Reyes, Pamplona.</p>
+  </div>
+</div>
+
+<script>
+  const infoIcon = document.getElementById("infoIcon");
+  const infoModal = document.getElementById("infoModal");
+  const closeBtn = document.getElementById("closeModal");
+  const autobusRadios = document.querySelectorAll('input[name="autobus"]');
+
+  // Mostrar modal al hacer clic en el icono ℹ️
+  infoIcon.addEventListener("click", () => {
+    infoModal.style.display = "block";
+  });
+
+  // Cerrar modal al hacer clic en la X
+  closeBtn.addEventListener("click", () => {
+    infoModal.style.display = "none";
+  });
+
+  // Cerrar modal al hacer clic fuera de él
+  window.addEventListener("click", (e) => {
+    if (e.target === infoModal) {
+      infoModal.style.display = "none";
+    }
+  });
+
+  // Abrir modal automáticamente al seleccionar "Sí"
+  autobusRadios.forEach(radio => {
+    radio.addEventListener("change", () => {
+      if (radio.value === "sí" && radio.checked) {
+        infoModal.style.display = "block";
+      }
+    });
+  });
+</script>
+
 
       <div class="row">
         <label for="alergias">¿Tienes alguna alergia, intolerancia o preferencia alimentaria?</label>
@@ -363,6 +411,7 @@ body::before {
   </script>
 </body>
 </html>
+
 
 
 
