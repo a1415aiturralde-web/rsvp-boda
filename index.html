@@ -3,75 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>¡FELICIDADES MI PILO! 🎉</title>
+<title>En Mantenimiento</title>
 <style>
-  /* Reset básico */
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Arial', sans-serif;
-    background: #ffecb3;
-    overflow: hidden;
-    text-align: center;
-    position: relative;
+  body { 
+    display: flex; justify-content: center; align-items: center; 
+    height: 100vh; margin: 0; font-family: sans-serif; 
+    background: #f5f5f5; color: #333; text-align: center;
   }
-
-  h1 {
-    font-size: 3em;
-    color: #ff4081;
-    text-shadow: 2px 2px #fff;
-    margin-bottom: 20px;
-  }
-
-  p {
-    font-size: 1.2em;
-    color: #333;
-  }
-
-  /* Confeti */
-  .confetti {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: #f44336;
-    top: -10px;
-    animation: fall 3s linear infinite;
-    opacity: 0.7;
-  }
-
-  @keyframes fall {
-    0% { transform: translateY(0) rotate(0deg); }
-    100% { transform: translateY(110vh) rotate(360deg); }
-  }
+  h1 { font-size: 2em; margin-bottom: 0.5em; }
 </style>
 </head>
 <body>
-
-<h1>🎉 FELICIDADES MI PILO 🎉</h1>
-<p>Disfruta del día como se merece, te quiero biende mucho ❤️</p>
-
-<script>
-  // Crear confeti aleatorio
-  const confetiCount = 100;
-  for(let i=0; i<confetiCount; i++){
-    const confeti = document.createElement('div');
-    confeti.classList.add('confetti');
-    confeti.style.left = Math.random() * window.innerWidth + 'px';
-    confeti.style.backgroundColor = `hsl(${Math.random()*360}, 70%, 60%)`;
-    confeti.style.width = confeti.style.height = (5 + Math.random()*10) + 'px';
-    confeti.style.animationDuration = (2 + Math.random()*3) + 's';
-    confeti.style.animationDelay = Math.random() * 5 + 's';
-    document.body.appendChild(confeti);
-  }
-</script>
-
+  <div>
+    <h1>Volvemos pronto 🚧</h1>
+    <p>La página está temporalmente en mantenimiento.</p>
+  </div>
 </body>
 </html>
-
 
 
 
