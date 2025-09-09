@@ -182,13 +182,13 @@
 /* ===== Responsive móviles ===== */
 @media (max-width: 480px) {
   body {
-    padding: 20px 12px 12px 12px; /* espacio superior para que el título no quede detrás de la barra URL */
+    padding: 0px 12px 12px 12px; /* espacio superior para que el título no quede detrás de la barra URL */
     overflow: hidden; /* evita scroll del body */
   }
 
   main.card {
     margin-top: 0; /* el padding del body ya genera espacio */
-    max-height: calc(100vh - 20px - 12px); /* altura máxima considerando padding top y bottom */
+    max-height: calc(100vh - 0px - 12px); /* altura máxima considerando padding top y bottom */
     overflow-y: auto; /* scroll interno si el contenido sobrepasa la pantalla */
     padding: 12px;
   }
@@ -350,6 +350,7 @@
   </script>
 </body>
 </html>
+
 
 
 
