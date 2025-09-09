@@ -117,12 +117,17 @@
       color: #8a5a3d;
     }
 
-    section {
-      display: none;
+section {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
-    section.active {
-      display: block;
+  section.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
     }
 
     label {
@@ -255,7 +260,39 @@
 
     /* ===== Responsive tablet y escritorio ===== */
     @media (min-width: 600px) { .row { flex: 1 1 48%; } }
-    @media (min-width: 1024px) { body { padding: 40px; } .header { padding: 32px 48px; } .title { font-size: 60px !important; } .subtitle { font-size: 18px; } }
+    @media (min-width: 1024px) { body { padding: 40px; } .header { padding: 32px 48px; } .title { font-size: 60px !important; } .subtitle { font-size: 18px; } 
+       }
+    .icon-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.icon-button i {
+  font-size: 60px; /* más grande */
+  color: #b87b5a; /* color principal */
+  margin-bottom: 8px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.icon-button span {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--ink);
+}
+
+.icon-button:hover i {
+  transform: scale(1.2); /* efecto zoom al pasar el ratón */
+  color: #e8d8cc; /* color llamativo al pasar */
+}
+
+.icon-button.active i {
+  color: #2f8f5b; /* color para el icono activo */
+}
+
+    
   </style>
 </head>
 <body>
@@ -266,6 +303,26 @@
         Bienvenidos a nuestro espacio de boda. Aquí podréis compartir con nosotros vuestras preferencias para que todo esté perfecto, además de encontrar información actualizada sobre la celebración. Tras la boda, este rincón será también un lugar donde podréis subir vuestras fotos y recuerdos para que sigamos celebrando juntos.
       </p>
     </div>
+    <div class="icon-row" style="display:flex; justify-content:space-around; margin:24px 0;">
+  <!-- Icono 1: Cuestionario de asistencia -->
+  <div class="icon-button" onclick="document.getElementById('rsvpForm').scrollIntoView({behavior:'smooth'});">
+    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+    <span>Asistencia</span>
+  </div>
+
+  <!-- Icono 2: Traslado de invitados -->
+  <div class="icon-button" onclick="document.getElementById('busRow').scrollIntoView({behavior:'smooth'});">
+    <i class="fa fa-bus" aria-hidden="true"></i>
+    <span>Traslado</span>
+  </div>
+
+  <!-- Icono 3: Rincón de recuerdos -->
+  <div class="icon-button" onclick="document.getElementById('recuerdos').scrollIntoView({behavior:'smooth'});">
+    <i class="fa fa-camera-retro" aria-hidden="true"></i>
+    <span>Recuerdos</span>
+  </div>
+</div>
+
 
     <!-- Menú de iconos -->
     <div class="menu">
@@ -354,17 +411,20 @@
       </div>
     </section>
 
-    <!-- Sección: Traslado -->
-    <section id="traslado">
-      <h2>Traslado de invitados</h2>
-      <p>Aquí pondremos horarios de autobuses, paradas y teléfonos de taxi.</p>
-    </section>
+  <section id="traslado">
+  <div class="section-content">
+    <h2>Traslado de invitados</h2>
+    <p>Aquí puedes consultar horarios y paradas de autobús, así como números de taxi.</p>
+  </div>
+</section>
 
-    <!-- Sección: Recuerdos -->
-    <section id="recuerdos">
-      <h2>Rincón de los recuerdos</h2>
-      <p>Después de la boda, aquí podréis subir vuestras fotos 📸.</p>
-    </section>
+<section id="recuerdos">
+  <div class="section-content">
+    <h2>Rincón de los recuerdos</h2>
+    <p>Después de la boda, sube tus fotos para compartirlas con todos.</p>
+  </div>
+</section>
+
 
     <div class="footer">© Alejandro & Andrea</div>
   </main>
@@ -414,13 +474,31 @@
     });
 
     // Navegación por secciones
-    function showSection(id) {
-      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
+function showSection(id) {
+  const sections = document.querySelectorAll("section");
+
+  sections.forEach(sec => {
+    if(sec.classList.contains("active")) {
+      sec.classList.remove("active");
+      // Espera a que termine la transición antes de ocultar
+      setTimeout(() => { sec.style.display = "none"; }, 500);
+    } else {
+      sec.style.display = "none";
     }
+  });
+
+  const target = document.getElementById(id);
+  target.style.display = "block";
+
+  setTimeout(() => {
+    target.classList.add("active");
+  }, 20);
+}
+
   </script>
 </body>
 </html>
+
 
 
 
