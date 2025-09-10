@@ -23,23 +23,23 @@
 
     * { box-sizing: border-box; }
 
-    html, body { height: 100%; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       font-family: ui-sans-serif, system-ui, ...;
       color: var(--ink);
       min-height: 100vh;
+      overflow: hidden; /* Bloqueamos scroll del body */
       position: relative;
-      overflow-x: hidden; /* solo horizontal */
-      overflow-y: auto;   /* permitimos scroll vertical */
-      -webkit-overflow-scrolling: touch; /* suaviza scroll en iOS */
-      padding: 24px;
-      overscroll-behavior-y: contain; /* para que el pull-to-refresh funcione sin mover el fondo */
     }
 
     body::before {
       content: "";
-      position: fixed; /* fondo fijo */
+      position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
       background:
@@ -56,7 +56,9 @@
       background: transparent;
       border-radius: var(--radius);
       padding: 16px;
-      overflow: hidden; /* solo scroll interno si es necesario */
+      height: calc(100vh - 80px); /* altura total menos márgenes */
+      overflow-y: auto; /* scroll interno */
+      -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
     }
 
     .header {
@@ -105,8 +107,7 @@
     .footer { padding: 12px 24px 24px; text-align: center; font-size: 12px; color: #fff; }
 
     @media (max-width: 480px) {
-      body { padding: 0px 12px 12px 12px; overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-y: contain; }
-      main.card { margin-top: 0; max-height: calc(100vh - 0px - 24px); overflow-y: auto; padding: 12px; margin-bottom: 10px; }
+      .card { height: calc(100vh - 60px); }
       .title { font-size: 48px !important; }
       .subtitle { font-size: 18px; line-height: 1.4; }
       label { font-size: 18px; }
@@ -116,6 +117,7 @@
 
     @media (min-width: 600px) { .row { flex: 1 1 48%; } }
     @media (min-width: 1024px) { body { padding: 40px; } .header { padding: 32px 48px; } .title { font-size: 60px !important; } .subtitle { font-size: 18px; } }
+
   </style>
 </head>
 <body>
@@ -181,11 +183,11 @@
       <!-- Autobús -->
       <div class="grid">
        <div class="row" id="busRow" style="background: rgba(255, 255, 255, 0.6); padding: 12px; border-radius: 8px;">
-         <label>¿Utilizarás el servicio de autobús?</label>
-         <div class="radio-row">
-           <label class="chip"><input type="radio" name="autobus" value="sí" /><span>Sí</span></label>
-           <label class="chip"><input type="radio" name="autobus" value="no" /><span>No</span></label>
-         </div>
+        <label>¿Utilizarás el servicio de autobús?</label>
+        <div class="radio-row">
+          <label class="chip"><input type="radio" name="autobus" value="sí" /><span>Sí</span></label>
+          <label class="chip"><input type="radio" name="autobus" value="no" /><span>No</span></label>
+        </div>
        </div>
       </div>
 
@@ -256,7 +258,6 @@
   </script>
 </body>
 </html>
-
 
 
 
