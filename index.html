@@ -133,10 +133,11 @@
         <i class="fas fa-pencil-alt"></i>
         <span>Cuestionario de asistencia</span>
       </div>
-      <div class="icon-button" onclick="document.getElementById('busRow').scrollIntoView({behavior:'smooth'})">
-        <i class="fas fa-bus"></i>
-        <span>Traslado de invitados</span>
-      </div>
+      <div class="icon-button" id="trasladoBtn">
+  <i class="fas fa-bus"></i>
+  <span>Traslado de invitados</span>
+</div>
+
       <div class="icon-button">
         <i class="fas fa-camera-retro"></i>
         <span>Rincón de los recuerdos</span>
@@ -250,23 +251,25 @@
     })();
 
     // Modal autobús
-    // Modal de Traslado
+   // Modal de Traslado
 const trasladoBtn = document.getElementById("trasladoBtn");
 const trasladoModal = document.getElementById("trasladoModal");
 const closeTraslado = document.getElementById("closeTraslado");
 
 trasladoBtn.addEventListener("click", () => { trasladoModal.style.display = "block"; });
 closeTraslado.addEventListener("click", () => { trasladoModal.style.display = "none"; });
-window.addEventListener("click", (e) => { if(e.target===trasladoModal){trasladoModal.style.display="none";} });
+window.addEventListener("click", (e) => { 
+  if(e.target === trasladoModal){
+    trasladoModal.style.display = "none";
+  }
+});
 
    
-    infoIcon.addEventListener("click", () => { infoModal.style.display = "block"; });
-    closeBtn.addEventListener("click", () => { infoModal.style.display = "none"; });
-    window.addEventListener("click", (e) => { if(e.target===infoModal){infoModal.style.display="none";} });
-    autobusRadios.forEach(radio => { radio.addEventListener("change", () => { if(radio.value==="sí" && radio.checked){ infoModal.style.display="block"; } }); });
+   
   </script>
 </body>
 </html>
+
 
 
 
