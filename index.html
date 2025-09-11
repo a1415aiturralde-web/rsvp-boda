@@ -82,6 +82,12 @@
     .icon-button:nth-child(3) i { color: #9b59b6; } /* morado */
     .icon-button span { font-size: 14px; text-align: center; color: #000; }
     .icon-button:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .icon-img {
+  width: 60px;   /* puedes jugar con el tamaño */
+  height: auto;  /* mantiene la proporción */
+  margin-bottom: 8px;
+}
+
 
     label { display: inline-block; font-size: 20px; color: #000; margin: 12px 0 6px; font-weight: bold; background: rgba(255,255,255,0.6); padding: 2px 6px; border-radius: 4px; }
     input, select, textarea { width: 100%; padding: 12px 14px; border: 1px solid #e4e4e7; border-radius: 12px; font-size: 15px; background: rgba(255,255,255,0.6); font-weight: bold; color: #000; }
@@ -134,9 +140,10 @@
         <span>Cuestionario de asistencia</span>
       </div>
       <div class="icon-button" id="trasladoBtn">
-        <i class="fas fa-bus"></i>
-        <span>Traslado de invitados</span>
-      </div>
+  <img src="autobus.png" alt="Autobús" class="icon-img">
+  <span>Traslado de invitados</span>
+</div>
+
       <div class="icon-button">
         <i class="fas fa-camera-retro"></i>
         <span>Rincón de los recuerdos</span>
@@ -256,6 +263,7 @@
   </script>
 </body>
 </html>
+
 
 
 
