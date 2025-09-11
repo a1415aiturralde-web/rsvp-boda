@@ -119,6 +119,10 @@
       input, select, textarea { font-size: 16px; padding: 14px 16px; }
       button[type="submit"] { font-size: 16px; padding: 14px 20px; }
     }
+    #rsvpForm {
+  display: none; /* oculto al cargar la página */
+}
+
 
     @media (min-width: 600px) { .row { flex: 1 1 48%; } }
     @media (min-width: 1024px) { body { padding: 40px; } .header { padding: 32px 48px; } .title { font-size: 60px !important; } .subtitle { font-size: 18px; } }
@@ -136,10 +140,11 @@
     <!-- Iconos -->
     <div class="icon-container">
   <!-- Cuestionario de asistencia -->
-  <div class="icon-button" onclick="document.getElementById('rsvpForm').scrollIntoView({behavior:'smooth'})">
-    <img src="cuestionario.png" alt="Cuestionario de asistencia" class="icon-img">
-    <span>Cuestionario de asistencia</span>
-  </div>
+ <div class="icon-button" id="asistenciaBtn">
+  <img src="cuestionario.png" alt="Cuestionario" class="icon-img" />
+  <span>Cuestionario de asistencia</span>
+</div>
+
       <div class="icon-button" id="trasladoBtn">
   <img src="autobus.png" alt="Autobús" class="icon-img">
   <span>Traslado de invitados</span>
@@ -250,6 +255,16 @@
         } catch (err) {
           form.style.display = 'none';
           errorBox.style.display = 'block';
+          // Botón cuestionario
+const asistenciaBtn = document.getElementById("asistenciaBtn");
+const rsvpForm = document.getElementById("rsvpForm");
+
+asistenciaBtn.addEventListener("click", () => {
+  // si está oculto lo mostramos, si está visible lo ocultamos
+  rsvpForm.style.display = (rsvpForm.style.display === "none" || rsvpForm.style.display === "") 
+    ? "block" 
+    : "none";
+
         }
       });
     })();
@@ -265,6 +280,7 @@
   </script>
 </body>
 </html>
+
 
 
 
