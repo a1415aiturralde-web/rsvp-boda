@@ -22,7 +22,6 @@
     }
 
     * { box-sizing: border-box; }
-
     html, body { height: 100%; margin: 0; padding: 0; }
 
     body {
@@ -30,16 +29,16 @@
       color: var(--ink);
       min-height: 100vh;
       position: relative;
-      overflow-x: hidden; /* solo horizontal */
-      overflow-y: auto;   /* permitimos scroll vertical */
-      -webkit-overflow-scrolling: touch; /* suaviza scroll en iOS */
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       padding: 24px;
-      overscroll-behavior-y: contain; /* para que el pull-to-refresh funcione sin mover el fondo */
+      overscroll-behavior-y: contain;
     }
 
     body::before {
       content: "";
-      position: fixed; /* fondo fijo */
+      position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
       background:
@@ -56,7 +55,7 @@
       background: transparent;
       border-radius: var(--radius);
       padding: 16px;
-      overflow: hidden; /* solo scroll interno si es necesario */
+      overflow: hidden;
     }
 
     .header {
@@ -77,17 +76,12 @@
       padding: 20px; border-radius: 16px; transition: transform 0.2s, box-shadow 0.2s; min-width: 100px;
     }
     .icon-button i { font-size: 50px; margin-bottom: 8px; transition: color 0.2s; }
-    .icon-button:nth-child(1) i { color: #e67e22; } /* naranja */
-    .icon-button:nth-child(2) i { color: #3498db; } /* azul */
-    .icon-button:nth-child(3) i { color: #9b59b6; } /* morado */
+    .icon-button:nth-child(1) i { color: #e67e22; }
+    .icon-button:nth-child(2) i { color: #3498db; }
+    .icon-button:nth-child(3) i { color: #9b59b6; }
     .icon-button span { font-size: 14px; text-align: center; color: #000; }
     .icon-button:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
-    .icon-img {
-  width: 60px;   /* puedes jugar con el tamaño */
-  height: auto;  /* mantiene la proporción */
-  margin-bottom: 8px;
-}
-
+    .icon-img { width: 60px; height: auto; margin-bottom: 8px; }
 
     label { display: inline-block; font-size: 20px; color: #000; margin: 12px 0 6px; font-weight: bold; background: rgba(255,255,255,0.6); padding: 2px 6px; border-radius: 4px; }
     input, select, textarea { width: 100%; padding: 12px 14px; border: 1px solid #e4e4e7; border-radius: 12px; font-size: 15px; background: rgba(255,255,255,0.6); font-weight: bold; color: #000; }
@@ -109,6 +103,9 @@
     .success { display: none; } .success h3 { margin: 0 0 6px; color: var(--ok); }
     .error { display: none; } .error h3 { margin: 0 0 6px; color: var(--error); }
     .footer { padding: 12px 24px 24px; text-align: center; font-size: 12px; color: #fff; }
+
+    /* 🔥 El formulario empieza oculto */
+    #rsvpForm { display: none; }
 
     @media (max-width: 480px) {
       body { padding: 0px 12px 12px 12px; overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-y: contain; }
@@ -135,20 +132,18 @@
 
     <!-- Iconos -->
     <div class="icon-container">
-       <div class="icon-button" onclick="document.getElementById('rsvpForm').scrollIntoView({behavior:'smooth'})">
-    <img src="cuestionario.png" alt="Cuestionario de asistencia" class="icon-img">
-    <span>Cuestionario de asistencia</span>
-  </div>
-     <div class="icon-button" id="trasladoBtn">
-  <img src="autobus.png" alt="Autobús" class="icon-img">
-  <span>Traslado de invitados</span>
-</div>
-
-     <div class="icon-button">
-  <img src="recuerdos.png" alt="Rincón de los recuerdos" class="icon-img">
-  <span>Rincón de los recuerdos</span>
-</div>
-
+      <div class="icon-button" id="asistenciaBtn">
+        <img src="cuestionario.png" alt="Cuestionario de asistencia" class="icon-img">
+        <span>Cuestionario de asistencia</span>
+      </div>
+      <div class="icon-button" id="trasladoBtn">
+        <img src="autobus.png" alt="Autobús" class="icon-img">
+        <span>Traslado de invitados</span>
+      </div>
+      <div class="icon-button">
+        <img src="recuerdos.png" alt="Rincón de los recuerdos" class="icon-img">
+        <span>Rincón de los recuerdos</span>
+      </div>
     </div>
 
     <!-- Modal de Traslado -->
@@ -186,7 +181,6 @@
         </div>
       </div>
 
-      <!-- Autobús -->
       <div class="grid">
        <div class="row" id="busRow" style="background: rgba(255, 255, 255, 0.6); padding: 12px; border-radius: 8px;">
          <label>¿Utilizarás el servicio de autobús?</label>
@@ -227,6 +221,18 @@
   </main>
 
   <script>
+    // Mostrar/ocultar cuestionario
+    const asistenciaBtn = document.getElementById("asistenciaBtn");
+    const rsvpForm = document.getElementById("rsvpForm");
+    asistenciaBtn.addEventListener("click", () => {
+      if (rsvpForm.style.display === "none" || rsvpForm.style.display === "") {
+        rsvpForm.style.display = "block";
+        rsvpForm.scrollIntoView({ behavior: "smooth" });
+      } else {
+        rsvpForm.style.display = "none";
+      }
+    });
+
     // Formulario
     (function () {
       const form = document.getElementById('rsvpForm');
@@ -264,6 +270,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
