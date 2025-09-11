@@ -22,24 +22,23 @@
     }
 
     * { box-sizing: border-box; }
-
     html, body { height: 100%; margin: 0; padding: 0; }
 
     body {
-      font-family: ui-sans-serif, system-ui, ...;
+      font-family: ui-sans-serif, system-ui, sans-serif;
       color: var(--ink);
       min-height: 100vh;
       position: relative;
-      overflow-x: hidden; /* solo horizontal */
-      overflow-y: auto;   /* permitimos scroll vertical */
-      -webkit-overflow-scrolling: touch; /* suaviza scroll en iOS */
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       padding: 24px;
-      overscroll-behavior-y: contain; /* para que el pull-to-refresh funcione sin mover el fondo */
+      overscroll-behavior-y: contain;
     }
 
     body::before {
       content: "";
-      position: fixed; /* fondo fijo */
+      position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
       background:
@@ -56,7 +55,7 @@
       background: transparent;
       border-radius: var(--radius);
       padding: 16px;
-      overflow: hidden; /* solo scroll interno si es necesario */
+      overflow: hidden;
     }
 
     .header {
@@ -76,18 +75,14 @@
       cursor: pointer; background: rgba(255,255,255,0.8);
       padding: 20px; border-radius: 16px; transition: transform 0.2s, box-shadow 0.2s; min-width: 100px;
     }
-    .icon-button i { font-size: 50px; margin-bottom: 8px; transition: color 0.2s; }
-    .icon-button:nth-child(1) i { color: #e67e22; } /* naranja */
-    .icon-button:nth-child(2) i { color: #3498db; } /* azul */
-    .icon-button:nth-child(3) i { color: #9b59b6; } /* morado */
     .icon-button span { font-size: 14px; text-align: center; color: #000; }
     .icon-button:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
-    .icon-img {
-  width: 60px;   /* puedes jugar con el tamaño */
-  height: auto;  /* mantiene la proporción */
-  margin-bottom: 8px;
-}
 
+    .icon-img {
+      width: 60px;
+      height: auto;
+      margin-bottom: 8px;
+    }
 
     label { display: inline-block; font-size: 20px; color: #000; margin: 12px 0 6px; font-weight: bold; background: rgba(255,255,255,0.6); padding: 2px 6px; border-radius: 4px; }
     input, select, textarea { width: 100%; padding: 12px 14px; border: 1px solid #e4e4e7; border-radius: 12px; font-size: 15px; background: rgba(255,255,255,0.6); font-weight: bold; color: #000; }
@@ -98,7 +93,7 @@
     .radio-row { display: flex; flex-wrap: wrap; gap: 12px; }
     .chip { display: inline-flex; align-items: center; justify-content: center; padding: 10px 18px; border: 2px solid var(--brand); border-radius: 999px; cursor: pointer; user-select: none; font-weight: bold; transition: background .15s, border-color .15s, color .15s; color: var(--ink); position: relative; }
     .chip input { position: absolute; opacity: 0; pointer-events: none; }
-    .chip input:checked + span { background: var(--brand); color: #fff; border-color: var(--brand); border-radius: 999px; padding: 10px 18px; display: inline-block; }
+    .chip input:checked + span { background: var(--brand); color: #fff; border-color: var(--brand); }
 
     .actions { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 20px; }
     button[type="submit"] { padding: 12px 18px; border: 0; border-radius: 999px; background: var(--brand); color: #fff; font-weight: 600; font-size: 15px; cursor: pointer; box-shadow: 0 6px 14px rgba(184,123,90,.28); }
@@ -110,130 +105,73 @@
     .error { display: none; } .error h3 { margin: 0 0 6px; color: var(--error); }
     .footer { padding: 12px 24px 24px; text-align: center; font-size: 12px; color: #fff; }
 
-    @media (max-width: 480px) {
-      body { padding: 0px 12px 12px 12px; overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-y: contain; }
-      main.card { margin-top: 0; max-height: calc(100vh - 0px - 24px); overflow-y: auto; padding: 12px; margin-bottom: 10px; }
-      .title { font-size: 48px !important; }
-      .subtitle { font-size: 18px; line-height: 1.4; }
-      label { font-size: 18px; }
-      input, select, textarea { font-size: 16px; padding: 14px 16px; }
-      button[type="submit"] { font-size: 16px; padding: 14px 20px; }
-    }
-    #rsvpForm {
-  display: none; /* oculto al cargar la página */
-}
-
-
-    @media (min-width: 600px) { .row { flex: 1 1 48%; } }
-    @media (min-width: 1024px) { body { padding: 40px; } .header { padding: 32px 48px; } .title { font-size: 60px !important; } .subtitle { font-size: 18px; } }
+    #rsvpForm { display: none; } /* oculto al inicio */
   </style>
 </head>
 <body>
   <main class="card" role="main">
     <div class="header">
       <h1 class="title">Boda Alejandro y Andrea</h1>
-      <p class="subtitle">
-       Bienvenidos a nuestro espacio de boda. Aquí podréis compartir con nosotros vuestras preferencias para que todo esté perfecto, además de encontrar información actualizada sobre la celebración. Tras la boda, este rincón será también un lugar donde podréis subir vuestras fotos y recuerdos para que sigamos celebrando juntos.
-      </p>
+      <p class="subtitle">Bienvenidos a nuestro espacio de boda...</p>
     </div>
 
     <!-- Iconos -->
     <div class="icon-container">
-  <!-- Cuestionario de asistencia -->
- <div class="icon-button" id="asistenciaBtn">
-  <img src="cuestionario.png" alt="Cuestionario" class="icon-img" />
-  <span>Cuestionario de asistencia</span>
-</div>
+      <!-- Cuestionario de asistencia -->
+      <div class="icon-button" id="asistenciaBtn">
+        <img src="cuestionario.png" alt="Cuestionario" class="icon-img" />
+        <span>Cuestionario de asistencia</span>
+      </div>
 
       <div class="icon-button" id="trasladoBtn">
-  <img src="autobus.png" alt="Autobús" class="icon-img">
-  <span>Traslado de invitados</span>
-</div>
+        <img src="autobus.png" alt="Autobús" class="icon-img">
+        <span>Traslado de invitados</span>
+      </div>
 
-     <div class="icon-button">
-  <img src="recuerdos.png" alt="Rincón de los recuerdos" class="icon-img">
-  <span>Rincón de los recuerdos</span>
-</div>
-
+      <div class="icon-button">
+        <img src="recuerdos.png" alt="Rincón de los recuerdos" class="icon-img">
+        <span>Rincón de los recuerdos</span>
+      </div>
     </div>
 
-    <!-- Modal de Traslado -->
+    <!-- Modal Traslado -->
     <div id="trasladoModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6);">
       <div style="background:rgba(255,255,255,0.95); margin:10% auto; padding:20px; border-radius:12px; max-width:500px; position:relative;">
         <span id="closeTraslado" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:18px; font-weight:bold;">✖</span>
         <h3>Traslado de invitados</h3>
-        <p><strong>Ida:</strong> 13:30 desde La Cuesta Labrit (parada de autobuses).</p>
-        <p><strong>Vuelta:</strong> 02:00 desde Palacio de Olloqui hasta Hotel Tres Reyes, Pamplona.</p>
-        <h4>Telefonos Taxi:</h4>
-        <p>📞 Taxi Pamplona: 948 232 300<br>
-           📞 Radio Taxi: 948 351 335</p>
+        <p><strong>Ida:</strong> 13:30 desde La Cuesta Labrit.</p>
+        <p><strong>Vuelta:</strong> 02:00 desde Palacio de Olloqui.</p>
       </div>
     </div>
 
     <!-- Formulario -->
     <form id="rsvpForm" action="https://formspree.io/f/xeolvqqb" method="POST" novalidate>
-      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" />
-      <input type="hidden" name="_subject" value="Nueva confirmación de asistencia" />
-      <div class="grid">
-        <div class="row">
-          <label for="nombre">Nombre y apellidos *</label>
-          <input id="nombre" name="nombre" type="text" required placeholder="Ej. Ana Pérez" />
-        </div>
-        <div class="row">
-          <label>¿Asistirás a la boda? *</label>
-          <div class="radio-row">
-            <label class="chip"><input type="radio" name="asistencia" value="sí" required /><span>Sí</span></label>
-            <label class="chip"><input type="radio" name="asistencia" value="no" required /><span>No</span></label>
-          </div>
-        </div>
-        <div class="row">
-          <label for="acompanantes">¿Cuántos acompañantes?</label>
-          <input id="acompanantes" name="acompanantes" type="number" min="0" max="10" value="0" />
-        </div>
-      </div>
-
-      <!-- Autobús -->
-      <div class="grid">
-       <div class="row" id="busRow" style="background: rgba(255, 255, 255, 0.6); padding: 12px; border-radius: 8px;">
-         <label>¿Utilizarás el servicio de autobús?</label>
-         <div class="radio-row">
-           <label class="chip"><input type="radio" name="autobus" value="sí" /><span>Sí</span></label>
-           <label class="chip"><input type="radio" name="autobus" value="no" /><span>No</span></label>
-         </div>
-       </div>
-      </div>
-
-      <div class="row">
-        <label for="alergias">¿Tienes alguna alergia, intolerancia o preferencia alimentaria?</label>
-        <input id="alergias" name="alergias" type="text" placeholder="Ej. sin gluten, frutos secos, vegetariano..." />
-      </div>
-
-      <div class="row">
-        <label for="mensaje">¿Qué canción te gusta para que suene en la fiesta?</label>
-        <textarea id="mensaje" name="mensaje" placeholder=" "></textarea>
-      </div>
-
+      <!-- tus campos del formulario -->
       <div class="actions">
-        <span class="note"> </span>
         <button type="submit">Enviar confirmación</button>
       </div>
     </form>
 
-    <div class="success" id="successBox" role="status" aria-live="polite">
-      <h3>¡Gracias por tu respuesta! 💌</h3>
-      <p>Hemos registrado tu confirmación. Puedes cerrar esta página.</p>
-    </div>
-
-    <div class="error" id="errorBox" role="alert">
-      <h3>Vaya, algo no ha ido bien…</h3>
-      <p>Inténtalo de nuevo en unos segundos o avisa a los novios.</p>
-    </div>
-
+    <div class="success" id="successBox"><h3>¡Gracias por tu respuesta! 💌</h3></div>
+    <div class="error" id="errorBox"><h3>Vaya, algo no ha ido bien…</h3></div>
     <div class="footer">© Alejandro & Andrea</div>
   </main>
 
   <script>
-    // Formulario
+    // Mostrar/ocultar cuestionario
+    const asistenciaBtn = document.getElementById("asistenciaBtn");
+    const rsvpForm = document.getElementById("rsvpForm");
+
+    asistenciaBtn.addEventListener("click", () => {
+      if (rsvpForm.style.display === "none" || rsvpForm.style.display === "") {
+        rsvpForm.style.display = "block";
+        rsvpForm.scrollIntoView({ behavior: "smooth" });
+      } else {
+        rsvpForm.style.display = "none";
+      }
+    });
+
+    // Form envío
     (function () {
       const form = document.getElementById('rsvpForm');
       const successBox = document.getElementById('successBox');
@@ -251,25 +189,17 @@
           if (response.ok) {
             form.style.display = 'none';
             successBox.style.display = 'block';
-          } else { throw new Error('Error en el envío'); }
+          } else {
+            throw new Error('Error en el envío');
+          }
         } catch (err) {
           form.style.display = 'none';
           errorBox.style.display = 'block';
-          // Botón cuestionario
-const asistenciaBtn = document.getElementById("asistenciaBtn");
-const rsvpForm = document.getElementById("rsvpForm");
-
-asistenciaBtn.addEventListener("click", () => {
-  // si está oculto lo mostramos, si está visible lo ocultamos
-  rsvpForm.style.display = (rsvpForm.style.display === "none" || rsvpForm.style.display === "") 
-    ? "block" 
-    : "none";
-
         }
       });
     })();
 
-    // Modal de Traslado
+    // Modal traslado
     const trasladoBtn = document.getElementById("trasladoBtn");
     const trasladoModal = document.getElementById("trasladoModal");
     const closeTraslado = document.getElementById("closeTraslado");
@@ -280,13 +210,6 @@ asistenciaBtn.addEventListener("click", () => {
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
 
 
 
