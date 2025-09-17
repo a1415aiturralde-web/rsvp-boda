@@ -140,11 +140,28 @@
         <img src="autobus.png" alt="Autobús" class="icon-img">
         <span>Traslado de invitados</span>
       </div>
-      <div class="icon-button">
-        <img src="recuerdos.png" alt="Rincón de los recuerdos" class="icon-img">
-        <span>Rincón de los recuerdos</span>
-      </div>
+    <div class="icon-button" id="recuerdosBtn">
+  <img src="recuerdos.png" alt="Rincón de los recuerdos" class="icon-img">
+  <span>Rincón de los recuerdos</span>
+</div>
+
     </div>
+    <!-- Modal Recuerdos -->
+<div id="recuerdosModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6);">
+  <div style="background:rgba(255,255,255,0.95); margin:10% auto; padding:20px; border-radius:12px; max-width:500px; position:relative;">
+    <span id="closeRecuerdos" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:18px; font-weight:bold;">✖</span>
+    <h3>Rincón de los recuerdos 📸</h3>
+    <p>Aquí puedes subir las fotos que hayas sacado en la boda para que podamos guardarlas como recuerdo.</p>
+    
+    <form action="https://formspree.io/f/xeolvqqb" method="POST" enctype="multipart/form-data">
+      <label for="foto">Sube tus fotos:</label><br><br>
+      <input type="file" id="foto" name="foto" accept="image/*" multiple required>
+      <br><br>
+      <button type="submit">Enviar fotos</button>
+    </form>
+  </div>
+</div>
+
 
     <!-- Modal de Traslado -->
     <div id="trasladoModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6);">
@@ -258,6 +275,15 @@
         }
       });
     })();
+    // Modal de Recuerdos
+const recuerdosBtn = document.getElementById("recuerdosBtn");
+const recuerdosModal = document.getElementById("recuerdosModal");
+const closeRecuerdos = document.getElementById("closeRecuerdos");
+
+recuerdosBtn.addEventListener("click", () => { recuerdosModal.style.display = "block"; });
+closeRecuerdos.addEventListener("click", () => { recuerdosModal.style.display = "none"; });
+window.addEventListener("click", (e) => { if(e.target===recuerdosModal){recuerdosModal.style.display="none";} });
+
 
     // Modal de Traslado
     const trasladoBtn = document.getElementById("trasladoBtn");
@@ -270,6 +296,7 @@
   </script>
 </body>
 </html>
+
 
 
 
