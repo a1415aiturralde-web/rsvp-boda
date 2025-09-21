@@ -240,46 +240,55 @@
     <div class="footer">© Alejandro & Andrea</div>
   </main>
 
-  <script>
-    // Mostrar/ocultar cuestionario
-    const asistenciaBtn = document.getElementById("asistenciaBtn");
-    const rsvpForm = document.getElementById("rsvpForm");
-    asistenciaBtn.addEventListener("click", () => {
-      if (rsvpForm.style.display === "none" || rsvpForm.style.display === "") {
-        rsvpForm.style.display = "block";
-        rsvpForm.scrollIntoView({ behavior: "smooth" });
-      } else {
-        rsvpForm.style.display = "none";
+<script>
+  // Mostrar/ocultar cuestionario
+  const asistenciaBtn = document.getElementById("asistenciaBtn");
+  const rsvpForm = document.getElementById("rsvpForm");
+  asistenciaBtn.addEventListener("click", () => {
+    if (rsvpForm.style.display === "none" || rsvpForm.style.display === "") {
+      rsvpForm.style.display = "block";
+      rsvpForm.scrollIntoView({ behavior: "smooth" });
+    } else {
+      rsvpForm.style.display = "none";
+    }
+  });
+
+  // Formulario RSVP
+  (function () {
+    const form = document.getElementById('rsvpForm');
+    const successBox = document.getElementById('successBox');
+    const errorBox = document.getElementById('errorBox');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          form.style.display = 'none';
+          successBox.style.display = 'block';
+        } else { throw new Error('Error en el envío'); }
+      } catch (err) {
+        form.style.display = 'none';
+        errorBox.style.display = 'block';
       }
     });
+  })();
 
-    // Formulario
-    (function () {
-      const form = document.getElementById('rsvpForm');
-      const successBox = document.getElementById('successBox');
-      const errorBox = document.getElementById('errorBox');
+  // Modal de Recuerdos
+  const recuerdosBtn = document.getElementById("recuerdosBtn");
+  const recuerdosModal = document.getElementById("recuerdosModal");
+  const closeRecuerdos = document.getElementById("closeRecuerdos");
 
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const data = new FormData(form);
-        try {
-          const response = await fetch(form.action, {
-            method: form.method,
-            body: data,
-            headers: { 'Accept': 'application/json' }
-          });
-          if (response.ok) {
-            form.style.display = 'none';
-            successBox.style.display = 'block';
-          } else { throw new Error('Error en el envío'); }
-        } catch (err) {
-          form.style.display = 'none';
-          errorBox.style.display = 'block';
-        }
-      });
-    })();
-    // Modal de Recuerdos
-const recuerdosForm = document.getElementById("recuerdosForm");
+  recuerdosBtn.addEventListener("click", () => { recuerdosModal.style.display = "block"; });
+  closeRecuerdos.addEventListener("click", () => { recuerdosModal.style.display = "none"; });
+  window.addEventListener("click", (e) => { if(e.target===recuerdosModal){recuerdosModal.style.display="none";} });
+
+  const recuerdosForm = document.getElementById("recuerdosForm");
   const recuerdosMsg = document.getElementById("recuerdosMsg");
 
   recuerdosForm.addEventListener("submit", async (e) => {
@@ -316,18 +325,20 @@ const recuerdosForm = document.getElementById("recuerdosForm");
       };
       reader.readAsDataURL(file);
     }
+  });
 
-    // Modal de Traslado
-    const trasladoBtn = document.getElementById("trasladoBtn");
-    const trasladoModal = document.getElementById("trasladoModal");
-    const closeTraslado = document.getElementById("closeTraslado");
+  // Modal de Traslado
+  const trasladoBtn = document.getElementById("trasladoBtn");
+  const trasladoModal = document.getElementById("trasladoModal");
+  const closeTraslado = document.getElementById("closeTraslado");
 
-    trasladoBtn.addEventListener("click", () => { trasladoModal.style.display = "block"; });
-    closeTraslado.addEventListener("click", () => { trasladoModal.style.display = "none"; });
-    window.addEventListener("click", (e) => { if(e.target===trasladoModal){trasladoModal.style.display="none";} });
-  </script>
+  trasladoBtn.addEventListener("click", () => { trasladoModal.style.display = "block"; });
+  closeTraslado.addEventListener("click", () => { trasladoModal.style.display = "none"; });
+  window.addEventListener("click", (e) => { if(e.target===trasladoModal){trasladoModal.style.display="none";} });
+</script>
 </body>
 </html>
+
 
 
 
