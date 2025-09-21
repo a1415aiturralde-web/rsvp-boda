@@ -417,47 +417,6 @@
 </html>
 
 
-    for (let file of files) {
-      const reader = new FileReader();
-      reader.onloadend = async () => {
-        const base64 = reader.result.split(",")[1];
-        try {
-          const response = await fetch("TU_URL_DE_APPS_SCRIPT_EXEC", {
-            method: "POST",
-            body: new URLSearchParams({
-              foto: base64,
-              nombreArchivo: file.name,
-              mimeType: file.type
-            })
-          });
-          const result = await response.json();
-          if (result.status === "ok") {
-            recuerdosMsg.innerHTML += `✅ ${file.name} subida correctamente<br>`;
-          } else {
-            recuerdosMsg.innerHTML += `❌ Error al subir ${file.name}<br>`;
-          }
-        } catch (err) {
-          recuerdosMsg.innerHTML += `⚠️ Fallo al subir ${file.name}: ${err.message}<br>`;
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-
-  // Modal de Traslado
-  const trasladoBtn = document.getElementById("trasladoBtn");
-  const trasladoModal = document.getElementById("trasladoModal");
-  const closeTraslado = document.getElementById("closeTraslado");
-
-  trasladoBtn.addEventListener("click", () => { trasladoModal.style.display = "block"; });
-  closeTraslado.addEventListener("click", () => { trasladoModal.style.display = "none"; });
-  window.addEventListener("click", (e) => { if(e.target===trasladoModal){trasladoModal.style.display="none";} });
-</script>
-</body>
-</html>
-
-
-
 
 
 
