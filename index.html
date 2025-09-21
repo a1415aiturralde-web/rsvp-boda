@@ -19,6 +19,7 @@
       --ok: #2f8f5b;
       --error: #b33a3a;
       --radius: 16px;
+      --cream: rgba(250,240,240,0.95);
     }
 
     * { box-sizing: border-box; }
@@ -34,6 +35,7 @@
       -webkit-overflow-scrolling: touch;
       padding: 24px;
       overscroll-behavior-y: contain;
+      text-align: center;
     }
 
     body::before {
@@ -48,22 +50,13 @@
       z-index: -1;
     }
 
-    .card {
-      max-width: 720px;
-      width: 90%;
-      margin: 40px auto;
-      background: transparent;
-      border-radius: var(--radius);
-      padding: 16px;
-      overflow: hidden;
-    }
-
     .header {
-      background: rgba(250, 240, 240, 0.7);
+      background: var(--cream);
       padding: 16px 24px;
-      text-align: center;
       border-radius: 24px;
       display: inline-block;
+      margin: 40px auto 24px;
+      text-align: center;
     }
 
     .title {
@@ -85,10 +78,11 @@
 
     .icon-container {
       display: flex;
-      justify-content: space-around;
-      margin: 24px 0;
+      justify-content: center;
+      margin: 24px auto;
       flex-wrap: wrap;
       gap: 16px;
+      max-width: 720px;
     }
     .icon-button {
       display: flex;
@@ -139,31 +133,6 @@
     }
     textarea { min-height: 96px; resize: vertical; }
 
-    .grid { display: flex; flex-wrap: wrap; gap: 16px; }
-    .row { flex: 1 1 100%; margin-top: 8px; }
-    .radio-row { display: flex; flex-wrap: wrap; gap: 12px; }
-    .chip {
-      display: inline-flex; align-items: center; justify-content: center;
-      padding: 10px 18px;
-      border: 2px solid var(--brand);
-      border-radius: 999px;
-      cursor: pointer;
-      user-select: none;
-      font-weight: bold;
-      transition: background .15s, border-color .15s, color .15s;
-      color: var(--ink);
-      position: relative;
-    }
-    .chip input { position: absolute; opacity: 0; pointer-events: none; }
-    .chip input:checked + span {
-      background: var(--brand);
-      color: #fff;
-      border-color: var(--brand);
-      border-radius: 999px;
-      padding: 10px 18px;
-      display: inline-block;
-    }
-
     .actions { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 20px; }
     button[type="submit"] {
       padding: 12px 18px;
@@ -178,83 +147,49 @@
     }
     button[type="submit"]:hover { filter: brightness(.97); }
 
-    .note { font-size: 12px; color: var(--muted); }
-    .success, .error { padding: 26px; }
-    .success { display: none; } .success h3 { margin: 0 0 6px; color: var(--ok); }
-    .error { display: none; } .error h3 { margin: 0 0 6px; color: var(--error); }
     .footer { padding: 12px 24px 24px; text-align: center; font-size: 12px; color: #fff; }
 
+    /* Media queries */
     @media (max-width: 480px) {
-      body { padding: 0px 12px 12px 12px; overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-y: contain; }
-      main.card { margin-top: 0; max-height: calc(100vh - 0px - 24px); overflow-y: auto; padding: 12px; margin-bottom: 10px; }
+      body { padding: 12px; }
       .title { font-size: 48px !important; }
       .subtitle { font-size: 18px; line-height: 1.4; }
-      label { font-size: 18px; }
-      input, select, textarea { font-size: 16px; padding: 14px 16px; }
-      button[type="submit"] { font-size: 16px; padding: 14px 20px; }
     }
-
-    @media (min-width: 600px) { .row { flex: 1 1 48%; } }
-    @media (min-width: 1024px) { body { padding: 40px; } .header { padding: 32px 48px; } .title { font-size: 60px !important; } .subtitle { font-size: 18px; } }
+    @media (min-width: 1024px) { .header { padding: 32px 48px; } .title { font-size: 60px !important; } .subtitle { font-size: 18px; } }
   </style>
 </head>
 <body>
-  <main class="card" role="main">
-    <div class="header">
-      <h1 class="title">Boda Alejandro y Andrea</h1>
-      <p class="subtitle">
-       Bienvenidos a nuestro espacio de boda. Aquí podréis compartir con nosotros vuestras preferencias para que todo esté perfecto, además de encontrar información actualizada sobre la celebración. Tras la boda, este rincón será también un lugar donde podréis subir vuestras fotos y recuerdos para que sigamos celebrando juntos.
-      </p>
-    </div>
+  <div class="header">
+    <h1 class="title">Boda Alejandro y Andrea</h1>
+    <p class="subtitle">
+      Bienvenidos a nuestro espacio de boda. Aquí podréis compartir con nosotros vuestras preferencias para que todo esté perfecto, además de encontrar información actualizada sobre la celebración. Tras la boda, este rincón será también un lugar donde podréis subir vuestras fotos y recuerdos para que sigamos celebrando juntos.
+    </p>
+  </div>
 
-    <!-- Iconos -->
-    <div class="icon-container">
-      <div class="icon-button" id="asistenciaBtn">
-        <img src="cuestionario.png" alt="Cuestionario de asistencia" class="icon-img">
-        <span>Cuestionario de asistencia</span>
-      </div>
-      <div class="icon-button" id="trasladoBtn">
-        <img src="autobus.png" alt="Autobús" class="icon-img">
-        <span>Traslado de invitados</span>
-      </div>
-      <div class="icon-button" id="recuerdosBtn">
-        <img src="recuerdos.png" alt="Rincón de los recuerdos" class="icon-img">
-        <span>Rincón de los recuerdos</span>
-      </div>
+  <!-- Iconos -->
+  <div class="icon-container">
+    <div class="icon-button" id="asistenciaBtn">
+      <img src="cuestionario.png" alt="Cuestionario de asistencia" class="icon-img">
+      <span>Cuestionario de asistencia</span>
     </div>
+    <div class="icon-button" id="trasladoBtn">
+      <img src="autobus.png" alt="Autobús" class="icon-img">
+      <span>Traslado de invitados</span>
+    </div>
+    <div class="icon-button" id="recuerdosBtn">
+      <img src="recuerdos.png" alt="Rincón de los recuerdos" class="icon-img">
+      <span>Rincón de los recuerdos</span>
+    </div>
+  </div>
 
-    <div class="footer">© Alejandro & Andrea</div>
-  </main>
+  <div class="footer">© Alejandro & Andrea</div>
 
   <!-- Modal Asistencia -->
-  <div id="asistenciaModal" style="
-    display:none;
-    position:fixed;
-    z-index:1000;
-    left:0; top:0;
-    width:100%; height:100%;
-    background:rgba(0,0,0,0.6);
-    justify-content:center;
-    align-items:center;
-    padding: 20px;
-    box-sizing: border-box;
-  ">
-    <div style="
-      background:rgba(255,255,255,0.95);
-      border-radius:12px;
-      max-width:600px;
-      width:100%;
-      max-height:90%;
-      overflow-y:auto;
-      position:relative;
-      padding:20px;
-    ">
+  <div id="asistenciaModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; padding: 20px; box-sizing: border-box;">
+    <div style="background:var(--cream); border-radius:12px; max-width:600px; width:100%; max-height:90%; overflow-y:auto; position:relative; padding:20px;">
       <span id="closeAsistencia" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:18px; font-weight:bold;">✖</span>
       <h3>Cuestionario de asistencia</h3>
-
       <form id="rsvpForm" action="https://script.google.com/macros/s/AKfycbyR0kDkPjKhyVGAqirWjeG7KxL917Tz1tfJOo17r6v06V4JT2cPcjjHyYR8_CvZ_Ab-Kg/exec" method="POST" novalidate>
-        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" />
-        <input type="hidden" name="_subject" value="Nueva confirmación de asistencia" />
         <div class="grid">
           <div class="row">
             <label for="nombre">Nombre y apellidos *</label>
@@ -272,38 +207,21 @@
             <input id="acompanantes" name="acompanantes" type="number" min="0" max="10" value="0" />
           </div>
         </div>
-
-        <div class="grid">
-          <div class="row" style="background: rgba(255, 255, 255, 0.6); padding: 12px; border-radius: 8px;">
-            <label>¿Utilizarás el servicio de autobús?</label>
-            <div class="radio-row">
-              <label class="chip"><input type="radio" name="autobus" value="sí" /><span>Sí</span></label>
-              <label class="chip"><input type="radio" name="autobus" value="no" /><span>No</span></label>
-            </div>
-          </div>
-        </div>
-
         <div class="row">
           <label for="alergias">¿Tienes alguna alergia, intolerancia o preferencia alimentaria?</label>
           <input id="alergias" name="alergias" type="text" placeholder="Ej. sin gluten, frutos secos, vegetariano..." />
         </div>
-
         <div class="row">
           <label for="mensaje">¿Qué canción te gusta para que suene en la fiesta?</label>
           <textarea id="mensaje" name="mensaje" placeholder=" "></textarea>
         </div>
-
-        <div class="actions">
-          <button type="submit">Enviar confirmación</button>
-        </div>
+        <div class="actions"><button type="submit">Enviar confirmación</button></div>
       </form>
-
-      <div class="success" id="successBox" role="status" aria-live="polite">
+      <div class="success" id="successBox" role="status" aria-live="polite" style="display:none;">
         <h3>¡Gracias por tu respuesta! 💌</h3>
         <p>Hemos registrado tu confirmación. Puedes cerrar esta página.</p>
       </div>
-
-      <div class="error" id="errorBox" role="alert">
+      <div class="error" id="errorBox" role="alert" style="display:none;">
         <h3>Vaya, algo no ha ido bien…</h3>
         <p>Inténtalo de nuevo en unos segundos o avisa a los novios.</p>
       </div>
@@ -311,51 +229,25 @@
   </div>
 
   <!-- Modal Traslado -->
-  <div id="trasladoModal" style="
-    display:none; position:fixed; z-index:1000;
-    left:0; top:0; width:100%; height:100%;
-    background:rgba(0,0,0,0.6);
-    justify-content:center; align-items:center;
-    padding: 20px; box-sizing: border-box;
-  ">
-    <div style="
-      background:rgba(255,255,255,0.95);
-      border-radius:12px; max-width:500px; width:100%;
-      max-height:90%; overflow-y:auto;
-      position:relative; padding:20px;
-    ">
+  <div id="trasladoModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; padding: 20px; box-sizing: border-box;">
+    <div style="background:var(--cream); border-radius:12px; max-width:500px; width:100%; max-height:90%; overflow-y:auto; position:relative; padding:20px;">
       <span id="closeTraslado" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:18px; font-weight:bold;">✖</span>
       <h3>Traslado de invitados</h3>
       <p><strong>Ida:</strong> 13:30 desde La Cuesta Labrit (parada de autobuses).</p>
       <p><strong>Vuelta:</strong> 02:00 desde Palacio de Olloqui hasta Hotel Tres Reyes, Pamplona.</p>
       <h4>Taxis recomendados:</h4>
-      <p>📞 Taxi Pamplona: 948 232 300<br>
-         📞 Radio Taxi: 948 351 335</p>
+      <p>📞 Taxi Pamplona: 948 232 300<br>📞 Radio Taxi: 948 351 335</p>
     </div>
   </div>
 
   <!-- Modal Recuerdos -->
-  <div id="recuerdosModal" style="
-    display:none; position:fixed; z-index:1000;
-    left:0; top:0; width:100%; height:100%;
-    background:rgba(0,0,0,0.6);
-    justify-content:center; align-items:center;
-    padding: 20px; box-sizing: border-box;
-  ">
-    <div style="
-      background:rgba(255,255,255,0.95);
-      border-radius:12px; max-width:500px; width:100%;
-      max-height:90%; overflow-y:auto;
-      position:relative; padding:20px;
-    ">
+  <div id="recuerdosModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; padding: 20px; box-sizing: border-box;">
+    <div style="background:var(--cream); border-radius:12px; max-width:500px; width:100%; max-height:90%; overflow-y:auto; position:relative; padding:20px;">
       <span id="closeRecuerdos" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:18px; font-weight:bold;">✖</span>
       <h3>Rincón de los recuerdos 📸</h3>
       <p>Aquí puedes subir las fotos que hayas sacado en la boda para que podamos guardarlas como recuerdo.</p>
-      
       <form id="recuerdosForm">
-        <label for="foto">Sube tus fotos:</label><br><br>
-        <input type="file" id="foto" name="foto" accept="image/*" multiple required>
-        <br><br>
+        <input type="file" id="foto" name="foto" accept="image/*" multiple required><br><br>
         <button type="submit">Enviar fotos</button>
       </form>
       <div id="recuerdosMsg" style="margin-top:10px; font-size:14px;"></div>
@@ -367,70 +259,59 @@
     const asistenciaBtn = document.getElementById("asistenciaBtn");
     const asistenciaModal = document.getElementById("asistenciaModal");
     const closeAsistencia = document.getElementById("closeAsistencia");
-
     asistenciaBtn.addEventListener("click", () => { asistenciaModal.style.display = "flex"; });
     closeAsistencia.addEventListener("click", () => { asistenciaModal.style.display = "none"; });
     window.addEventListener("click", (e) => { if(e.target===asistenciaModal){asistenciaModal.style.display="none";} });
 
-   // Envío Formulario RSVP
-(function () {
-  const form = document.getElementById('rsvpForm');
-  const successBox = document.getElementById('successBox');
-  const errorBox = document.getElementById('errorBox');
-  const asistenciaModal = document.getElementById('asistenciaModal');
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const data = new FormData(form);
-    try {
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: data,
-        headers: { 'Accept': 'application/json' }
+    // Formulario RSVP
+    (function () {
+      const form = document.getElementById('rsvpForm');
+      const successBox = document.getElementById('successBox');
+      const errorBox = document.getElementById('errorBox');
+      const asistenciaModal = document.getElementById('asistenciaModal');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        try {
+          const response = await fetch(form.action, {
+            method: form.method,
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (response.ok) {
+            form.style.display = 'none';
+            successBox.style.display = 'block';
+            setTimeout(() => {
+              asistenciaModal.style.display = "none";
+              form.reset();
+              form.style.display = 'block';
+              successBox.style.display = 'none';
+            }, 3000);
+          } else { throw new Error('Error en el envío'); }
+        } catch (err) {
+          form.style.display = 'none';
+          errorBox.style.display = 'block';
+        }
       });
-      if (response.ok) {
-        form.style.display = 'none';
-        successBox.style.display = 'block';
-
-        // 🔒 cerrar modal después de 3 segundos
-        setTimeout(() => {
-          asistenciaModal.style.display = "none";
-          // restaurar el formulario para el siguiente
-          form.reset();
-          form.style.display = 'block';
-          successBox.style.display = 'none';
-        }, 3000);
-
-      } else { throw new Error('Error en el envío'); }
-    } catch (err) {
-      form.style.display = 'none';
-      errorBox.style.display = 'block';
-    }
-  });
-})();
-
+    })();
 
     // Modal Recuerdos
     const recuerdosBtn = document.getElementById("recuerdosBtn");
     const recuerdosModal = document.getElementById("recuerdosModal");
     const closeRecuerdos = document.getElementById("closeRecuerdos");
-
     recuerdosBtn.addEventListener("click", () => { recuerdosModal.style.display = "flex"; });
     closeRecuerdos.addEventListener("click", () => { recuerdosModal.style.display = "none"; });
     window.addEventListener("click", (e) => { if(e.target===recuerdosModal){recuerdosModal.style.display="none";} });
 
     const recuerdosForm = document.getElementById("recuerdosForm");
     const recuerdosMsg = document.getElementById("recuerdosMsg");
-
     recuerdosForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       const files = document.getElementById("foto").files;
-
       if (files.length === 0) {
         recuerdosMsg.innerHTML = "⚠️ Selecciona al menos una foto.";
         return;
       }
-
       for (let file of files) {
         const reader = new FileReader();
         reader.onloadend = async () => {
@@ -462,13 +343,13 @@
     const trasladoBtn = document.getElementById("trasladoBtn");
     const trasladoModal = document.getElementById("trasladoModal");
     const closeTraslado = document.getElementById("closeTraslado");
-
     trasladoBtn.addEventListener("click", () => { trasladoModal.style.display = "flex"; });
     closeTraslado.addEventListener("click", () => { trasladoModal.style.display = "none"; });
     window.addEventListener("click", (e) => { if(e.target===trasladoModal){trasladoModal.style.display="none";} });
   </script>
 </body>
 </html>
+
 
 
 
