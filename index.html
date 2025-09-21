@@ -184,8 +184,6 @@
     .error { display: none; } .error h3 { margin: 0 0 6px; color: var(--error); }
     .footer { padding: 12px 24px 24px; text-align: center; font-size: 12px; color: #fff; }
 
-    #rsvpForm { display: none; } /* empieza oculto */
-
     @media (max-width: 480px) {
       body { padding: 0px 12px 12px 12px; overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-y: contain; }
       main.card { margin-top: 0; max-height: calc(100vh - 0px - 24px); overflow-y: auto; padding: 12px; margin-bottom: 10px; }
@@ -225,161 +223,156 @@
       </div>
     </div>
 
-   
-
-    <!-- Formulario Asistencia -->
-    <form id="rsvpForm" action="https://script.google.com/macros/s/AKfycbyR0kDkPjKhyVGAqirWjeG7KxL917Tz1tfJOo17r6v06V4JT2cPcjjHyYR8_CvZ_Ab-Kg/exec" method="POST" novalidate>
-      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" />
-      <input type="hidden" name="_subject" value="Nueva confirmación de asistencia" />
-      <div class="grid">
-        <div class="row">
-          <label for="nombre">Nombre y apellidos *</label>
-          <input id="nombre" name="nombre" type="text" required placeholder="Ej. Ana Pérez" />
-        </div>
-        <div class="row">
-          <label>¿Asistirás a la boda? *</label>
-          <div class="radio-row">
-            <label class="chip"><input type="radio" name="asistencia" value="sí" required /><span>Sí</span></label>
-            <label class="chip"><input type="radio" name="asistencia" value="no" required /><span>No</span></label>
-          </div>
-        </div>
-        <div class="row">
-          <label for="acompanantes">¿Cuántos acompañantes?</label>
-          <input id="acompanantes" name="acompanantes" type="number" min="0" max="10" value="0" />
-        </div>
-      </div>
-
-      <div class="grid">
-        <div class="row" id="busRow" style="background: rgba(255, 255, 255, 0.6); padding: 12px; border-radius: 8px;">
-          <label>¿Utilizarás el servicio de autobús?</label>
-          <div class="radio-row">
-            <label class="chip"><input type="radio" name="autobus" value="sí" /><span>Sí</span></label>
-            <label class="chip"><input type="radio" name="autobus" value="no" /><span>No</span></label>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <label for="alergias">¿Tienes alguna alergia, intolerancia o preferencia alimentaria?</label>
-        <input id="alergias" name="alergias" type="text" placeholder="Ej. sin gluten, frutos secos, vegetariano..." />
-      </div>
-
-      <div class="row">
-        <label for="mensaje">¿Qué canción te gusta para que suene en la fiesta?</label>
-        <textarea id="mensaje" name="mensaje" placeholder=" "></textarea>
-      </div>
-
-      <div class="actions">
-        <span class="note"> </span>
-        <button type="submit">Enviar confirmación</button>
-      </div>
-    </form>
-
-    <div class="success" id="successBox" role="status" aria-live="polite">
-      <h3>¡Gracias por tu respuesta! 💌</h3>
-      <p>Hemos registrado tu confirmación. Puedes cerrar esta página.</p>
-    </div>
-
-    <div class="error" id="errorBox" role="alert">
-      <h3>Vaya, algo no ha ido bien…</h3>
-      <p>Inténtalo de nuevo en unos segundos o avisa a los novios.</p>
-    </div>
-
     <div class="footer">© Alejandro & Andrea</div>
   </main>
-   <!-- Modal de Traslado -->
-   <div id="trasladoModal" style="
-  display:none;
-  position:fixed;
-  z-index:1000;
-  left:0;
-  top:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.6);
-  justify-content:center;
-  align-items:center;
-  padding: 20px;
-  box-sizing: border-box;
-">
-  <div style="
-    background:rgba(255,255,255,0.95);
-    border-radius:12px;
-    max-width:500px;
-    width:100%;
-    max-height:90%;
-    overflow-y:auto;
-    position:relative;
-    padding:20px;
-  ">
 
-        <span id="closeTraslado" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:18px; font-weight:bold;">✖</span>
-        <h3>Traslado de invitados</h3>
-        <p><strong>Ida:</strong> 13:30 desde La Cuesta Labrit (parada de autobuses).</p>
-        <p><strong>Vuelta:</strong> 02:00 desde Palacio de Olloqui hasta Hotel Tres Reyes, Pamplona.</p>
-        <h4>Taxis recomendados:</h4>
-        <p>📞 Taxi Pamplona: 948 232 300<br>
-           📞 Radio Taxi: 948 351 335</p>
+  <!-- Modal Asistencia -->
+  <div id="asistenciaModal" style="
+    display:none;
+    position:fixed;
+    z-index:1000;
+    left:0; top:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+    padding: 20px;
+    box-sizing: border-box;
+  ">
+    <div style="
+      background:rgba(255,255,255,0.95);
+      border-radius:12px;
+      max-width:600px;
+      width:100%;
+      max-height:90%;
+      overflow-y:auto;
+      position:relative;
+      padding:20px;
+    ">
+      <span id="closeAsistencia" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:18px; font-weight:bold;">✖</span>
+      <h3>Cuestionario de asistencia</h3>
+
+      <form id="rsvpForm" action="https://script.google.com/macros/s/AKfycbyR0kDkPjKhyVGAqirWjeG7KxL917Tz1tfJOo17r6v06V4JT2cPcjjHyYR8_CvZ_Ab-Kg/exec" method="POST" novalidate>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" />
+        <input type="hidden" name="_subject" value="Nueva confirmación de asistencia" />
+        <div class="grid">
+          <div class="row">
+            <label for="nombre">Nombre y apellidos *</label>
+            <input id="nombre" name="nombre" type="text" required placeholder="Ej. Ana Pérez" />
+          </div>
+          <div class="row">
+            <label>¿Asistirás a la boda? *</label>
+            <div class="radio-row">
+              <label class="chip"><input type="radio" name="asistencia" value="sí" required /><span>Sí</span></label>
+              <label class="chip"><input type="radio" name="asistencia" value="no" required /><span>No</span></label>
+            </div>
+          </div>
+          <div class="row">
+            <label for="acompanantes">¿Cuántos acompañantes?</label>
+            <input id="acompanantes" name="acompanantes" type="number" min="0" max="10" value="0" />
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="row" style="background: rgba(255, 255, 255, 0.6); padding: 12px; border-radius: 8px;">
+            <label>¿Utilizarás el servicio de autobús?</label>
+            <div class="radio-row">
+              <label class="chip"><input type="radio" name="autobus" value="sí" /><span>Sí</span></label>
+              <label class="chip"><input type="radio" name="autobus" value="no" /><span>No</span></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <label for="alergias">¿Tienes alguna alergia, intolerancia o preferencia alimentaria?</label>
+          <input id="alergias" name="alergias" type="text" placeholder="Ej. sin gluten, frutos secos, vegetariano..." />
+        </div>
+
+        <div class="row">
+          <label for="mensaje">¿Qué canción te gusta para que suene en la fiesta?</label>
+          <textarea id="mensaje" name="mensaje" placeholder=" "></textarea>
+        </div>
+
+        <div class="actions">
+          <button type="submit">Enviar confirmación</button>
+        </div>
+      </form>
+
+      <div class="success" id="successBox" role="status" aria-live="polite">
+        <h3>¡Gracias por tu respuesta! 💌</h3>
+        <p>Hemos registrado tu confirmación. Puedes cerrar esta página.</p>
+      </div>
+
+      <div class="error" id="errorBox" role="alert">
+        <h3>Vaya, algo no ha ido bien…</h3>
+        <p>Inténtalo de nuevo en unos segundos o avisa a los novios.</p>
       </div>
     </div>
-   <!-- Modal Recuerdos -->
+  </div>
+
+  <!-- Modal Traslado -->
+  <div id="trasladoModal" style="
+    display:none; position:fixed; z-index:1000;
+    left:0; top:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center; align-items:center;
+    padding: 20px; box-sizing: border-box;
+  ">
+    <div style="
+      background:rgba(255,255,255,0.95);
+      border-radius:12px; max-width:500px; width:100%;
+      max-height:90%; overflow-y:auto;
+      position:relative; padding:20px;
+    ">
+      <span id="closeTraslado" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:18px; font-weight:bold;">✖</span>
+      <h3>Traslado de invitados</h3>
+      <p><strong>Ida:</strong> 13:30 desde La Cuesta Labrit (parada de autobuses).</p>
+      <p><strong>Vuelta:</strong> 02:00 desde Palacio de Olloqui hasta Hotel Tres Reyes, Pamplona.</p>
+      <h4>Taxis recomendados:</h4>
+      <p>📞 Taxi Pamplona: 948 232 300<br>
+         📞 Radio Taxi: 948 351 335</p>
+    </div>
+  </div>
+
+  <!-- Modal Recuerdos -->
   <div id="recuerdosModal" style="
-  display:none;
-  position:fixed;
-  z-index:1000;
-  left:0;
-  top:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.6);
-  justify-content:center;
-  align-items:center;
-  padding: 20px;
-  box-sizing: border-box;
-">
-
-">
-  <div style="
-    background:rgba(255,255,255,0.95);
-    border-radius:12px;
-    max-width:500px;
-    width:100%;
-    max-height:90%;
-    overflow-y:auto;
-    position:relative;
-    padding:20px;
+    display:none; position:fixed; z-index:1000;
+    left:0; top:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center; align-items:center;
+    padding: 20px; box-sizing: border-box;
   ">
-
-        <span id="closeRecuerdos" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:18px; font-weight:bold;">✖</span>
-        <h3>Rincón de los recuerdos 📸</h3>
-        <p>Aquí puedes subir las fotos que hayas sacado en la boda para que podamos guardarlas como recuerdo.</p>
-        
-        <form id="recuerdosForm">
-          <label for="foto">Sube tus fotos:</label><br><br>
-          <input type="file" id="foto" name="foto" accept="image/*" multiple required>
-          <br><br>
-          <button type="submit">Enviar fotos</button>
-        </form>
-
-        <div id="recuerdosMsg" style="margin-top:10px; font-size:14px;"></div>
-      </div>
+    <div style="
+      background:rgba(255,255,255,0.95);
+      border-radius:12px; max-width:500px; width:100%;
+      max-height:90%; overflow-y:auto;
+      position:relative; padding:20px;
+    ">
+      <span id="closeRecuerdos" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:18px; font-weight:bold;">✖</span>
+      <h3>Rincón de los recuerdos 📸</h3>
+      <p>Aquí puedes subir las fotos que hayas sacado en la boda para que podamos guardarlas como recuerdo.</p>
+      
+      <form id="recuerdosForm">
+        <label for="foto">Sube tus fotos:</label><br><br>
+        <input type="file" id="foto" name="foto" accept="image/*" multiple required>
+        <br><br>
+        <button type="submit">Enviar fotos</button>
+      </form>
+      <div id="recuerdosMsg" style="margin-top:10px; font-size:14px;"></div>
     </div>
-
+  </div>
 
   <script>
-    // Mostrar/ocultar cuestionario
+    // Modal Asistencia
     const asistenciaBtn = document.getElementById("asistenciaBtn");
-    const rsvpForm = document.getElementById("rsvpForm");
-    asistenciaBtn.addEventListener("click", () => {
-      if (rsvpForm.style.display === "none" || rsvpForm.style.display === "") {
-        rsvpForm.style.display = "block";
-        rsvpForm.scrollIntoView({ behavior: "smooth" });
-      } else {
-        rsvpForm.style.display = "none";
-      }
-    });
+    const asistenciaModal = document.getElementById("asistenciaModal");
+    const closeAsistencia = document.getElementById("closeAsistencia");
 
-    // Formulario RSVP
+    asistenciaBtn.addEventListener("click", () => { asistenciaModal.style.display = "flex"; });
+    closeAsistencia.addEventListener("click", () => { asistenciaModal.style.display = "none"; });
+    window.addEventListener("click", (e) => { if(e.target===asistenciaModal){asistenciaModal.style.display="none";} });
+
+    // Envío Formulario RSVP
     (function () {
       const form = document.getElementById('rsvpForm');
       const successBox = document.getElementById('successBox');
@@ -405,12 +398,12 @@
       });
     })();
 
-    // Modal de Recuerdos
+    // Modal Recuerdos
     const recuerdosBtn = document.getElementById("recuerdosBtn");
     const recuerdosModal = document.getElementById("recuerdosModal");
     const closeRecuerdos = document.getElementById("closeRecuerdos");
 
-    recuerdosBtn.addEventListener("click", () => { recuerdosModal.style.display = "block"; });
+    recuerdosBtn.addEventListener("click", () => { recuerdosModal.style.display = "flex"; });
     closeRecuerdos.addEventListener("click", () => { recuerdosModal.style.display = "none"; });
     window.addEventListener("click", (e) => { if(e.target===recuerdosModal){recuerdosModal.style.display="none";} });
 
@@ -453,17 +446,18 @@
       }
     });
 
-    // Modal de Traslado
+    // Modal Traslado
     const trasladoBtn = document.getElementById("trasladoBtn");
     const trasladoModal = document.getElementById("trasladoModal");
     const closeTraslado = document.getElementById("closeTraslado");
 
-    trasladoBtn.addEventListener("click", () => { trasladoModal.style.display = "block"; });
+    trasladoBtn.addEventListener("click", () => { trasladoModal.style.display = "flex"; });
     closeTraslado.addEventListener("click", () => { trasladoModal.style.display = "none"; });
     window.addEventListener("click", (e) => { if(e.target===trasladoModal){trasladoModal.style.display="none";} });
   </script>
 </body>
 </html>
+
 
 
 
