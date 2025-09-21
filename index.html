@@ -66,36 +66,116 @@
       display: inline-block;
     }
 
-    .title { font-family: 'Great Vibes', cursive; font-size: 55px!important; font-weight: 700; color: var(--brand); margin: 0 0 12px 0; }
-    .subtitle { font-family: 'Bradley Hand ITC', cursive, san-serif; font-size: 21px!important; line-height: 1.5; margin: 0; color: var(--ink); font-weight: 600; }
-
-    .icon-container { display: flex; justify-content: space-around; margin: 24px 0; flex-wrap: wrap; gap: 16px; }
-    .icon-button {
-      display: flex; flex-direction: column; align-items: center;
-      cursor: pointer; background: rgba(250,240,240,0.8);
-      padding: 20px; border-radius: 16px; transition: transform 0.2s, box-shadow 0.2s; min-width: 100px;
+    .title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 55px!important;
+      font-weight: 700;
+      color: var(--brand);
+      margin: 0 0 12px 0;
     }
-    .icon-button i { font-size: 50px; margin-bottom: 8px; transition: color 0.2s; }
-    .icon-button:nth-child(1) i { color: #e67e22; }
-    .icon-button:nth-child(2) i { color: #3498db; }
-    .icon-button:nth-child(3) i { color: #9b59b6; }
-    .icon-button span { font-size: 14px; text-align: center; color: #000; font-weight: 700; }
-    .icon-button:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
-    .icon-img { width: 60px; height: auto; margin-bottom: 8px; }
 
-    label { display: inline-block; font-size: 20px; color: #000; margin: 12px 0 6px; font-weight: bold; background: rgba(250,240,240,0.6); padding: 2px 6px; border-radius: 4px; }
-    input, select, textarea { width: 100%; padding: 12px 14px; border: 1px solid #e4e4e7; border-radius: 12px; font-size: 15px; background: rgba(250,240,240,0.6); font-weight: bold; color: #000; }
+    .subtitle {
+      font-family: 'Bradley Hand ITC', cursive, sans-serif;
+      font-size: 21px!important;
+      line-height: 1.5;
+      margin: 0;
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .icon-container {
+      display: flex;
+      justify-content: space-around;
+      margin: 24px 0;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .icon-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      background: rgba(250,240,240,0.8);
+      padding: 20px;
+      border-radius: 16px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      min-width: 100px;
+    }
+    .icon-button span {
+      font-size: 14px;
+      text-align: center;
+      color: #000;
+      font-weight: 700;
+    }
+    .icon-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    .icon-img {
+      width: 60px;
+      height: auto;
+      margin-bottom: 8px;
+    }
+
+    label {
+      display: inline-block;
+      font-size: 20px;
+      color: #000;
+      margin: 12px 0 6px;
+      font-weight: bold;
+      background: rgba(250,240,240,0.6);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #e4e4e7;
+      border-radius: 12px;
+      font-size: 15px;
+      background: rgba(250,240,240,0.6);
+      font-weight: bold;
+      color: #000;
+    }
     textarea { min-height: 96px; resize: vertical; }
 
     .grid { display: flex; flex-wrap: wrap; gap: 16px; }
     .row { flex: 1 1 100%; margin-top: 8px; }
     .radio-row { display: flex; flex-wrap: wrap; gap: 12px; }
-    .chip { display: inline-flex; align-items: center; justify-content: center; padding: 10px 18px; border: 2px solid var(--brand); border-radius: 999px; cursor: pointer; user-select: none; font-weight: bold; transition: background .15s, border-color .15s, color .15s; color: var(--ink); position: relative; }
+    .chip {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 10px 18px;
+      border: 2px solid var(--brand);
+      border-radius: 999px;
+      cursor: pointer;
+      user-select: none;
+      font-weight: bold;
+      transition: background .15s, border-color .15s, color .15s;
+      color: var(--ink);
+      position: relative;
+    }
     .chip input { position: absolute; opacity: 0; pointer-events: none; }
-    .chip input:checked + span { background: var(--brand); color: #fff; border-color: var(--brand); border-radius: 999px; padding: 10px 18px; display: inline-block; }
+    .chip input:checked + span {
+      background: var(--brand);
+      color: #fff;
+      border-color: var(--brand);
+      border-radius: 999px;
+      padding: 10px 18px;
+      display: inline-block;
+    }
 
     .actions { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 20px; }
-    button[type="submit"] { padding: 12px 18px; border: 0; border-radius: 999px; background: var(--brand); color: #fff; font-weight: 600; font-size: 15px; cursor: pointer; box-shadow: 0 6px 14px rgba(184,123,90,.28); }
+    button[type="submit"] {
+      padding: 12px 18px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--brand);
+      color: #fff;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(184,123,90,.28);
+    }
     button[type="submit"]:hover { filter: brightness(.97); }
 
     .note { font-size: 12px; color: var(--muted); }
@@ -104,8 +184,7 @@
     .error { display: none; } .error h3 { margin: 0 0 6px; color: var(--error); }
     .footer { padding: 12px 24px 24px; text-align: center; font-size: 12px; color: #fff; }
 
-    /* 🔥 El formulario empieza oculto */
-    #rsvpForm { display: none; }
+    #rsvpForm { display: none; } /* empieza oculto */
 
     @media (max-width: 480px) {
       body { padding: 0px 12px 12px 12px; overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-y: contain; }
@@ -140,31 +219,29 @@
         <img src="autobus.png" alt="Autobús" class="icon-img">
         <span>Traslado de invitados</span>
       </div>
-    <div class="icon-button" id="recuerdosBtn">
-  <img src="recuerdos.png" alt="Rincón de los recuerdos" class="icon-img">
-  <span>Rincón de los recuerdos</span>
-</div>
-
+      <div class="icon-button" id="recuerdosBtn">
+        <img src="recuerdos.png" alt="Rincón de los recuerdos" class="icon-img">
+        <span>Rincón de los recuerdos</span>
+      </div>
     </div>
-  <!-- Modal Recuerdos -->
-<div id="recuerdosModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6);">
-  <div style="background:rgba(255,255,255,0.95); margin:10% auto; padding:20px; border-radius:12px; max-width:500px; position:relative;">
-    <span id="closeRecuerdos" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:18px; font-weight:bold;">✖</span>
-    <h3>Rincón de los recuerdos 📸</h3>
-    <p>Aquí puedes subir las fotos que hayas sacado en la boda para que podamos guardarlas como recuerdo.</p>
-    
-    <!-- ✅ Nuevo formulario SIN action -->
-    <form id="recuerdosForm">
-      <label for="foto">Sube tus fotos:</label><br><br>
-      <input type="file" id="foto" name="foto" accept="image/*" multiple required>
-      <br><br>
-      <button type="submit">Enviar fotos</button>
-    </form>
 
-    <div id="recuerdosMsg" style="margin-top:10px; font-size:14px;"></div>
-  </div>
-</div>
+    <!-- Modal Recuerdos -->
+    <div id="recuerdosModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6);">
+      <div style="background:rgba(255,255,255,0.95); margin:10% auto; padding:20px; border-radius:12px; max-width:500px; position:relative;">
+        <span id="closeRecuerdos" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:18px; font-weight:bold;">✖</span>
+        <h3>Rincón de los recuerdos 📸</h3>
+        <p>Aquí puedes subir las fotos que hayas sacado en la boda para que podamos guardarlas como recuerdo.</p>
+        
+        <form id="recuerdosForm">
+          <label for="foto">Sube tus fotos:</label><br><br>
+          <input type="file" id="foto" name="foto" accept="image/*" multiple required>
+          <br><br>
+          <button type="submit">Enviar fotos</button>
+        </form>
 
+        <div id="recuerdosMsg" style="margin-top:10px; font-size:14px;"></div>
+      </div>
+    </div>
 
     <!-- Modal de Traslado -->
     <div id="trasladoModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6);">
@@ -179,8 +256,8 @@
       </div>
     </div>
 
-    <!-- Formulario -->
-    <form id="rsvpForm" action= "https://script.google.com/macros/s/AKfycbwN9bUuAkucwZ3kpuYLdzDqGfnIgwzyQ-q5Wz5qxleE4LRKk5_A0nZ459TZrk4E9WZDvQ/exec" method="POST" novalidate>
+    <!-- Formulario Asistencia -->
+    <form id="rsvpForm" action="https://script.google.com/macros/s/AKfycbwN9bUuAkucwZ3kpuYLdzDqGfnIgwzyQ-q5Wz5qxleE4LRKk5_A0nZ459TZrk4E9WZDvQ/exec" method="POST" novalidate>
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" />
       <input type="hidden" name="_subject" value="Nueva confirmación de asistencia" />
       <div class="grid">
@@ -202,13 +279,13 @@
       </div>
 
       <div class="grid">
-       <div class="row" id="busRow" style="background: rgba(255, 255, 255, 0.6); padding: 12px; border-radius: 8px;">
-         <label>¿Utilizarás el servicio de autobús?</label>
-         <div class="radio-row">
-           <label class="chip"><input type="radio" name="autobus" value="sí" /><span>Sí</span></label>
-           <label class="chip"><input type="radio" name="autobus" value="no" /><span>No</span></label>
-         </div>
-       </div>
+        <div class="row" id="busRow" style="background: rgba(255, 255, 255, 0.6); padding: 12px; border-radius: 8px;">
+          <label>¿Utilizarás el servicio de autobús?</label>
+          <div class="radio-row">
+            <label class="chip"><input type="radio" name="autobus" value="sí" /><span>Sí</span></label>
+            <label class="chip"><input type="radio" name="autobus" value="no" /><span>No</span></label>
+          </div>
+        </div>
       </div>
 
       <div class="row">
@@ -240,65 +317,105 @@
     <div class="footer">© Alejandro & Andrea</div>
   </main>
 
-<script>
-  // Mostrar/ocultar cuestionario
-  const asistenciaBtn = document.getElementById("asistenciaBtn");
-  const rsvpForm = document.getElementById("rsvpForm");
-  asistenciaBtn.addEventListener("click", () => {
-    if (rsvpForm.style.display === "none" || rsvpForm.style.display === "") {
-      rsvpForm.style.display = "block";
-      rsvpForm.scrollIntoView({ behavior: "smooth" });
-    } else {
-      rsvpForm.style.display = "none";
-    }
-  });
-
-  // Formulario RSVP
-  (function () {
-    const form = document.getElementById('rsvpForm');
-    const successBox = document.getElementById('successBox');
-    const errorBox = document.getElementById('errorBox');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const data = new FormData(form);
-      try {
-        const response = await fetch(form.action, {
-          method: form.method,
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
-        if (response.ok) {
-          form.style.display = 'none';
-          successBox.style.display = 'block';
-        } else { throw new Error('Error en el envío'); }
-      } catch (err) {
-        form.style.display = 'none';
-        errorBox.style.display = 'block';
+  <script>
+    // Mostrar/ocultar cuestionario
+    const asistenciaBtn = document.getElementById("asistenciaBtn");
+    const rsvpForm = document.getElementById("rsvpForm");
+    asistenciaBtn.addEventListener("click", () => {
+      if (rsvpForm.style.display === "none" || rsvpForm.style.display === "") {
+        rsvpForm.style.display = "block";
+        rsvpForm.scrollIntoView({ behavior: "smooth" });
+      } else {
+        rsvpForm.style.display = "none";
       }
     });
-  })();
 
-  // Modal de Recuerdos
-  const recuerdosBtn = document.getElementById("recuerdosBtn");
-  const recuerdosModal = document.getElementById("recuerdosModal");
-  const closeRecuerdos = document.getElementById("closeRecuerdos");
+    // Formulario RSVP
+    (function () {
+      const form = document.getElementById('rsvpForm');
+      const successBox = document.getElementById('successBox');
+      const errorBox = document.getElementById('errorBox');
 
-  recuerdosBtn.addEventListener("click", () => { recuerdosModal.style.display = "block"; });
-  closeRecuerdos.addEventListener("click", () => { recuerdosModal.style.display = "none"; });
-  window.addEventListener("click", (e) => { if(e.target===recuerdosModal){recuerdosModal.style.display="none";} });
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        try {
+          const response = await fetch(form.action, {
+            method: form.method,
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (response.ok) {
+            form.style.display = 'none';
+            successBox.style.display = 'block';
+          } else { throw new Error('Error en el envío'); }
+        } catch (err) {
+          form.style.display = 'none';
+          errorBox.style.display = 'block';
+        }
+      });
+    })();
 
-  const recuerdosForm = document.getElementById("recuerdosForm");
-  const recuerdosMsg = document.getElementById("recuerdosMsg");
+    // Modal de Recuerdos
+    const recuerdosBtn = document.getElementById("recuerdosBtn");
+    const recuerdosModal = document.getElementById("recuerdosModal");
+    const closeRecuerdos = document.getElementById("closeRecuerdos");
 
-  recuerdosForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const files = document.getElementById("foto").files;
+    recuerdosBtn.addEventListener("click", () => { recuerdosModal.style.display = "block"; });
+    closeRecuerdos.addEventListener("click", () => { recuerdosModal.style.display = "none"; });
+    window.addEventListener("click", (e) => { if(e.target===recuerdosModal){recuerdosModal.style.display="none";} });
 
-    if (files.length === 0) {
-      recuerdosMsg.innerHTML = "⚠️ Selecciona al menos una foto.";
-      return;
-    }
+    const recuerdosForm = document.getElementById("recuerdosForm");
+    const recuerdosMsg = document.getElementById("recuerdosMsg");
+
+    recuerdosForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const files = document.getElementById("foto").files;
+
+      if (files.length === 0) {
+        recuerdosMsg.innerHTML = "⚠️ Selecciona al menos una foto.";
+        return;
+      }
+
+      for (let file of files) {
+        const reader = new FileReader();
+        reader.onloadend = async () => {
+          const base64 = reader.result.split(",")[1];
+          try {
+            const response = await fetch("https://script.google.com/macros/s/AKfycbwN9bUuAkucwZ3kpuYLdzDqGfnIgwzyQ-q5Wz5qxleE4LRKk5_A0nZ459TZrk4E9WZDvQ/exec", {
+              method: "POST",
+              body: new URLSearchParams({
+                foto: base64,
+                nombreArchivo: file.name,
+                mimeType: file.type
+              })
+            });
+            const result = await response.json();
+            if (result.status === "ok") {
+              recuerdosMsg.innerHTML += `✅ ${file.name} subida correctamente<br>`;
+            } else {
+              recuerdosMsg.innerHTML += `❌ Error al subir ${file.name}<br>`;
+            }
+          } catch (err) {
+            recuerdosMsg.innerHTML += `⚠️ Fallo al subir ${file.name}: ${err.message}<br>`;
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Modal de Traslado
+    const trasladoBtn = document.getElementById("trasladoBtn");
+    const trasladoModal = document.getElementById("trasladoModal");
+    const closeTraslado = document.getElementById("closeTraslado");
+
+    trasladoBtn.addEventListener("click", () => { trasladoModal.style.display = "block"; });
+    closeTraslado.addEventListener("click", () => { trasladoModal.style.display = "none"; });
+    window.addEventListener("click", (e) => { if(e.target===trasladoModal){trasladoModal.style.display="none";} });
+  </script>
+</body>
+</html>
+
 
     for (let file of files) {
       const reader = new FileReader();
@@ -338,6 +455,7 @@
 </script>
 </body>
 </html>
+
 
 
 
