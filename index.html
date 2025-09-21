@@ -146,19 +146,22 @@
 </div>
 
     </div>
-    <!-- Modal Recuerdos -->
+  <!-- Modal Recuerdos -->
 <div id="recuerdosModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6);">
   <div style="background:rgba(255,255,255,0.95); margin:10% auto; padding:20px; border-radius:12px; max-width:500px; position:relative;">
     <span id="closeRecuerdos" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:18px; font-weight:bold;">✖</span>
     <h3>Rincón de los recuerdos 📸</h3>
     <p>Aquí puedes subir las fotos que hayas sacado en la boda para que podamos guardarlas como recuerdo.</p>
     
-    <form action="https://formspree.io/f/xeolvqqb" method="POST" enctype="multipart/form-data">
+    <!-- ✅ Nuevo formulario SIN action -->
+    <form id="recuerdosForm">
       <label for="foto">Sube tus fotos:</label><br><br>
       <input type="file" id="foto" name="foto" accept="image/*" multiple required>
       <br><br>
       <button type="submit">Enviar fotos</button>
     </form>
+
+    <div id="recuerdosMsg" style="margin-top:10px; font-size:14px;"></div>
   </div>
 </div>
 
@@ -177,7 +180,7 @@
     </div>
 
     <!-- Formulario -->
-    <form id="rsvpForm" action= "https://script.google.com/macros/s/AKfycbywQuv9OAy9gZGHdSnEfGX6Kpth-vQLPp4Lv-3KKSSZgaGJcTyBmyBkqjqWJmRF3yPxAg/exec" method="POST" novalidate>
+    <form id="rsvpForm" action= "https://script.google.com/macros/s/AKfycbwN9bUuAkucwZ3kpuYLdzDqGfnIgwzyQ-q5Wz5qxleE4LRKk5_A0nZ459TZrk4E9WZDvQ/exec" method="POST" novalidate>
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" />
       <input type="hidden" name="_subject" value="Nueva confirmación de asistencia" />
       <div class="grid">
@@ -276,14 +279,43 @@
       });
     })();
     // Modal de Recuerdos
-const recuerdosBtn = document.getElementById("recuerdosBtn");
-const recuerdosModal = document.getElementById("recuerdosModal");
-const closeRecuerdos = document.getElementById("closeRecuerdos");
+const recuerdosForm = document.getElementById("recuerdosForm");
+  const recuerdosMsg = document.getElementById("recuerdosMsg");
 
-recuerdosBtn.addEventListener("click", () => { recuerdosModal.style.display = "block"; });
-closeRecuerdos.addEventListener("click", () => { recuerdosModal.style.display = "none"; });
-window.addEventListener("click", (e) => { if(e.target===recuerdosModal){recuerdosModal.style.display="none";} });
+  recuerdosForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const files = document.getElementById("foto").files;
 
+    if (files.length === 0) {
+      recuerdosMsg.innerHTML = "⚠️ Selecciona al menos una foto.";
+      return;
+    }
+
+    for (let file of files) {
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        const base64 = reader.result.split(",")[1];
+        try {
+          const response = await fetch("TU_URL_DE_APPS_SCRIPT_EXEC", {
+            method: "POST",
+            body: new URLSearchParams({
+              foto: base64,
+              nombreArchivo: file.name,
+              mimeType: file.type
+            })
+          });
+          const result = await response.json();
+          if (result.status === "ok") {
+            recuerdosMsg.innerHTML += `✅ ${file.name} subida correctamente<br>`;
+          } else {
+            recuerdosMsg.innerHTML += `❌ Error al subir ${file.name}<br>`;
+          }
+        } catch (err) {
+          recuerdosMsg.innerHTML += `⚠️ Fallo al subir ${file.name}: ${err.message}<br>`;
+        }
+      };
+      reader.readAsDataURL(file);
+    }
 
     // Modal de Traslado
     const trasladoBtn = document.getElementById("trasladoBtn");
@@ -296,6 +328,7 @@ window.addEventListener("click", (e) => { if(e.target===recuerdosModal){recuerdo
   </script>
 </body>
 </html>
+
 
 
 
