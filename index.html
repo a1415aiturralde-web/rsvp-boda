@@ -372,31 +372,43 @@
     closeAsistencia.addEventListener("click", () => { asistenciaModal.style.display = "none"; });
     window.addEventListener("click", (e) => { if(e.target===asistenciaModal){asistenciaModal.style.display="none";} });
 
-    // Envío Formulario RSVP
-    (function () {
-      const form = document.getElementById('rsvpForm');
-      const successBox = document.getElementById('successBox');
-      const errorBox = document.getElementById('errorBox');
+   // Envío Formulario RSVP
+(function () {
+  const form = document.getElementById('rsvpForm');
+  const successBox = document.getElementById('successBox');
+  const errorBox = document.getElementById('errorBox');
+  const asistenciaModal = document.getElementById('asistenciaModal');
 
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const data = new FormData(form);
-        try {
-          const response = await fetch(form.action, {
-            method: form.method,
-            body: data,
-            headers: { 'Accept': 'application/json' }
-          });
-          if (response.ok) {
-            form.style.display = 'none';
-            successBox.style.display = 'block';
-          } else { throw new Error('Error en el envío'); }
-        } catch (err) {
-          form.style.display = 'none';
-          errorBox.style.display = 'block';
-        }
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
       });
-    })();
+      if (response.ok) {
+        form.style.display = 'none';
+        successBox.style.display = 'block';
+
+        // 🔒 cerrar modal después de 3 segundos
+        setTimeout(() => {
+          asistenciaModal.style.display = "none";
+          // restaurar el formulario para el siguiente
+          form.reset();
+          form.style.display = 'block';
+          successBox.style.display = 'none';
+        }, 3000);
+
+      } else { throw new Error('Error en el envío'); }
+    } catch (err) {
+      form.style.display = 'none';
+      errorBox.style.display = 'block';
+    }
+  });
+})();
+
 
     // Modal Recuerdos
     const recuerdosBtn = document.getElementById("recuerdosBtn");
@@ -457,6 +469,7 @@
   </script>
 </body>
 </html>
+
 
 
 
