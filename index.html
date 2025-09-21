@@ -237,8 +237,10 @@ body {
   padding: 8px 20px;
   border-radius: 10px;
 }
-
-
+    /* Ocultar los segundos en FlipDown */
+.flipdown .rotor-group:last-child {
+  display: none !important;
+}
 
   </style>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flipdown@0.3.2/dist/flipdown.min.css">
@@ -470,6 +472,7 @@ new FlipDown(weddingDate)
   </script>
 </body>
 </html>
+
 
 
 
