@@ -70,6 +70,11 @@ body {
       color: var(--ink);
       font-weight: 600;
     }
+    <!-- Cuenta atrás -->
+<div class="countdown-section">
+  <h2>Cuenta atrás para el gran día</h2>
+  <div id="countdown"></div>
+</div>
 
     .icon-container {
       display: flex;
@@ -206,6 +211,39 @@ body {
   margin: 0 auto 20px;
   font-family: 'Great Vibes', cursive;
 }
+    .countdown-section {
+  width: 100%;
+  max-width: 100%;
+  height: 200px; /* puedes ajustar */
+  margin: 20px 0;
+  background: url('mi_foto_boda_v7.jpg') center/cover no-repeat; /* tu imagen de fondo */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.countdown-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  margin-bottom: 10px;
+  background: rgba(0,0,0,0.5); /* fondo suave para el texto */
+  padding: 5px 15px;
+  border-radius: 8px;
+}
+
+#countdown {
+  font-size: 28px;
+  font-weight: bold;
+  background: rgba(0,0,0,0.6); /* fondo oscuro translúcido */
+  padding: 8px 20px;
+  border-radius: 10px;
+}
+
 
 
   </style>
@@ -413,9 +451,33 @@ body {
     trasladoBtn.addEventListener("click", () => { trasladoModal.style.display = "flex"; });
     closeTraslado.addEventListener("click", () => { trasladoModal.style.display = "none"; });
     window.addEventListener("click", (e) => { if(e.target===trasladoModal){trasladoModal.style.display="none";} });
+    // Cuenta atrás
+const countdown = document.getElementById("countdown");
+
+// Fecha del gran día (ejemplo: 21 septiembre 2025 a las 13:00)
+const weddingDate = new Date("Oct 17, 2026 12:00:00").getTime();
+
+setInterval(() => {
+  const now = new Date().getTime();
+  const distance = weddingDate - now;
+
+  if (distance < 0) {
+    countdown.innerHTML = "¡Hoy es el gran día! 💍";
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}, 1000);
+
   </script>
 </body>
 </html>
+
 
 
 
