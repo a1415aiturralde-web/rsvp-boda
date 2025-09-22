@@ -215,7 +215,6 @@ body {
   max-width: 400px; /* centrado y tamaño fijo */
   height: 200px; 
   margin: 20px auto;
-  background: url('mi_foto_boda_v9.png') center/contain no-repeat; /* Fondo copas */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -241,21 +240,25 @@ body {
   padding: 8px 20px;
   border-radius: 10px;
 }
-   /* Ocultar los segundos en FlipDown */
-.flipdown .rotor-group:last-child {
-  display: none !important;
-}
-
-/* Quitar también los dos puntos después de los minutos */
-.flipdown .rotor-group:nth-child(3)::after {
-  content: "" !important;
-  display: none !important;
-}
-
+ 
     #asistenciaModal form {
   background: rgba(255,245,230,0.8); /* más opaco */
   padding: 20px;
   border-radius: 12px;
+}
+    /* Ajustar FlipDown para que quepan días, horas, minutos y segundos */
+.flipdown .rotor-group {
+  margin: 0 4px !important;  /* Espaciado más pequeño */
+}
+
+.flipdown .rotor {
+  font-size: 1.6rem !important;  /* Tamaño más pequeño del número */
+  width: 30px !important;        /* Ancho de cada número */
+  height: 50px !important;       /* Alto de cada número */
+}
+
+.flipdown .rotor-group-heading {
+  font-size: 0.7rem !important;  /* Tamaño más pequeño de los labels (Days, Hours…) */
 }
 
   </style>
@@ -485,6 +488,7 @@ new FlipDown(weddingDate)
   </script>
 </body>
 </html>
+
 
 
 
