@@ -210,21 +210,20 @@ body {
   font-family: 'Great Vibes', cursive;
   border: 2px solid #000000; /* ⚫ borde negro */
 }
-    .countdown-section {
+   .countdown-section {
   width: 100%;
-  max-width: 100%;
-  height: 200px; /* puedes ajustar */
-  margin: 20px 0;
-  background: url('mi_foto_boda_v9.png') center/cover no-repeat; /* tu imagen de fondo */
+  max-width: 400px; /* centrado y tamaño fijo */
+  height: 200px; 
+  margin: 20px auto;
+  background: url('mi_foto_boda_v9.png') center/contain no-repeat; /* Fondo copas */
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #fff;
-  text-align: center;
-  border-radius: 12px;
-  overflow: hidden;
+  border: 3px solid gold;  /* borde dorado */
+  border-radius: 16px;
+  padding: 20px;
 }
+
 
 .countdown-section h2 {
   font-family: 'Playfair Display', serif;
@@ -272,15 +271,9 @@ body {
     </p>
   </div>
   
-<div class="countdown-section" 
-     style="display: flex; justify-content: center; align-items: center; padding: 20px; 
-            background: rgba(255, 255, 255, 0.6); border: 3px solid gold; 
-            border-radius: 16px; max-width: 400px; margin: 0 auto;">
+<div class="countdown-section">
   <div id="flipdown" class="flipdown"></div>
 </div>
-
-
-
 
   <!-- Iconos -->
   <div class="icon-container">
@@ -492,6 +485,7 @@ new FlipDown(weddingDate)
   </script>
 </body>
 </html>
+
 
 
 
