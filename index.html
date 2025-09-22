@@ -210,61 +210,20 @@ body {
   font-family: 'Great Vibes', cursive;
   border: 2px solid #000000; /* ⚫ borde negro */
 }
-   .countdown-section {
-  width: 100%;
-  max-width: 400px; /* centrado y tamaño fijo */
-  height: 200px; 
-  margin: 20px auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 3px solid gold;  /* borde dorado */
-  border-radius: 16px;
-  padding: 20px;
-}
 
 
-.countdown-section h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 24px;
-  margin-bottom: 10px;
-  background: rgba(0,0,0,0.5); /* fondo suave para el texto */
-  padding: 5px 15px;
-  border-radius: 8px;
-}
-
-#countdown {
-  font-size: 28px;
-  font-weight: bold;
-  background: rgba(0,0,0,0.6); /* fondo oscuro translúcido */
-  padding: 8px 20px;
-  border-radius: 10px;
-}
- 
     #asistenciaModal form {
   background: rgba(255,245,230,0.8); /* más opaco */
   padding: 20px;
   border-radius: 12px;
-}
-    /* Ajustar FlipDown para que quepan días, horas, minutos y segundos */
-.flipdown .rotor-group {
-  margin: 0 4px !important;  /* Espaciado más pequeño */
-}
 
-.flipdown .rotor {
-  font-size: 1.6rem !important;  /* Tamaño más pequeño del número */
-  width: 30px !important;        /* Ancho de cada número */
-  height: 50px !important;       /* Alto de cada número */
 }
-
-.flipdown .rotor-group-heading {
-  font-size: 0.7rem !important;  /* Tamaño más pequeño de los labels (Days, Hours…) */
+    /* Espaciador para mantener el hueco del antiguo contador */
+.espaciador {
+  height: 120px;   /* ajusta el valor según el aire que quieras */
 }
 
   </style>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flipdown@0.3.2/dist/flipdown.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flipdown@0.3.2/dist/flipdown.min.js"></script>
-
 </head>
 <body>
   <div class="header">
@@ -274,9 +233,8 @@ body {
     </p>
   </div>
   
-<div class="countdown-section">
-  <div id="flipdown" class="flipdown"></div>
-</div>
+<div class="espaciador"></div>
+
 
   <!-- Iconos -->
   <div class="icon-container">
@@ -474,20 +432,11 @@ body {
     closeTraslado.addEventListener("click", () => { trasladoModal.style.display = "none"; });
     window.addEventListener("click", (e) => { if(e.target===trasladoModal){trasladoModal.style.display="none";} });
     
-  // Fecha del gran día (17 de octubre de 2026 a las 12:00)
-const weddingDate = new Date("Oct 17, 2026 12:00:00").getTime() / 1000;
-
-// Iniciar FlipDown
-new FlipDown(weddingDate)
-  .start()
-  .ifEnded(() => {
-    document.querySelector(".countdown-section h2").innerHTML = "¡Hoy es el gran día! 💍";
-  });
-
 
   </script>
 </body>
 </html>
+
 
 
 
