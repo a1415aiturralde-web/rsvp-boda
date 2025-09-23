@@ -25,38 +25,28 @@
     * { box-sizing: border-box; }
     html, body { height: 100%; margin: 0; padding: 0; }
 
-   html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-/* Fondo aplicado al body directamente */
-body {
-  background:
-    radial-gradient(60rem 60rem at 120% -10%, rgba(184,123,90,.12), transparent 60%),
-    radial-gradient(60rem 60rem at -20% 110%, rgba(184,123,90,.10), transparent 60%),
-    url('mi_foto_boda_v18.png') center/cover no-repeat;
-  background-attachment: scroll;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center top;
-}
-
+    body {
+      background:
+        radial-gradient(60rem 60rem at 120% -10%, rgba(184,123,90,.12), transparent 60%),
+        radial-gradient(60rem 60rem at -20% 110%, rgba(184,123,90,.10), transparent 60%),
+        url('mi_foto_boda_v18.png') center/cover no-repeat;
+      background-attachment: scroll;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center top;
+    }
 
     html, body { min-height: 100%; height: auto; }
 
-.header {
-  background: none;
-  border: none;
-  padding: 20px 24px 24px;
-  margin: 0px auto 24px;  /* antes 40px → ahora 20px */
-  text-align: center;
-  border: 2px solid #c9ab83;             /* crema/beige suave */
-  border-radius: 16px;                   /* bordes redondeados */
-}
-
-
+    .header {
+      text-align: center;
+      display: inline-block;
+      padding: 20px 24px 24px;
+      margin: 0 auto 24px;
+      border: 2px solid #c9ab83; /* crema/beige fuerte */
+      border-radius: 16px;
+      background: none;
+    }
 
     .title {
       font-family: 'Great Vibes', cursive;
@@ -74,14 +64,15 @@ body {
       color: var(--ink);
       font-weight: 600;
     }
-.icon-container {
-  display: flex;
-  justify-content: center;
-  margin: 60px auto 24px;  /* 👈 antes: 24px auto; ahora: 60px arriba, 24px abajo */
-  flex-wrap: wrap;
-  gap: 16px;
-  max-width: 720px;
-}
+
+    .icon-container {
+      display: flex;
+      justify-content: center;
+      margin: 60px auto 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+      max-width: 720px;
+    }
 
     .icon-button {
       display: flex;
@@ -120,22 +111,20 @@ body {
       background: rgba(250,240,240,0.8);
       padding: 2px 6px;
       border-radius: 4px;
-      border: 2px solid #000000; /* ⚫ borde negro */
+      border: 2px solid #000000;
     }
     input, select, textarea {
       width: 100%;
       padding: 12px 14px;
-      border: 1px solid #e4e4e7;
       border-radius: 12px;
       font-size: 15px;
       background: rgba(250,240,240,0.8);
       font-weight: bold;
       color: #000;
-      border: 2px solid #000000; /* ⚫ borde negro */
+      border: 2px solid #000000;
     }
     textarea { min-height: 96px; resize: vertical; }
 
-    /* chips bonitos */
     .radio-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
     .chip {
       display: inline-flex;
@@ -159,7 +148,6 @@ body {
       background: var(--brand);
       color: #fff;
       border-color: var(--brand);
-      border-radius: 999px;
       padding: 12px 22px;
       transform: scale(1.05);
     }
@@ -190,43 +178,49 @@ body {
       .title { font-size: 60px !important; }
       .subtitle { font-size: 18px; }
     }
-    
-    #trasladoModal {
-      color: #000;
+
+    /* Modal Asistencia */
+    #asistenciaModal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+      background: url('fondo_cuestionario.jpg') center/cover no-repeat;
     }
-
-    #trasladoModal h3, 
-    #trasladoModal h4, 
-    #trasladoModal p {
-      color: #000;
+    #asistenciaModal .asistencia-content {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90%;
+      overflow-y: auto;
+      position: relative;
+      padding: 20px;
     }
-    
-   #asistenciaModal h2 {
-  text-align: center;
-  font-size: 40px;
-  font-weight: bold;
-  color: var(--brand);
-  background: rgba(250,240,240,0.95); /* menos transparente */
-  padding: 10px 20px;
-  border-radius: 12px;
-  display: inline-block;
-  margin: 0 auto 20px;
-  font-family: 'Great Vibes', cursive;
-  border: 2px solid #000000; /* ⚫ borde negro */
-}
-
-
-    #asistenciaModal form {
-  background: rgba(255,245,230,0.8); /* más opaco */
-  padding: 20px;
-  border-radius: 12px;
-
-}
-    /* Espaciador para mantener el hueco del antiguo contador */
-.espaciador {
-  height: 190px;   /* ajusta el valor según el aire que quieras */
-}
-
+    #asistenciaModal h2 {
+      text-align: center;
+      font-size: 40px;
+      font-weight: bold;
+      color: var(--brand);
+      margin: 0 auto 20px;
+      font-family: 'Great Vibes', cursive;
+    }
+    #closeAsistencia {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    #successBox, #errorBox { display: none; }
   </style>
 </head>
 <body>
@@ -237,7 +231,7 @@ body {
     </p>
   </div>
   
-<div class="espaciador"></div>
+  <div class="espaciador"></div>
 
   <!-- Iconos -->
   <div class="icon-container">
@@ -258,9 +252,9 @@ body {
   <div class="footer">© Alejandro & Andrea</div>
 
   <!-- Modal Asistencia -->
-  <div id="asistenciaModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; padding: 20px; box-sizing: border-box;">
-    <div style="background:var(--cream); border-radius:12px; max-width:600px; width:100%; max-height:90%; overflow-y:auto; position:relative; padding:20px;">
-      <span id="closeAsistencia" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:18px; font-weight:bold;">✖</span>
+  <div id="asistenciaModal">
+    <div class="asistencia-content">
+      <span id="closeAsistencia">✖</span>
       <h2>Cuestionario de asistencia</h2>
       <form id="rsvpForm" action="https://script.google.com/macros/s/AKfycbyR0kDkPjKhyVGAqirWjeG7KxL917Tz1tfJOo17r6v06V4JT2cPcjjHyYR8_CvZ_Ab-Kg/exec" method="POST" novalidate>
         <div class="grid">
@@ -297,11 +291,11 @@ body {
         </div>
         <div class="actions"><button type="submit">Enviar confirmación</button></div>
       </form>
-      <div class="success" id="successBox" role="status" aria-live="polite" style="display:none;">
+      <div class="success" id="successBox" role="status" aria-live="polite">
         <h3>¡Gracias por tu respuesta! 💌</h3>
         <p>Hemos registrado tu confirmación. Puedes cerrar esta página.</p>
       </div>
-      <div class="error" id="errorBox" role="alert" style="display:none;">
+      <div class="error" id="errorBox" role="alert">
         <h3>Vaya, algo no ha ido bien…</h3>
         <p>Inténtalo de nuevo en unos segundos o avisa a los novios.</p>
       </div>
@@ -309,24 +303,19 @@ body {
   </div>
 
   <!-- Modal Traslado -->
- <div id="trasladoModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.7);">
-  <!-- Fondo con imagen -->
-  <div style="background:url('mi_foto_boda_v2.JPG') center/cover no-repeat; margin:8% auto; padding:30px; border-radius:16px; max-width:600px; position:relative; color:#fff;">
-    
-    <!-- Caja semitransparente para texto -->
-    <div style="background:rgba(248,229,216,0.85); padding:20px; border-radius:12px;">
-      <span id="closeTraslado" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:20px; font-weight:bold; color:#fff;">✖</span>
-      <h3 style="margin-top:0; color:#000;">Traslado de invitados</h3>
-      <p><strong>Ida:</strong> 13:30 desde La Cuesta Labrit (parada de autobuses).</p>
-      <p><strong>Vuelta:</strong> 02:00 desde Palacio de Olloqui hasta Hotel Tres Reyes, Pamplona.</p>
-      <h4 style="margin-top:20px;">Taxis recomendados:</h4>
-      <p>📞 Taxi Pamplona: 948 232 300<br>
-         📞 Radio Taxi: 948 351 335</p>
+  <div id="trasladoModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.7);">
+    <div style="background:url('mi_foto_boda_v2.JPG') center/cover no-repeat; margin:8% auto; padding:30px; border-radius:16px; max-width:600px; position:relative; color:#fff;">
+      <div style="background:rgba(248,229,216,0.85); padding:20px; border-radius:12px;">
+        <span id="closeTraslado" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:20px; font-weight:bold; color:#fff;">✖</span>
+        <h3 style="margin-top:0; color:#000;">Traslado de invitados</h3>
+        <p><strong>Ida:</strong> 13:30 desde La Cuesta Labrit (parada de autobuses).</p>
+        <p><strong>Vuelta:</strong> 02:00 desde Palacio de Olloqui hasta Hotel Tres Reyes, Pamplona.</p>
+        <h4 style="margin-top:20px;">Taxis recomendados:</h4>
+        <p>📞 Taxi Pamplona: 948 232 300<br>
+           📞 Radio Taxi: 948 351 335</p>
+      </div>
     </div>
-
   </div>
-</div>
-
 
   <!-- Modal Recuerdos -->
   <div id="recuerdosModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; padding: 20px; box-sizing: border-box;">
@@ -351,7 +340,6 @@ body {
     closeAsistencia.addEventListener("click", () => { asistenciaModal.style.display = "none"; });
     window.addEventListener("click", (e) => { if(e.target===asistenciaModal){asistenciaModal.style.display="none";} });
 
-    // Formulario RSVP
     (function () {
       const form = document.getElementById('rsvpForm');
       const successBox = document.getElementById('successBox');
@@ -434,11 +422,10 @@ body {
     trasladoBtn.addEventListener("click", () => { trasladoModal.style.display = "flex"; });
     closeTraslado.addEventListener("click", () => { trasladoModal.style.display = "none"; });
     window.addEventListener("click", (e) => { if(e.target===trasladoModal){trasladoModal.style.display="none";} });
-    
-
   </script>
 </body>
 </html>
+
 
 
 
