@@ -36,12 +36,20 @@ body {
   background:
     radial-gradient(60rem 60rem at 120% -10%, rgba(184,123,90,.12), transparent 60%),
     radial-gradient(60rem 60rem at -20% 110%, rgba(184,123,90,.10), transparent 60%),
-    url('mi_foto_boda_v16.png') center/cover no-repeat;
-  background-attachment: scroll; /* evita zoom en móvil */
+    url('mi_foto_boda_v17.png') center/cover no-repeat;
+  background-attachment: scroll;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center top;
 }
+
+/* En pantallas pequeñas mostramos la imagen completa */
+@media (max-width: 600px) {
+  body {
+    background-size: contain;
+    background-position: center top;
+  }
+
 
     html, body { min-height: 100%; height: auto; }
 
@@ -436,6 +444,7 @@ body {
   </script>
 </body>
 </html>
+
 
 
 
