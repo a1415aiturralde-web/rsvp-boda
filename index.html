@@ -84,12 +84,14 @@
       min-width: 100px;
       border: 2px solid #000000; /* ⚫ borde negro */
     }
-    .icon-button span {
-      font-size: 14px;
-      text-align: center;
-      color: #000;
-      font-weight: 700;
-    }
+   .icon-button span {
+  font-size: 16px;          /* un poco más grande */
+  text-align: center;
+  color: #000;
+  font-weight: 700;
+  text-transform: uppercase; /* fuerza MAYÚSCULAS */
+}
+
     .icon-button:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
@@ -217,13 +219,16 @@
       font-family: 'Great Vibes', cursive;
     }
     #closeAsistencia {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      cursor: pointer;
-      font-size: 24px;
-      font-weight: bold;
-    }
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+  background: none; /* quita el fondo */
+  border: 2px solid #000000; /* ⚫ borde negro */
+}
     #successBox, #errorBox { display: none; }
     /* Modal Traslado */
 #trasladoModal {
@@ -270,7 +275,10 @@
   font-size: 24px;
   font-weight: bold;
   color: #000;
+  background: none; /* quita el fondo */
+  border: 2px solid #000000; /* ⚫ borde negro */
 }
+  
    .countdown-section {
   text-align: center;
   margin: 20px auto 40px;
@@ -333,17 +341,17 @@
   padding: 20px 0; /* para que el contenido no se pegue arriba */
 }
     #closeRecuerdos {
-  position: absolute;
+position: absolute;
   top: 10px;
   right: 15px;
   cursor: pointer;
-  font-size: 24px;   /* más grande y visible en móvil */
+  font-size: 24px;
   font-weight: bold;
-  background: none;
-  border: none;
   color: #000;
+  background: none; /* quita el fondo */
+  border: 2px solid #000000; /* ⚫ borde negro */
 }
-
+  
 
   </style>
 </head>
@@ -696,6 +704,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
