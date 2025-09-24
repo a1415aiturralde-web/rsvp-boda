@@ -606,11 +606,18 @@ const timer = setInterval(() => {
   minutesEl.textContent = minutes;
   secondsEl.textContent = seconds;
 }, 1000);
+    // Estado inicial en portada
+window.addEventListener("load", () => {
+  if (!history.state) {
+    history.replaceState({page:"portada"}, "Portada", "#portada");
+  }
+});
 
 
   </script>
 </body>
 </html>
+
 
 
 
