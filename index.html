@@ -25,36 +25,16 @@
     * { box-sizing: border-box; }
     html, body { height: 100%; margin: 0; padding: 0; }
 
-/* Fondo base del body */
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background: none; /* nada de blanco ni negro */
-}
-
-/* Fondo exclusivo para la portada */
-#portada {
-  width: 100vw;
-  height: 100vh;
-  background:
-    radial-gradient(60rem 60rem at 120% -10%, rgba(184,123,90,.12), transparent 60%),
-    radial-gradient(60rem 60rem at -20% 110%, rgba(184,123,90,.10), transparent 60%),
-    url('mi_foto_boda_v18.png') center/cover no-repeat;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-/* Fondo exclusivo para accesos */
-#accesos {
-  width: 100vw;
-  height: 100vh;
-  background: url('mi_foto_boda_v22.png') center/cover no-repeat;
-  display: none; /* oculta al inicio */
-  flex-direction: column;
-  justify-content: space-between;
-}
+ body {
+      background:
+        radial-gradient(60rem 60rem at 120% -10%, rgba(184,123,90,.12), transparent 60%),
+        radial-gradient(60rem 60rem at -20% 110%, rgba(184,123,90,.10), transparent 60%),
+        url('mi_foto_boda_v18.png') center/cover no-repeat;
+      background-attachment: scroll;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center top;
+    }
 
     .header {
       text-align: center;
@@ -645,6 +625,7 @@ window.addEventListener("load", () => {
   </script>
 </body>
 </html>
+
 
 
 
