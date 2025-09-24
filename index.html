@@ -273,6 +273,28 @@
   font-weight: bold;
   color: #000;
 }
+    .countdown-section {
+  text-align: center;
+  margin: 20px auto 40px;
+  padding: 15px;
+  border: 2px solid #c9ab83;   /* borde crema */
+  border-radius: 12px;
+  background: rgba(255,245,230,0.8); /* fondo translúcido suave */
+  max-width: 400px;
+}
+
+.countdown-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+
+#countdown {
+  font-size: 26px;
+  font-weight: bold;
+  color: var(--brand);
+}
 
   </style>
 </head>
@@ -298,6 +320,11 @@
 
   <!-- Página de accesos (oculta al inicio) -->
   <div id="accesos" style="display:none;">
+    <!-- Cuenta atrás -->
+<div class="countdown-section">
+  <h2>Cuenta atrás para el gran día</h2>
+  <div id="countdown"></div>
+</div> 
     <div class="icon-container">
       <div class="icon-button" id="asistenciaBtn">
         <img src="cuestionario.png" alt="Cuestionario de asistencia" class="icon-img">
@@ -510,10 +537,33 @@ window.addEventListener("popstate", (event) => {
     portada.style.display = "block";
   }
 });
+    // Cuenta atrás para el gran día (ejemplo: 17 octubre 2026 a las 12:00)
+const weddingDate = new Date("Oct 17, 2026 12:00:00").getTime();
+
+const countdownEl = document.getElementById("countdown");
+const timer = setInterval(() => {
+  const now = new Date().getTime();
+  const distance = weddingDate - now;
+
+  if (distance <= 0) {
+    clearInterval(timer);
+    countdownEl.innerHTML = "💍 ¡Hoy es el gran día!";
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}, 1000);
+
 
   </script>
 </body>
 </html>
+
 
 
 
