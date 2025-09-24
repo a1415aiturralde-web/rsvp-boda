@@ -315,6 +315,17 @@
   color: var(--ink);
   font-family: 'Playfair Display', serif;
 }
+    .countdown-icon {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.countdown-icon img {
+  width: 50px;   /* ajusta al tamaño que quieras */
+  height: auto;
+  display: inline-block;
+}
+
 
 
   </style>
@@ -343,6 +354,9 @@
   <div id="accesos" style="display:none;">
 <!-- Cuenta atrás -->
 <div class="countdown-section">
+  <div class="countdown-icon">
+    <img src="mi_foto_boda_v21.png" alt="Icono decorativo">
+  </div>
   <h2>Cuenta Atrás</h2>
   <div id="countdown">
     <div class="time-box"><span id="days">0</span><small>Días</small></div>
@@ -351,6 +365,7 @@
     <div class="time-box"><span id="seconds">0</span><small>Seg</small></div>
   </div>
 </div>
+
 
     <div class="icon-container">
       <div class="icon-button" id="asistenciaBtn">
@@ -597,6 +612,7 @@ const timer = setInterval(() => {
   </script>
 </body>
 </html>
+
 
 
 
