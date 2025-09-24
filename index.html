@@ -321,28 +321,21 @@
 }
 
 .countdown-icon img {
-  width: 110px;   /* ajusta al tamaño que quieras */
+  width: 90px;   /* ajusta al tamaño que quieras */
   height: auto;
   display: inline-block;
 }
-  #accesos {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  box-sizing: border-box;
-
-  /* Fondo con imagen */
-  background: url('mi_foto_boda_v22.JPG') center/cover no-repeat;
+    #accesos {
+  min-height: 100vh; /* ocupa siempre toda la pantalla */
+  background: url('mi_foto_boda_v22.png') center/cover no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 20px 0; /* para que el contenido no se pegue arriba */
 }
 
-
+  
 
   </style>
 </head>
