@@ -273,28 +273,49 @@
   font-weight: bold;
   color: #000;
 }
-    .countdown-section {
+   .countdown-section {
   text-align: center;
   margin: 20px auto 40px;
-  padding: 15px;
-  border: 2px solid #c9ab83;   /* borde crema */
-  border-radius: 12px;
-  background: rgba(255,245,230,0.8); /* fondo translúcido suave */
-  max-width: 400px;
+  padding: 20px;
+  max-width: 600px;
 }
 
 .countdown-section h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  margin-bottom: 10px;
-  color: var(--ink);
+  font-family: 'Great Vibes', cursive; /* más elegante */
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: var(--brand);
 }
 
 #countdown {
-  font-size: 26px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.time-box {
+  background: rgba(255, 245, 230, 0.9); /* crema translúcido */
+  border: 2px solid #c9ab83;            /* borde crema */
+  border-radius: 12px;
+  padding: 15px 20px;
+  min-width: 70px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.time-box span {
+  display: block;
+  font-size: 28px;
   font-weight: bold;
   color: var(--brand);
 }
+
+.time-box small {
+  font-size: 14px;
+  color: var(--ink);
+  font-family: 'Playfair Display', serif;
+}
+
 
   </style>
 </head>
@@ -320,11 +341,17 @@
 
   <!-- Página de accesos (oculta al inicio) -->
   <div id="accesos" style="display:none;">
-    <!-- Cuenta atrás -->
+<!-- Cuenta atrás -->
 <div class="countdown-section">
-  <h2>Cuenta atrás para el gran día</h2>
-  <div id="countdown"></div>
-</div> 
+  <h2>Cuenta Atrás</h2>
+  <div id="countdown">
+    <div class="time-box"><span id="days">0</span><small>Días</small></div>
+    <div class="time-box"><span id="hours">0</span><small>Horas</small></div>
+    <div class="time-box"><span id="minutes">0</span><small>Min</small></div>
+    <div class="time-box"><span id="seconds">0</span><small>Seg</small></div>
+  </div>
+</div>
+
     <div class="icon-container">
       <div class="icon-button" id="asistenciaBtn">
         <img src="cuestionario.png" alt="Cuestionario de asistencia" class="icon-img">
@@ -537,17 +564,21 @@ window.addEventListener("popstate", (event) => {
     portada.style.display = "block";
   }
 });
-    // Cuenta atrás para el gran día (ejemplo: 17 octubre 2026 a las 12:00)
+   // Fecha de la boda
 const weddingDate = new Date("Oct 17, 2026 12:00:00").getTime();
 
-const countdownEl = document.getElementById("countdown");
+const daysEl = document.getElementById("days");
+const hoursEl = document.getElementById("hours");
+const minutesEl = document.getElementById("minutes");
+const secondsEl = document.getElementById("seconds");
+
 const timer = setInterval(() => {
   const now = new Date().getTime();
   const distance = weddingDate - now;
 
   if (distance <= 0) {
     clearInterval(timer);
-    countdownEl.innerHTML = "💍 ¡Hoy es el gran día!";
+    document.getElementById("countdown").innerHTML = "💍 ¡Hoy es el gran día!";
     return;
   }
 
@@ -556,13 +587,17 @@ const timer = setInterval(() => {
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  daysEl.textContent = days;
+  hoursEl.textContent = hours;
+  minutesEl.textContent = minutes;
+  secondsEl.textContent = seconds;
 }, 1000);
 
 
   </script>
 </body>
 </html>
+
 
 
 
