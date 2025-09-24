@@ -25,16 +25,30 @@
     * { box-sizing: border-box; }
     html, body { height: 100%; margin: 0; padding: 0; }
 
-    body {
-      background:
-        radial-gradient(60rem 60rem at 120% -10%, rgba(184,123,90,.12), transparent 60%),
-        radial-gradient(60rem 60rem at -20% 110%, rgba(184,123,90,.10), transparent 60%),
-        url('mi_foto_boda_v18.png') center/cover no-repeat;
-      background-attachment: scroll;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center top;
-    }
+   /* Fondo exclusivo para la portada */
+#portada {
+  min-height: 100vh;
+  background:
+    radial-gradient(60rem 60rem at 120% -10%, rgba(184,123,90,.12), transparent 60%),
+    radial-gradient(60rem 60rem at -20% 110%, rgba(184,123,90,.10), transparent 60%),
+    url('mi_foto_boda_v18.png') center/cover no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+/* Fondo exclusivo para accesos */
+#accesos {
+  min-height: 100vh;
+  background: url('mi_foto_boda_v22.png') center/cover no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: none; /* sigue oculta hasta que se pulsa Entrar */
+}
+
 
     html, body { min-height: 100%; height: auto; }
 
@@ -627,6 +641,7 @@ window.addEventListener("load", () => {
   </script>
 </body>
 </html>
+
 
 
 
