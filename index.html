@@ -325,17 +325,17 @@
   height: auto;
   display: inline-block;
 }
-    #accesos {
-  min-height: 100vh; /* ocupa siempre toda la pantalla */
+  #accesos {
+  width: 100%;
+  height: 100vh; /* ocupa toda la altura visible SIEMPRE */
   background: url('mi_foto_boda_v22.png') center/cover no-repeat;
-  background-attachment: scroll;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  padding: 20px 0; /* para que el contenido no se pegue arriba */
+  background-attachment: fixed; /* la imagen se queda fija al hacer scroll */
+  display: none; /* sigue oculta al inicio */
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-  
+
 
   </style>
 </head>
@@ -625,6 +625,7 @@ window.addEventListener("load", () => {
   </script>
 </body>
 </html>
+
 
 
 
