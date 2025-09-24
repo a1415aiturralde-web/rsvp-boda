@@ -558,18 +558,26 @@
     trasladoBtn.addEventListener("click", () => { trasladoModal.style.display = "flex"; });
     closeTraslado.addEventListener("click", () => { trasladoModal.style.display = "none"; });
     window.addEventListener("click", (e) => { if(e.target===trasladoModal){trasladoModal.style.display="none";} });
-    // Navegación portada → accesos
+  // Navegación portada → accesos
 const portada = document.getElementById("portada");
 const accesos = document.getElementById("accesos");
 const accesosBtn = document.getElementById("accesosBtn");
 
+// Al cargar la página, estado inicial en portada
+window.addEventListener("load", () => {
+  history.replaceState({ page: "portada" }, "Portada", "#portada");
+  portada.style.display = "block";
+  accesos.style.display = "none";
+});
+
+// Cuando hacen click en el botón entrar
 accesosBtn.addEventListener("click", () => {
   portada.style.display = "none";
   accesos.style.display = "block";
-  history.pushState({page:"accesos"}, "Accesos", "#accesos"); 
+  history.pushState({ page: "accesos" }, "Accesos", "#accesos");
 });
 
-// Control del botón atrás del móvil
+// Control del botón atrás
 window.addEventListener("popstate", (event) => {
   if (event.state && event.state.page === "accesos") {
     portada.style.display = "none";
@@ -579,6 +587,7 @@ window.addEventListener("popstate", (event) => {
     portada.style.display = "block";
   }
 });
+
    // Fecha de la boda
 const weddingDate = new Date("Oct 17, 2026 12:00:00").getTime();
 
@@ -618,6 +627,7 @@ window.addEventListener("load", () => {
   </script>
 </body>
 </html>
+
 
 
 
