@@ -484,9 +484,32 @@
     trasladoBtn.addEventListener("click", () => { trasladoModal.style.display = "flex"; });
     closeTraslado.addEventListener("click", () => { trasladoModal.style.display = "none"; });
     window.addEventListener("click", (e) => { if(e.target===trasladoModal){trasladoModal.style.display="none";} });
+    // Navegación portada → accesos
+const portada = document.getElementById("portada");
+const accesos = document.getElementById("accesos");
+const accesosBtn = document.getElementById("accesosBtn");
+
+accesosBtn.addEventListener("click", () => {
+  portada.style.display = "none";
+  accesos.style.display = "block";
+  history.pushState({page:"accesos"}, "Accesos", "#accesos"); 
+});
+
+// Control del botón atrás del móvil
+window.addEventListener("popstate", (event) => {
+  if (event.state && event.state.page === "accesos") {
+    portada.style.display = "none";
+    accesos.style.display = "block";
+  } else {
+    accesos.style.display = "none";
+    portada.style.display = "block";
+  }
+});
+
   </script>
 </body>
 </html>
+
 
 
 
