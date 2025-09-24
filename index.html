@@ -22,19 +22,21 @@
       --cream: rgba(250,240,240,0.40);
     }
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; margin: 0; padding: 0; }
+ html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;   /* la página puede crecer más allá de la pantalla */
+}
 
- body {
-      background:
-        radial-gradient(60rem 60rem at 120% -10%, rgba(184,123,90,.12), transparent 60%),
-        radial-gradient(60rem 60rem at -20% 110%, rgba(184,123,90,.10), transparent 60%),
-        url('mi_foto_boda_v18.png') center/cover no-repeat;
-      background-attachment: scroll;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center top;
-    }
+body {
+  background:
+    radial-gradient(60rem 60rem at 120% -10%, rgba(184,123,90,.12), transparent 60%),
+    radial-gradient(60rem 60rem at -20% 110%, rgba(184,123,90,.10), transparent 60%),
+    url('mi_foto_boda_v18.png') center top / cover no-repeat;
+  background-attachment: fixed; /* 🔑 mantiene el fondo aunque bajes */
+}
+
+    
 
     .header {
       text-align: center;
@@ -625,6 +627,7 @@ window.addEventListener("load", () => {
   </script>
 </body>
 </html>
+
 
 
 
