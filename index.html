@@ -273,32 +273,45 @@
   </style>
 </head>
 <body>
-  <div class="header">
-    <h1 class="title">Boda Alejandro y Andrea</h1>
-    <p class="subtitle">
-      Bienvenidos a nuestro espacio de boda. Aquí podréis compartir con nosotros vuestras preferencias para que todo esté perfecto, además de encontrar información actualizada sobre la celebración. Tras la boda, este rincón será también un lugar donde podréis subir vuestras fotos y recuerdos para que sigamos celebrando juntos.
-    </p>
-  </div>
-  
-  <div class="espaciador"></div>
+  <!-- Portada principal -->
+  <div id="portada">
+    <div class="header">
+      <h1 class="title">Boda Alejandro y Andrea</h1>
+      <p class="subtitle">
+        Bienvenidos a nuestro espacio de boda. Aquí podréis compartir con nosotros vuestras preferencias para que todo esté perfecto, además de encontrar información actualizada sobre la celebración.
+      </p>
+    </div>
 
-  <!-- Iconos -->
-  <div class="icon-container">
-    <div class="icon-button" id="asistenciaBtn">
-      <img src="cuestionario.png" alt="Cuestionario de asistencia" class="icon-img">
-      <span>Cuestionario de asistencia</span>
+    <!-- Botón único para entrar -->
+    <div class="icon-container">
+      <div class="icon-button" id="accesosBtn">
+        <i class="fa-solid fa-heart fa-2x" style="color: var(--brand); margin-bottom:8px;"></i>
+        <span>Entrar</span>
+      </div>
     </div>
-    <div class="icon-button" id="trasladoBtn">
-      <img src="autobus.png" alt="Autobús" class="icon-img">
-      <span>Traslado de invitados</span>
-    </div>
-    <div class="icon-button" id="recuerdosBtn">
-      <img src="recuerdos.png" alt="Rincón de los recuerdos" class="icon-img">
-      <span>Rincón de los recuerdos</span>
+  </div>
+
+  <!-- Página de accesos (oculta al inicio) -->
+  <div id="accesos" style="display:none;">
+    <div class="icon-container">
+      <div class="icon-button" id="asistenciaBtn">
+        <img src="cuestionario.png" alt="Cuestionario de asistencia" class="icon-img">
+        <span>Cuestionario de asistencia</span>
+      </div>
+      <div class="icon-button" id="trasladoBtn">
+        <img src="autobus.png" alt="Autobús" class="icon-img">
+        <span>Traslado de invitados</span>
+      </div>
+      <div class="icon-button" id="recuerdosBtn">
+        <img src="recuerdos.png" alt="Rincón de los recuerdos" class="icon-img">
+        <span>Rincón de los recuerdos</span>
+      </div>
     </div>
   </div>
 
   <div class="footer">© Alejandro & Andrea</div>
+
+  <!-- Aquí siguen tus modales (Asistencia, Traslado, Recuerdos) tal cual los tienes -->
 
   <!-- Modal Asistencia -->
   <div id="asistenciaModal">
@@ -474,6 +487,7 @@
   </script>
 </body>
 </html>
+
 
 
 
