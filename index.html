@@ -363,7 +363,22 @@ position: absolute;
   background: none; /* quita el fondo */
   border: 2px solid #000000; /* ⚫ borde negro */
 }
-  
+    .spinner {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #b87b5a;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
   </style>
 </head>
@@ -610,44 +625,65 @@ document.addEventListener("DOMContentLoaded", () => {
   setupModal({ opener: asistenciaBtn, modal: asistenciaModal, closeBtn: closeAsistencia, focusSelector: "#nombre" });
 
   // Envío del formulario RSVP (con mensajes y reinicio)
-  (function () {
-    const form = document.getElementById('rsvpForm');
-    const successBox = document.getElementById('successBox');
-    const errorBox = document.getElementById('errorBox');
+(function () {
+  const form = document.getElementById('rsvpForm');
+  const successBox = document.getElementById('successBox');
+  const errorBox = document.getElementById('errorBox');
+  const submitBtn = form.querySelector("button[type='submit']");
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const data = new FormData(form);
-      try {
-        const response = await fetch(form.action, {
-          method: form.method,
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
-        if (response.ok) {
-          form.style.display = 'none';
-          errorBox.style.display = 'none';
-          successBox.style.display = 'block';
-          setTimeout(() => {
-            asistenciaModal.style.display = "none";
-            form.reset();
-            form.style.display = 'block';
-            successBox.style.display = 'none';
-          }, 3000);
-        } else {
-          throw new Error('Error en el envío');
-        }
-      } catch (err) {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // 🔒 Bloquear botón y mostrar spinner
+    submitBtn.disabled = true;
+    const spinner = document.createElement("span");
+    spinner.classList.add("spinner");
+    submitBtn.appendChild(spinner);
+
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
         form.style.display = 'none';
-        successBox.style.display = 'none';
-        errorBox.style.display = 'block';
+        errorBox.style.display = 'none';
+        successBox.style.display = 'block';
+
         setTimeout(() => {
-          errorBox.style.display = 'none';
+          asistenciaModal.style.display = "none";
+          form.reset();
           form.style.display = 'block';
+          successBox.style.display = 'none';
+
+          // 🔓 Restaurar botón
+          submitBtn.disabled = false;
+          spinner.remove();
         }, 3000);
+      } else {
+        throw new Error('Error en el envío');
       }
-    });
-  })();
+    } catch (err) {
+      form.style.display = 'none';
+      successBox.style.display = 'none';
+      errorBox.style.display = 'block';
+
+      setTimeout(() => {
+        errorBox.style.display = 'none';
+        form.style.display = 'block';
+
+        // 🔓 Restaurar botón
+        submitBtn.disabled = false;
+        spinner.remove();
+      }, 3000);
+    }
+  });
+})();
+
 
   /* ---------- Modal Traslado ---------- */
   const trasladoBtn = document.getElementById("trasladoBtn");
@@ -716,6 +752,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
