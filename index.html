@@ -340,28 +340,16 @@
   height: auto;
   display: inline-block;
 }
-   /* Estado oculto */
-#accesos {
-  min-height: 100vh;
+    #accesos {
+  min-height: 100vh; /* ocupa siempre toda la pantalla */
   background: url('mi_foto_boda_v22.png') center/cover no-repeat;
   background-attachment: scroll;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  padding: 20px 0;
-  margin-top: -30px;
-
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.8s ease-in-out, visibility 0.8s;
+  padding: 20px 0; /* para que el contenido no se pegue arriba */ 
+  margin-top: -30px; /* sube todo 30 píxeles */
 }
-
-/* Estado visible */
-#accesos.show {
-  opacity: 1;
-  visibility: visible;
-}
-
 
     #closeRecuerdos {
 position: absolute;
@@ -390,34 +378,6 @@ position: absolute;
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-    #recuerdosModal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  box-sizing: border-box;
-
-  /* Fondo con foto (como traslado) */
-  background: url('mi_foto_boda_v7.jpg') center/cover no-repeat;
-}
-    #recuerdosModal .recuerdos-content {
-  background: rgba(248,229,216,0.60); /* crema semitransparente */
-  border-radius: 12px;
-  max-width: 600px;
-  width: 100%;
-  max-height: 90%;
-  overflow-y: auto;
-  position: relative;
-  padding: 20px;
-  color: #000; /* texto negro */
-  border: 2px solid #000000; /* ⚫ borde negro */
-}
 
   </style>
 </head>
@@ -441,7 +401,7 @@ position: absolute;
 </main>
 
 <!-- Página de accesos (oculta al inicio) -->
-<section id="accesos";">
+<section id="accesos" style="display:none;">
   <!-- Cuenta atrás -->
   <section class="countdown-section" aria-labelledby="countdownTitle">
     <div class="countdown-icon">
@@ -543,8 +503,8 @@ position: absolute;
 
 
  <!-- Modal Recuerdos -->
-<div id="recuerdosModal" role="dialog" aria-modal="true" aria-labelledby="recuerdosTitle">
-  <div class="recuerdos-content">
+<div id="recuerdosModal" role="dialog" aria-modal="true" aria-labelledby="recuerdosTitle" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; padding: 20px; box-sizing: border-box;">
+  <div style="background:var(--cream); border-radius:12px; max-width:500px; width:100%; max-height:90%; overflow-y:auto; position:relative; padding:20px;">
     <button id="closeRecuerdos" aria-label="Cerrar rincón de recuerdos">✖</button>
     <h3 id="recuerdosTitle">Rincón de los recuerdos 📸</h3>
     <p>Aquí puedes subir las fotos que hayas sacado en la boda para que podamos guardarlas como recuerdo.</p>
@@ -557,7 +517,6 @@ position: absolute;
 </div>
 
 
-
   <script>
 document.addEventListener("DOMContentLoaded", () => {
   /* ---------- Navegación portada ↔ accesos ---------- */
@@ -566,21 +525,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const accesosBtn = document.getElementById("accesosBtn");
 
   accesosBtn.addEventListener("click", () => {
-   portada.style.display = "none";      // oculta portada de golpe
-accesos.classList.add("show");       // muestra accesos suavemente
+    portada.style.display = "none";
+    accesos.style.display = "block";
     history.pushState({ page: "accesos" }, "Accesos", "#accesos");
   });
 
-window.addEventListener("popstate", (event) => {
-  if (event.state && event.state.page === "accesos") {
-    portada.style.display = "none";
-    accesos.classList.add("show");
-  } else {
-    accesos.classList.remove("show");
-    portada.style.display = "block";
-  }
-});
-
+  window.addEventListener("popstate", (event) => {
+    if (event.state && event.state.page === "accesos") {
+      portada.style.display = "none";
+      accesos.style.display = "block";
+    } else {
+      accesos.style.display = "none";
+      portada.style.display = "block";
+    }
+  });
 
   if (!history.state) {
     history.replaceState({ page: "portada" }, "Portada", "#portada");
@@ -800,6 +758,12 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
+
+
+
+
+
 
 
 
