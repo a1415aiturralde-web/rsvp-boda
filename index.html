@@ -340,16 +340,6 @@
   height: auto;
   display: inline-block;
 }
-    #accesos {
-  min-height: 100vh; /* ocupa siempre toda la pantalla */
-  background: url('mi_foto_boda_v22.png') center/cover no-repeat;
-  background-attachment: scroll;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  padding: 20px 0; /* para que el contenido no se pegue arriba */ 
-  margin-top: -30px; /* sube todo 30 píxeles */
-}
 
     #closeRecuerdos {
 position: absolute;
@@ -407,6 +397,45 @@ position: absolute;
   color: #000;
   border: 2px solid #000;
 }
+    #portada, #accesos {
+  transition: opacity 0.8s ease-in-out, visibility 0.8s;
+}
+
+/* Estado inicial */
+#portada {
+  opacity: 1;
+  visibility: visible;
+}
+#accesos {
+  min-height: 100vh;
+  background: url('mi_foto_boda_v22.png') center/cover no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 20px 0;
+  margin-top: -30px;
+
+  /* para transición */
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  transition: opacity 0.8s ease-in-out, visibility 0.8s;
+}
+
+/* Cuando se activa */
+#portada.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+#accesos.show {
+  opacity: 1;
+  visibility: visible;
+  position: relative; /* vuelve a su flujo normal */
+}
+
 
   </style>
 </head>
@@ -554,21 +583,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const accesos = document.getElementById("accesos");
   const accesosBtn = document.getElementById("accesosBtn");
 
-  accesosBtn.addEventListener("click", () => {
-    portada.style.display = "none";
-    accesos.style.display = "block";
-    history.pushState({ page: "accesos" }, "Accesos", "#accesos");
-  });
+ accesosBtn.addEventListener("click", () => {
+  portada.classList.add("hide");
+  accesos.classList.add("show");
+  history.pushState({ page: "accesos" }, "Accesos", "#accesos");
+});
 
-  window.addEventListener("popstate", (event) => {
-    if (event.state && event.state.page === "accesos") {
-      portada.style.display = "none";
-      accesos.style.display = "block";
-    } else {
-      accesos.style.display = "none";
-      portada.style.display = "block";
-    }
-  });
+window.addEventListener("popstate", (event) => {
+  if (event.state && event.state.page === "accesos") {
+    portada.classList.add("hide");
+    accesos.classList.add("show");
+  } else {
+    accesos.classList.remove("show");
+    portada.classList.remove("hide");
+  }
+});
+
 
   if (!history.state) {
     history.replaceState({ page: "portada" }, "Portada", "#portada");
@@ -788,6 +818,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
