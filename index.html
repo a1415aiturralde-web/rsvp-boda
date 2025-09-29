@@ -65,12 +65,22 @@
 
     /* Icono de portada */
 #portada .icon-container {
-  margin: 230px auto 24px; /* igual que antes, icono Entrar bien abajo */
+  display: flex;
+  justify-content: center;
+  margin: 180px auto 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+  max-width: 720px;
 }
 
 /* Iconos de accesos */
 #accesos .icon-container {
-  margin: 20px auto 24px; /* mucho más compacto, pegados a la iglesia */
+  display: flex;
+  justify-content: center;  /* centra en horizontal */
+  flex-wrap: wrap;          /* baja en móvil */
+  gap: 16px;
+  margin: 20px auto 24px;
+  max-width: 720px;
 }
 
 
@@ -878,6 +888,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
