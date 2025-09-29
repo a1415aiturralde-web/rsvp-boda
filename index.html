@@ -440,6 +440,44 @@ position: absolute;
   visibility: visible;
   position: relative; /* vuelve a su flujo normal */
 }
+   .wedding-date {
+  font-size: 24px;        /* tamaño similar a la frase "Cuenta atrás" */
+  font-weight: 600;
+  text-align: center;
+  margin: 12px 0;
+  color: #a00034;         /* granate elegante */
+  font-family: 'Great Vibes', cursive;
+}
+
+.church-icon {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.church-icon img {
+  width: 60px; 
+  height: auto;
+  opacity: 0.9;
+  animation: bounceIn 1.2s ease;
+}
+
+/* Animación */
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
   </style>
 </head>
@@ -477,6 +515,14 @@ position: absolute;
       <div class="time-box"><span id="seconds">0</span><small>Seg</small></div>
     </div>
   </section>
+  <!-- Fecha de la boda -->
+<p class="wedding-date">17 • OCTUBRE • 2026</p>
+
+<!-- Icono iglesia -->
+<div class="church-icon">
+  <img src="img/iglesia.png" alt="Iglesia" />
+</div>
+
 
   <div class="icon-container">
     <button class="icon-button" id="asistenciaBtn">
@@ -822,6 +868,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
