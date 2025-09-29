@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Boda de Alejandro & Andrea</title>
-  <meta name="description" content="Formulario de confirmación de asistencia a la boda (RSVP)." />
+  <meta name="description" content="Preparando el gran dia" />
   <meta name="theme-color" content="#b87b5a" />
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
@@ -440,7 +440,17 @@ position: absolute;
   visibility: visible;
   position: relative; /* vuelve a su flujo normal */
 }
-
+    .wedding-date.option2 {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #a00034;
+  color: #fff;
+  font-size: 28px;
+  font-weight: bold;
+  border-radius: 30px;
+  display: inline-block;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
 
   </style>
 </head>
@@ -464,7 +474,7 @@ position: absolute;
 </main>
 
 <!-- Página de accesos (oculta al inicio) -->
-<section id="accesos"
+<section id="accesos">
   <!-- Cuenta atrás -->
   <section class="countdown-section" aria-labelledby="countdownTitle">
     <div class="countdown-icon">
@@ -478,6 +488,9 @@ position: absolute;
       <div class="time-box"><span id="seconds">0</span><small>Seg</small></div>
     </div>
   </section>
+  <!-- Fecha de la boda -->
+<div class="wedding-date option2">17 • OCTUBRE • 2026</div>
+
 
   <div class="icon-container">
     <button class="icon-button" id="asistenciaBtn">
@@ -823,6 +836,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
