@@ -63,14 +63,16 @@
       font-weight: 600;
     }
 
-    .icon-container {
-      display: flex;
-      justify-content: center;
-      margin: 100px auto 24px;
-      flex-wrap: wrap;
-      gap: 16px;
-      max-width: 720px;
-    }
+    /* Icono de portada */
+#portada .icon-container {
+  margin: 230px auto 24px; /* igual que antes, icono Entrar bien abajo */
+}
+
+/* Iconos de accesos */
+#accesos .icon-container {
+  margin: 20px auto 24px; /* mucho más compacto, pegados a la iglesia */
+}
+
 
     .icon-button {
       display: flex;
@@ -478,6 +480,14 @@ position: absolute;
     transform: scale(1);
   }
 }
+    #portada {
+  min-height: 100vh;            /* ocupa toda la ventana */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;      /* centra verticalmente */
+  align-items: center;
+}
+
 
   </style>
 </head>
@@ -868,6 +878,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
