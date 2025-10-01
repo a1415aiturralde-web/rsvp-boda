@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Boda de Alejandro & Andrea</title>
-  <meta name="description" content="Preparando el gran dia" />
+  <meta name="description" content="Preparados para el gran dia" />
   <meta name="theme-color" content="#b87b5a" />
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
@@ -503,7 +503,13 @@ position: absolute;
   justify-content: center;      /* centra verticalmente */
   align-items: center;
 }
-
+    .intro-traslado {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 15px 0 20px;
+  text-align: justify;
+  color: #333;
+}
 
   </style>
 </head>
@@ -627,13 +633,24 @@ position: absolute;
   <div class="traslado-content">
     <button id="closeTraslado" aria-label="Cerrar información de traslado">✖</button>
     <h3 id="trasladoTitle">Traslado de invitados</h3>
+    
+    <!-- ✨ Introducción añadida -->
+    <p class="intro-traslado">
+      Cuando se acerque nuestro gran día, aquí encontraréis todos los detalles sobre el servicio de autobuses. 
+      Compartiremos los horarios y puntos de recogida en Pamplona para acompañarnos hasta el banquete en el Palacio de Olloqui, 
+      así como el regreso tras la fiesta para volver cómodamente a Pamplona.  
+      ¡Queremos que disfrutéis al máximo, sin preocuparos de nada más que de celebrar con nosotros!
+    </p>
+
     <p><strong>Ida:</strong> 13:30 desde La Cuesta Labrit (parada de autobuses).</p>
     <p><strong>Vuelta:</strong> 02:00 desde Palacio de Olloqui hasta Hotel Tres Reyes, Pamplona.</p>
+    
     <h4>Taxis recomendados:</h4>
     <p>📞 Taxi Pamplona: 948 232 300<br>
        📞 Radio Taxi: 948 351 335</p>
   </div>
 </div>
+
 
 
  <!-- Modal Recuerdos -->
@@ -894,6 +911,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
