@@ -321,14 +321,20 @@
 }
 
 .time-box {
-  background: rgba(255, 245, 230, 0.9); /* crema translúcido */
-  border: 2px solid #c9ab83;            /* borde crema */
+  background: rgba(255, 245, 230, 0.9);
+  border: 2px solid #c9ab83;
   border-radius: 12px;
   padding: 15px 20px;
-  min-width: 70px;
   text-align: center;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+  display: flex;               /* convierte en flexbox */
+  flex-direction: column;      /* texto en columna */
+  justify-content: center;     /* centra vertical */
+  align-items: center;         /* centra horizontal */
+  min-width: 70px;             /* ancho mínimo, pero ahora flexible */
 }
+
 
 .time-box span {
   display: block;
@@ -888,6 +894,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
