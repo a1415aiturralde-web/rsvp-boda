@@ -24,7 +24,7 @@
       --cream: rgba(250,240,240,0.40);
     }
     * { box-sizing: border-box; }
-   
+    html, body { height: 100%; margin: 0; padding: 0; }
 
     body {
       background:
@@ -35,15 +35,8 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center top;
-}
-      
-      html, body {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-  height: 100%;
-}
-
+    }
+     html, body { min-height: 100%; height: auto; }
 
     .header {
       text-align: center;
@@ -52,7 +45,7 @@
       margin: 20px auto 24px;
       border: 2px solid #000000;
       border-radius: 16px;
-      background:rgba(255, 255, 255, 0.8);
+      background:rgba(255, 255, 255, 0.6);
     }
 
     .title {
@@ -433,20 +426,15 @@ position: absolute;
   opacity: 1;
   visibility: visible;
 }
-      
 #accesos {
-  min-height: 100vh;                  /* siempre ocupa la pantalla completa */
-  background: url('mi_foto_boda_v24.jpg') center/cover no-repeat fixed;
+  min-height: 100vh;
+  background: url('mi_foto_boda_v24.jpg') center/cover no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   padding: 20px 0;
-  margin-top: 0;                      /* eliminado el -30px que causaba huecos */
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  transition: opacity 0.8s ease-in-out, visibility 0.8s;
-}
+  margin-top: -30px;
 
   /* para transición */
   opacity: 0;
@@ -456,7 +444,6 @@ position: absolute;
   width: 100%;
   transition: opacity 0.8s ease-in-out, visibility 0.8s;
 }
-
 
 /* Cuando se activa */
 #portada.hide {
@@ -474,8 +461,8 @@ position: absolute;
   position: relative; /* vuelve a su flujo normal */
 }
    .wedding-date {
-  font-size: 26px;        /* tamaño similar a la frase "Cuenta atrás" */
-  font-weight: 700;
+  font-size: 24px;        /* tamaño similar a la frase "Cuenta atrás" */
+  font-weight: 600;
   text-align: center;
   margin: 12px 0;
   color: #a00034;         /* granate elegante */
@@ -510,17 +497,13 @@ position: absolute;
   100% {
     transform: scale(1);
   }
-
-  #portada {
-  min-height: 100vh;                  /* siempre ocupa la pantalla completa */
+}
+    #portada {
+  min-height: 100vh;            /* ocupa toda la ventana */
   display: flex;
   flex-direction: column;
-  justify-content: center;            /* centra vertical */
-  align-items: center;                /* centra horizontal */
-  background: url('mi_foto_boda_v24.JPG') center/cover no-repeat fixed;
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.8s ease-in-out, visibility 0.8s;
+  justify-content: center;      /* centra verticalmente */
+  align-items: center;
 }
     .intro-traslado {
   font-size: 16px;
@@ -600,9 +583,6 @@ position: absolute;
   <div class="logo-portada">
     <img src="mi_foto_boda_v31.png" alt="Logo Alejandro y Andrea">
   </div>
-
-  <!-- 👉 Footer portada -->
-  <footer class="footer">© Alejandro & Andrea</footer>
 </main>
 
 
@@ -621,16 +601,15 @@ position: absolute;
       <div class="time-box"><span id="seconds">0</span><small>Seg</small></div>
     </div>
   </section>
-
   <!-- Fecha de la boda -->
-  <p class="wedding-date">17 • OCTUBRE • 2026</p>
+<p class="wedding-date">17 • OCTUBRE • 2026</p>
 
-  <!-- Icono iglesia -->
-  <div class="church-icon">
-    <img src="mi_foto_boda_v28.png" alt="Iglesia" />
-  </div>
+<!-- Icono iglesia -->
+<div class="church-icon">
+  <img src="mi_foto_boda_v28.png" alt="Iglesia" />
+</div>
 
-  <!-- Iconos -->
+
   <div class="icon-container">
     <button class="icon-button" id="asistenciaBtn">
       <img src="mi_foto_boda_v26.png" alt="" class="icon-img">
@@ -645,10 +624,10 @@ position: absolute;
       <span>Rincón de los recuerdos</span>
     </button>
   </div>
-
-  <!-- 👉 Footer accesos -->
-  <footer class="footer">© Alejandro & Andrea</footer>
 </section>
+
+<footer class="footer">© Alejandro & Andrea</footer>
+
 
   <!-- Aquí siguen tus modales (Asistencia, Traslado, Recuerdos) tal cual los tienes -->
 
@@ -990,6 +969,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
