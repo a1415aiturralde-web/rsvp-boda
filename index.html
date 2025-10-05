@@ -660,9 +660,10 @@
   border: 2px solid #a00034;     /* borde granate */
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.6); /* fondo semitransparente */
-  display: inline-block;         /* que se ajuste al texto */
+  display: block;           /* 👈 lo cambiamos de inline-block a block */
+  width: fit-content;       /* 👈 ajusta el ancho al contenido */
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
+  }
 
 .date-box span {
   font-family: 'Great Vibes', cursive;
@@ -1150,6 +1151,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
