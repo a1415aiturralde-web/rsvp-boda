@@ -574,6 +574,57 @@ position: absolute;
   height: auto;
   display: inline-block;
 }
+    /* Modal Ubicación */
+#ubicacionModal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  background: rgba(0,0,0,0.6);
+}
+
+.ubicacion-content {
+  background: rgba(248,229,216,0.85);
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90%;
+  overflow-y: auto;
+  position: relative;
+  padding: 20px;
+  color: #000;
+  border: 2px solid #000;
+  text-align: center;
+}
+
+.ubicacion-icon img {
+  width: 60px;
+  margin-bottom: 10px;
+}
+
+.ubicacion-foto img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.ubicacion-seccion {
+  margin: 20px 0;
+}
+
+.ubicacion-seccion .subicono {
+  width: 40px;
+  display: block;
+  margin: 0 auto 10px;
+}
+
 
 
   </style>
@@ -617,16 +668,14 @@ position: absolute;
       <div class="time-box"><span id="seconds">0</span><small>Seg</small></div>
     </div>
   </section>
-  <!-- Fecha de la boda -->
-<p class="wedding-date">17 • OCTUBRE • 2026</p>
-
-<!-- Icono iglesia -->
-<div class="church-icon">
-  <img src="mi_foto_boda_v28.png" alt="Iglesia" />
-</div>
 
 
   <div class="icon-container">
+    <!-- Botón para modal Ubicación -->
+<button class="icon-button" id="ubicacionBtn">
+  <img src="mi_foto_boda_v28.png" alt="Ubicación" class="icon-img">
+  <span>Ubicación</span>
+</button>
     <button class="icon-button" id="asistenciaBtn">
       <img src="mi_foto_boda_v26.png" alt="" class="icon-img">
       <span>Cuestionario de asistencia</span>
@@ -726,6 +775,38 @@ position: absolute;
        📞 Radio Taxi: 948 351 335</p> -->
   </div>
 </div>
+  
+  <!-- Modal Ubicación -->
+<div id="ubicacionModal" role="dialog" aria-modal="true" aria-labelledby="ubicacionTitle" style="display:none;">
+  <div class="ubicacion-content">
+    <button id="closeUbicacion" aria-label="Cerrar información de ubicación">✖</button>
+
+    <!-- Icono decorativo arriba -->
+    <div class="ubicacion-icon">
+      <img src="mi_icono_iglesia.png" alt="Icono iglesia">
+    </div>
+
+    <h2 id="ubicacionTitle">Ubicación</h2>
+
+    <!-- Foto de fondo o destacada -->
+    <div class="ubicacion-foto">
+      <img src="mi_foto_ubicacion.jpg" alt="Lugar de la ceremonia">
+    </div>
+
+    <!-- Lugar de la ceremonia -->
+    <div class="ubicacion-seccion">
+      <img src="mi_icono_ceremonia.png" alt="Icono ceremonia" class="subicono">
+      <p><strong>Ceremonia religiosa:</strong><br>Iglesia de San Nicolás, Pamplona</p>
+    </div>
+
+    <!-- Lugar del banquete -->
+    <div class="ubicacion-seccion">
+      <img src="mi_icono_banquete.png" alt="Icono banquete" class="subicono">
+      <p><strong>Banquete:</strong><br>Palacio de Olloqui</p>
+    </div>
+  </div>
+</div>
+
 
 
 
@@ -924,6 +1005,19 @@ window.addEventListener("popstate", (event) => {
 const recuerdosModal = document.getElementById("recuerdosModal");
 const closeRecuerdos = document.getElementById("closeRecuerdos");
 setupModal({ opener: recuerdosBtn, modal: recuerdosModal, closeBtn: closeRecuerdos });
+  // Modal Ubicación
+const ubicacionBtn = document.getElementById("ubicacionBtn");
+const ubicacionModal = document.getElementById("ubicacionModal");
+const closeUbicacion = document.getElementById("closeUbicacion");
+
+ubicacionBtn.addEventListener("click", () => {
+  ubicacionModal.style.display = "flex";
+});
+
+closeUbicacion.addEventListener("click", () => {
+  ubicacionModal.style.display = "none";
+});
+
 
 // Subida de fotos (limpia mensajes y evita envíos dobles)
 const recuerdosForm = document.getElementById("recuerdosForm");
@@ -987,6 +1081,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
