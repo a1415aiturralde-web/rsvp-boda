@@ -1020,7 +1020,7 @@ function closeModal(modal) {
         successBox.style.display = 'block';
 
         setTimeout(() => {
-          asistenciaModal.style.display = "none";
+         asistenciaModal.classList.remove("show");
           form.reset();
           form.style.display = 'block';
           successBox.style.display = 'none';
@@ -1132,6 +1132,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
