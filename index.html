@@ -993,18 +993,13 @@ window.addEventListener("popstate", (event) => {
 const recuerdosModal = document.getElementById("recuerdosModal");
 const closeRecuerdos = document.getElementById("closeRecuerdos");
 setupModal({ opener: recuerdosBtn, modal: recuerdosModal, closeBtn: closeRecuerdos });
-  // Modal Ubicación
+  
+/* ---------- Modal Ubicación ---------- */
 const ubicacionBtn = document.getElementById("ubicacionBtn");
 const ubicacionModal = document.getElementById("ubicacionModal");
 const closeUbicacion = document.getElementById("closeUbicacion");
 
-ubicacionBtn.addEventListener("click", () => {
-  ubicacionModal.style.display = "flex";
-});
-
-closeUbicacion.addEventListener("click", () => {
-  ubicacionModal.style.display = "none";
-});
+setupModal({ opener: ubicacionBtn, modal: ubicacionModal, closeBtn: closeUbicacion });
 
 
 // Subida de fotos (limpia mensajes y evita envíos dobles)
@@ -1069,6 +1064,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
