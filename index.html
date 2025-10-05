@@ -698,9 +698,13 @@
   font-size: 24px; 
   color: #000;  /* verde oliva */
 }
-    #accesos .footer {
-  margin-top: 100px; /* ajusta el valor según quieras más o menos espacio */
+  /* Footer dentro de accesos */
+#accesos .accesos-footer {
+  margin-top: 100px; /* espacio extra respecto a los iconos */
+  font-size: 14px;   /* si quieres un poco más grande */
+  color: #000;       /* lo dejamos igual que el global */
 }
+
 
   </style>
 </head>
@@ -770,7 +774,8 @@
   </div>
 </section>
 
-<footer class="footer">© Alejandro & Andrea</footer>
+  <footer class="footer accesos-footer">© Alejandro & Andrea</footer>
+</section>
 
 
   <!-- Aquí siguen tus modales (Asistencia, Traslado, Recuerdos) tal cual los tienes -->
@@ -1187,6 +1192,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
