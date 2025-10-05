@@ -671,8 +671,18 @@
   font-weight: 700;
   color: #a00034;                /* granate elegante */
 }
+    .recuerdos-header {
+  text-align: center;
+  margin-bottom: 15px;
+}
 
-
+.recuerdos-icono {
+  width: 60px;      /* ajusta según tu icono */
+  margin-bottom: 8px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
   </style>
 </head>
@@ -888,8 +898,16 @@
     <button id="closeRecuerdos" aria-label="Cerrar rincón de recuerdos" class="close-btn">
   <img src="mi_foto_boda_v36.png" alt="Cerrar">
 </button>
-    <h3 id="recuerdosTitle">Rincón de los recuerdos 📸</h3>
-    <p>Aquí puedes subir las fotos que hayas sacado en la boda para que podamos guardarlas como recuerdo.</p>
+   <div class="recuerdos-header">
+  <img src="mi_foto_boda_v38.png" alt="Cámara" class="recuerdos-icono">
+  <h3 id="recuerdosTitle">Rincón de los recuerdos</h3>
+</div>
+
+    <p>El día de nuestra boda estará inmortalizado por un fotógrafo profesional 📷, 
+  así que no os preocupéis, ¡tendremos fotos oficiales de cada momento!  
+  Pero también queremos ver la celebración a través de vuestros ojos 👀.  
+  Por eso, os invitamos a subir aquí todas las fotos espontáneas que hagáis con vuestro móvil:  
+  esos instantes divertidos, naturales y únicos que solo vosotros podéis captar.  </p>
     <form id="recuerdosForm">
       <input type="file" id="foto" name="foto" accept="image/*" multiple required><br><br>
       <button type="submit">Enviar fotos</button>
@@ -1151,6 +1169,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
