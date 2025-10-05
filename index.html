@@ -398,14 +398,10 @@
   visibility: visible;
 }
 #accesos {
-  min-height: 100vh;
-  background: url('mi_foto_boda_v24.jpg') center/cover no-repeat;
-  background-attachment: scroll;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  min-height: 100vh; /* asegura que ocupa toda la altura */
+  background: url('mi_foto_boda_v24.jpg') center/cover no-repeat fixed;
   padding: 20px 0;
-  margin-top: 30px;
+  margin-top: 0; /* quita el margen que puede generar hueco */
 
   /* para transición */
   opacity: 0;
@@ -1185,6 +1181,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
