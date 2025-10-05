@@ -638,6 +638,26 @@
   text-align: center;
   box-sizing: border-box;
 }
+ .modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
 
   </style>
 </head>
@@ -709,7 +729,7 @@
   <!-- Aquí siguen tus modales (Asistencia, Traslado, Recuerdos) tal cual los tienes -->
 
   <!-- Modal Asistencia -->
-<div id="asistenciaModal" role="dialog" aria-modal="true" aria-labelledby="asistenciaTitle" style="display:none;">
+<div id="asistenciaModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="asistenciaTitle">
   <div class="asistencia-content">
    <button id="closeAsistencia" aria-label="Cerrar formulario" class="close-btn">
   <img src="mi_foto_boda_v36.png" alt="Cerrar">
@@ -765,7 +785,7 @@
   </div>
 
 <!-- Modal Traslado -->
-<div id="trasladoModal" role="dialog" aria-modal="true" aria-labelledby="trasladoTitle" style="display:none;">
+<div id="trasladoModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="trasladoTitle">
   <div class="traslado-content">
     <button id="closeTraslado" aria-label="Cerrar información de traslado" class="close-btn">
   <img src="mi_foto_boda_v36.png" alt="Cerrar">
@@ -794,7 +814,7 @@
 </div>
   
   <!-- Modal Ubicación -->
-<div id="ubicacionModal" role="dialog" aria-modal="true" aria-labelledby="ubicacionTitle" style="display:none;">
+<div id="ubicacionModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="ubicacionTitle">
   <div class="ubicacion-content">
     <button id="closeUbicacion" aria-label="Cerrar información de ubicación" class="close-btn">
   <img src="mi_foto_boda_v36.png" alt="Cerrar">
@@ -844,7 +864,7 @@
 
 
  <!-- Modal Recuerdos -->
-<div id="recuerdosModal" role="dialog" aria-modal="true" aria-labelledby="recuerdosTitle" style="display:none;">
+<div id="recuerdosModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="recuerdosTitle">
   <div class="recuerdos-content">
     <button id="closeRecuerdos" aria-label="Cerrar rincón de recuerdos" class="close-btn">
   <img src="mi_foto_boda_v36.png" alt="Cerrar">
@@ -937,20 +957,21 @@ window.addEventListener("popstate", (event) => {
     }
   }
 
-  function openModal(modal, opener, focusTargetSelector) {
-    lastFocused = opener;
-    modal.style.display = "flex";
-    modal.setAttribute("tabindex", "-1"); // permite enfocar el modal
-    const target = focusTargetSelector
-      ? modal.querySelector(focusTargetSelector)
-      : modal.querySelector("h2, h3, input, button");
-    (target || modal).focus();
-  }
+ function openModal(modal, opener, focusTargetSelector) {
+  lastFocused = opener;
+  modal.classList.add("show");   // 👈 activamos transición
+  modal.setAttribute("tabindex", "-1"); 
+  const target = focusTargetSelector
+    ? modal.querySelector(focusTargetSelector)
+    : modal.querySelector("h2, h3, input, button");
+  (target || modal).focus();
+}
 
-  function closeModal(modal) {
-    modal.style.display = "none";
-    if (lastFocused) lastFocused.focus();
-  }
+function closeModal(modal) {
+  modal.classList.remove("show");  // 👈 fade out
+  if (lastFocused) lastFocused.focus();
+}
+
 
   function setupModal({ opener, modal, closeBtn, focusSelector }) {
     opener.addEventListener("click", () => openModal(modal, opener, focusSelector));
@@ -1111,6 +1132,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
