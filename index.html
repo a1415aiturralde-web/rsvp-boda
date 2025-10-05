@@ -691,10 +691,14 @@
   color: #000;  /* verde oliva */
 }
     .section-bg {
-  min-height: 100vh;
-  background: url('mi_foto_boda_v37.png') center/cover no-repeat fixed;
-  padding: 20px 0;
+  width: 100vw;                  /* ocupa todo el ancho de la ventana */
+  min-height: 100vh;             /* ocupa al menos toda la altura de la ventana */
+  background: url('mi_foto_boda_v37.png') center center / cover no-repeat fixed;
+  margin: 0;                     /* elimina cualquier margen externo */
+  padding: 20px 0;               /* este padding lo mantienes para que no quede pegado */
+  box-sizing: border-box;        /* asegura que padding se incluya en el tamaño */
 }
+
 
 
 
@@ -1184,6 +1188,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
