@@ -653,6 +653,24 @@
   opacity: 1;
   visibility: visible;
 }
+    .date-box {
+  margin: 25px auto 40px;
+  padding: 12px 24px;
+  text-align: center;
+  border: 2px solid #a00034;     /* borde granate */
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.6); /* fondo semitransparente */
+  display: inline-block;         /* que se ajuste al texto */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.date-box span {
+  font-family: 'Great Vibes', cursive;
+  font-size: 38px;
+  font-weight: 700;
+  color: #a00034;                /* granate elegante */
+}
+
 
 
   </style>
@@ -696,6 +714,10 @@
       <div class="time-box"><span id="seconds">0</span><small>Seg</small></div>
     </div>
   </section>
+  <div class="date-box">
+  <span>17 · Octubre · 2026</span>
+</div>
+
 
 
   <div class="icon-container">
@@ -1128,6 +1150,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
