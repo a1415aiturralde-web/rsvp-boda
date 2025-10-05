@@ -26,16 +26,12 @@
     * { box-sizing: border-box; }
     html, body { height: 100%; margin: 0; padding: 0; }
 
-    body {
-      background:
-        radial-gradient(60rem 60rem at 120% -10%, rgba(184,123,90,.12), transparent 60%),
-        radial-gradient(60rem 60rem at -20% 110%, rgba(184,123,90,.10), transparent 60%),
-        url('mi_foto_boda_v37.png') center/cover no-repeat;
-      background-attachment: scroll;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center top;
-    }
+   body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lora', serif; /* o la fuente que prefieras */
+}
+
      html, body { min-height: 100%; height: auto; }
 
     .header {
@@ -397,22 +393,20 @@
   opacity: 1;
   visibility: visible;
 }
-#accesos { min-height: 100vh; background: url('mi_foto_boda_v24.jpg') center/cover no-repeat; 
-          background-attachment: scroll; 
-          background-size: cover; 
-          background-repeat: no-repeat; 
-          background-position: center; 
-          padding: 20px 0;
-          margin-top: 30px;
+#accesos {
+  padding: 20px 0;
+  margin-top: 30px;
 
   /* para transición */
   opacity: 0;
   visibility: hidden;
   position: absolute;
-  top: 0; left: 0;
+  top: 0; 
+  left: 0;
   width: 100%;
   transition: opacity 0.8s ease-in-out, visibility 0.8s;
 }
+
 
 /* Cuando se activa */
 #portada.hide {
@@ -696,12 +690,18 @@
   font-size: 24px; 
   color: #000;  /* verde oliva */
 }
+    .section-bg {
+  min-height: 100vh;
+  background: url('mi_foto_boda_v37.png') center/cover no-repeat fixed;
+  padding: 20px 0;
+}
+
 
 
   </style>
 </head>
 <body>
-<main id="portada">
+<main id="portada" class="section-bg">
   <header class="header">
     <h1 class="title">Boda Alejandro y Andrea</h1>
     <p class="subtitle">
@@ -725,7 +725,8 @@
 
 
 <!-- Página de accesos (oculta al inicio) -->
-<section id="accesos">
+<section id="accesos" class="section-bg">
+
   <!-- Cuenta atrás -->
   <section class="countdown-section" aria-labelledby="countdownTitle">
     <div class="countdown-icon">
@@ -1183,6 +1184,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
