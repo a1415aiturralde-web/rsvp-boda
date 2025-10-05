@@ -26,12 +26,16 @@
     * { box-sizing: border-box; }
     html, body { height: 100%; margin: 0; padding: 0; }
 
-   body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Lora', serif; /* o la fuente que prefieras */
-}
-
+    body {
+      background:
+        radial-gradient(60rem 60rem at 120% -10%, rgba(184,123,90,.12), transparent 60%),
+        radial-gradient(60rem 60rem at -20% 110%, rgba(184,123,90,.10), transparent 60%),
+        url('mi_foto_boda_v37.png') center/cover no-repeat;
+      background-attachment: scroll;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center top;
+    }
      html, body { min-height: 100%; height: auto; }
 
     .header {
@@ -77,7 +81,7 @@
   justify-content: center;  /* centra en horizontal */
   flex-wrap: wrap;          /* baja en móvil */
   gap: 16px;
-  margin: 150px auto 24px;
+  margin: 100px auto 24px;
   max-width: 720px;
 }
 
@@ -394,6 +398,12 @@
   visibility: visible;
 }
 #accesos {
+  min-height: 100vh;
+  background: url('mi_foto_boda_v24.jpg') center/cover no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   padding: 20px 0;
   margin-top: 30px;
 
@@ -401,12 +411,10 @@
   opacity: 0;
   visibility: hidden;
   position: absolute;
-  top: 0; 
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
   transition: opacity 0.8s ease-in-out, visibility 0.8s;
 }
-
 
 /* Cuando se activa */
 #portada.hide {
@@ -690,26 +698,16 @@
   font-size: 24px; 
   color: #000;  /* verde oliva */
 }
-    .section-bg {
-  width: 100vw;                  /* ocupa todo el ancho de la ventana */
-  min-height: 100vh;             /* ocupa al menos toda la altura de la ventana */
-  background: url('mi_foto_boda_v37.png') center center / cover no-repeat fixed;
-  margin: 0;                     /* elimina cualquier margen externo */
-  padding: 20px 0;               /* este padding lo mantienes para que no quede pegado */
-  box-sizing: border-box;        /* asegura que padding se incluya en el tamaño */
-}
-
-
 
 
   </style>
 </head>
 <body>
-<main id="portada" class="section-bg">
+<main id="portada">
   <header class="header">
     <h1 class="title">Boda Alejandro y Andrea</h1>
     <p class="subtitle">
-     ¡Bienvenidos a nuestro espacio de boda! Nos hace una enorme ilusión que nos acompañéis en este momento tan especial de nuestras vidas. Aquí podréis compartir con nosotros vuestras preferencias para que todo esté perfecto y también encontrar toda la información sobre la celebración. ¡Gracias de corazón por formar parte de nuestra historia! 💖
+     ¡Bienvenidos a nuestro espacio de boda! 🌸 Nos hace una enorme ilusión que nos acompañéis en este momento tan especial de nuestras vidas. Aquí podréis compartir con nosotros vuestras preferencias para que todo esté perfecto y también encontrar toda la información sobre la celebración. ¡Gracias de corazón por formar parte de nuestra historia! 💖
     </p>
   </header>
 
@@ -729,8 +727,7 @@
 
 
 <!-- Página de accesos (oculta al inicio) -->
-<section id="accesos" class="section-bg">
-
+<section id="accesos">
   <!-- Cuenta atrás -->
   <section class="countdown-section" aria-labelledby="countdownTitle">
     <div class="countdown-icon">
@@ -1188,6 +1185,12 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
+
+
+
+
+
 
 
 
