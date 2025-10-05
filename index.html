@@ -621,11 +621,23 @@
   margin-bottom: 12px;
   text-align: center;
 }
+    /* Ajustes específicos para el cuestionario de asistencia */
+#rsvpForm {
+  max-width: 320px;
+  margin: 0 auto;
+  text-align: center;
+  box-sizing: border-box;
+}
 
-
-
-
-
+#rsvpForm input,
+#rsvpForm select,
+#rsvpForm textarea {
+  max-width: 300px;   /* 👈 límite para que no desborde */
+  margin: 0 auto 15px;
+  display: block;
+  text-align: center;
+  box-sizing: border-box;
+}
 
   </style>
 </head>
@@ -1099,6 +1111,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
