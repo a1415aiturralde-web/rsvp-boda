@@ -1024,7 +1024,6 @@ window.addEventListener("popstate", (event) => {
     portada.classList.add("hide");
     accesos.classList.add("show");
 
-    // activar animación fecha
     const dateBox = document.querySelector(".date-box");
     if (dateBox) {
       dateBox.classList.remove("show");
@@ -1032,11 +1031,19 @@ window.addEventListener("popstate", (event) => {
     }
 
     window.scrollTo({ top: 0, behavior: "smooth" });
-  } else {
+  } 
+  else if (event.state && event.state.page === "modal") {
+    // asegúrate de que accesos está visible
+    portada.classList.add("hide");
+    accesos.classList.add("show");
+    // abre el modal correspondiente
+    const modal = document.getElementById(event.state.modalId);
+    if (modal) modal.classList.add("show");
+  } 
+  else {
     accesos.classList.remove("show");
     portada.classList.remove("hide");
 
-    // 👇 reiniciar fecha al volver a portada
     const dateBox = document.querySelector(".date-box");
     if (dateBox) {
       dateBox.classList.remove("show");
@@ -1107,13 +1114,14 @@ window.addEventListener("popstate", (event) => {
     ? modal.querySelector(focusTargetSelector)
     : modal.querySelector("h2, h3, input, button");
   (target || modal).focus();
+  history.pushState({ page: "modal", modalId: modal.id }, "", `#${modal.id}`);
 }
 
 function closeModal(modal) {
-  modal.classList.remove("show");  // 👈 fade out
+  modal.classList.remove("show");
   if (lastFocused) lastFocused.focus();
+  history.back(); // 👈 vuelve al estado previo (accesos)
 }
-
 
   function setupModal({ opener, modal, closeBtn, focusSelector }) {
     opener.addEventListener("click", () => openModal(modal, opener, focusSelector));
@@ -1274,6 +1282,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
