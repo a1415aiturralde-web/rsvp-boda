@@ -1116,12 +1116,12 @@ window.addEventListener("popstate", (event) => {
   (target || modal).focus();
   history.pushState({ page: "modal", modalId: modal.id }, "", `#${modal.id}`);
 }
-
 function closeModal(modal) {
   modal.classList.remove("show");
   if (lastFocused) lastFocused.focus();
-  history.back(); // 👈 vuelve al estado previo (accesos)
+  history.pushState({ page: "accesos" }, "Accesos", "#accesos"); // 👈 fuerza accesos
 }
+
 
   function setupModal({ opener, modal, closeBtn, focusSelector }) {
     opener.addEventListener("click", () => openModal(modal, opener, focusSelector));
@@ -1282,6 +1282,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
