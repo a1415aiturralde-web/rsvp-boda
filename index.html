@@ -663,6 +663,15 @@
   display: block;           /* 👈 lo cambiamos de inline-block a block */
   width: fit-content;       /* 👈 ajusta el ancho al contenido */
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.date-box.show {
+  opacity: 1;
+  transform: translateY(0);
+}
   }
 
 .date-box span {
@@ -1001,6 +1010,11 @@ accesosBtn.addEventListener("click", () => {
   portada.classList.add("hide");
   accesos.classList.add("show");
   history.pushState({ page: "accesos" }, "Accesos", "#accesos");
+  const dateBox = document.querySelector(".date-box");
+  if (dateBox) {
+    dateBox.classList.remove("show"); // reinicia por si acaso
+    setTimeout(() => dateBox.classList.add("show"), 100); // activa después de un pequeño delay
+  }
 
   // 👇 fuerza a la parte superior con transición suave
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1247,6 +1261,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
