@@ -997,22 +997,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const accesos = document.getElementById("accesos");
   const accesosBtn = document.getElementById("accesosBtn");
 
- accesosBtn.addEventListener("click", () => {
+accesosBtn.addEventListener("click", () => {
   portada.classList.add("hide");
   accesos.classList.add("show");
   history.pushState({ page: "accesos" }, "Accesos", "#accesos");
+
+  // 👇 fuerza a la parte superior con transición suave
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 window.addEventListener("popstate", (event) => {
   if (event.state && event.state.page === "accesos") {
     portada.classList.add("hide");
     accesos.classList.add("show");
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
   } else {
     accesos.classList.remove("show");
     portada.classList.remove("hide");
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 });
-
 
   if (!history.state) {
     history.replaceState({ page: "portada" }, "Portada", "#portada");
@@ -1241,6 +1247,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
