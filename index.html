@@ -994,31 +994,21 @@
 
 
 
-  <script>
+<script>
 document.addEventListener("DOMContentLoaded", () => {
   /* ---------- Navegación portada ↔ accesos ---------- */
   const portada = document.getElementById("portada");
   const accesos = document.getElementById("accesos");
   const accesosBtn = document.getElementById("accesosBtn");
 
-accesosBtn.addEventListener("click", () => {
-  portada.classList.add("hide");
-  accesos.classList.add("show");
-  history.pushState({ page: "accesos" }, "Accesos", "#accesos");
-  const dateBox = document.querySelector(".date-box");
-  if (dateBox) {
-    dateBox.classList.remove("show"); // reinicia por si acaso
-    setTimeout(() => dateBox.classList.add("show"), 100); // activa después de un pequeño delay
+  function closeAllModals() {
+    document.querySelectorAll('.modal.show').forEach(m => m.classList.remove('show'));
   }
 
-  // 👇 fuerza a la parte superior con transición suave
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
-window.addEventListener("popstate", (event) => {
-  if (event.state && event.state.page === "accesos") {
+  accesosBtn.addEventListener("click", () => {
     portada.classList.add("hide");
     accesos.classList.add("show");
+    history.pushState({ page: "accesos" }, "Accesos", "#accesos");
 
     const dateBox = document.querySelector(".date-box");
     if (dateBox) {
@@ -1027,28 +1017,41 @@ window.addEventListener("popstate", (event) => {
     }
 
     window.scrollTo({ top: 0, behavior: "smooth" });
-  } 
-  else if (event.state && event.state.page === "modal") {
-    // asegúrate de que accesos está visible
-    portada.classList.add("hide");
-    accesos.classList.add("show");
-    // abre el modal correspondiente
-    const modal = document.getElementById(event.state.modalId);
-    if (modal) modal.classList.add("show");
-  } 
-  else {
-    accesos.classList.remove("show");
-    portada.classList.remove("hide");
+  });
 
-    const dateBox = document.querySelector(".date-box");
-    if (dateBox) {
-      dateBox.classList.remove("show");
+  window.addEventListener("popstate", (event) => {
+    const state = event.state || { page: "portada" };
+
+    // 👇 Cierra cualquier modal abierto
+    closeAllModals();
+
+    if (state.page === "accesos") {
+      portada.classList.add("hide");
+      accesos.classList.add("show");
+
+      const dateBox = document.querySelector(".date-box");
+      if (dateBox) {
+        dateBox.classList.remove("show");
+        setTimeout(() => dateBox.classList.add("show"), 100);
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
     }
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-});
+    if (state.page === "modal" && state.modalId) {
+      portada.classList.add("hide");
+      accesos.classList.add("show");
+      const modal = document.getElementById(state.modalId);
+      if (modal) modal.classList.add("show");
+      return;
+    }
 
+    // 🏠 Por defecto: portada
+    accesos.classList.remove("show");
+    portada.classList.remove("hide");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
 
   if (!history.state) {
     history.replaceState({ page: "portada" }, "Portada", "#portada");
@@ -1102,22 +1105,23 @@ window.addEventListener("popstate", (event) => {
     }
   }
 
- function openModal(modal, opener, focusTargetSelector) {
-  lastFocused = opener;
-  modal.classList.add("show");   // 👈 activamos transición
-  modal.setAttribute("tabindex", "-1"); 
-  const target = focusTargetSelector
-    ? modal.querySelector(focusTargetSelector)
-    : modal.querySelector("h2, h3, input, button");
-  (target || modal).focus();
-  history.pushState({ page: "modal", modalId: modal.id }, "", `#${modal.id}`);
-}
-function closeModal(modal) {
-  modal.classList.remove("show");
-  if (lastFocused) lastFocused.focus();
-  history.pushState({ page: "accesos" }, "Accesos", "#accesos"); // 👈 fuerza accesos
-}
+  function openModal(modal, opener, focusTargetSelector) {
+    lastFocused = opener;
+    modal.classList.add("show");
+    modal.setAttribute("tabindex", "-1");
+    const target = focusTargetSelector
+      ? modal.querySelector(focusTargetSelector)
+      : modal.querySelector("h2, h3, input, button");
+    (target || modal).focus();
 
+    history.pushState({ page: "modal", modalId: modal.id }, "", `#${modal.id}`);
+  }
+
+  function closeModal(modal) {
+    modal.classList.remove("show");
+    if (lastFocused) lastFocused.focus();
+    history.back(); // 👈 retroceso real, popstate cierra modales
+  }
 
   function setupModal({ opener, modal, closeBtn, focusSelector }) {
     opener.addEventListener("click", () => openModal(modal, opener, focusSelector));
@@ -1135,66 +1139,60 @@ function closeModal(modal) {
   const closeAsistencia = document.getElementById("closeAsistencia");
   setupModal({ opener: asistenciaBtn, modal: asistenciaModal, closeBtn: closeAsistencia, focusSelector: "#nombre" });
 
-  // Envío del formulario RSVP (con mensajes y reinicio)
-(function () {
-  const form = document.getElementById('rsvpForm');
-  const successBox = document.getElementById('successBox');
-  const errorBox = document.getElementById('errorBox');
-  const submitBtn = form.querySelector("button[type='submit']");
+  // Envío del formulario RSVP
+  (function () {
+    const form = document.getElementById('rsvpForm');
+    const successBox = document.getElementById('successBox');
+    const errorBox = document.getElementById('errorBox');
+    const submitBtn = form.querySelector("button[type='submit']");
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-    // 🔒 Bloquear botón y mostrar spinner
-    submitBtn.disabled = true;
-    const spinner = document.createElement("span");
-    spinner.classList.add("spinner");
-    submitBtn.appendChild(spinner);
+      submitBtn.disabled = true;
+      const spinner = document.createElement("span");
+      spinner.classList.add("spinner");
+      submitBtn.appendChild(spinner);
 
-    const data = new FormData(form);
+      const data = new FormData(form);
 
-    try {
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
 
-      if (response.ok) {
+        if (response.ok) {
+          form.style.display = 'none';
+          errorBox.style.display = 'none';
+          successBox.style.display = 'block';
+
+          setTimeout(() => {
+            asistenciaModal.classList.remove("show");
+            form.reset();
+            form.style.display = 'block';
+            successBox.style.display = 'none';
+            submitBtn.disabled = false;
+            spinner.remove();
+          }, 3000);
+        } else {
+          throw new Error('Error en el envío');
+        }
+      } catch (err) {
         form.style.display = 'none';
-        errorBox.style.display = 'none';
-        successBox.style.display = 'block';
+        successBox.style.display = 'none';
+        errorBox.style.display = 'block';
 
         setTimeout(() => {
-         asistenciaModal.classList.remove("show");
-          form.reset();
+          errorBox.style.display = 'none';
           form.style.display = 'block';
-          successBox.style.display = 'none';
-
-          // 🔓 Restaurar botón
           submitBtn.disabled = false;
           spinner.remove();
         }, 3000);
-      } else {
-        throw new Error('Error en el envío');
       }
-    } catch (err) {
-      form.style.display = 'none';
-      successBox.style.display = 'none';
-      errorBox.style.display = 'block';
-
-      setTimeout(() => {
-        errorBox.style.display = 'none';
-        form.style.display = 'block';
-
-        // 🔓 Restaurar botón
-        submitBtn.disabled = false;
-        spinner.remove();
-      }, 3000);
-    }
-  });
-})();
-
+    });
+  })();
 
   /* ---------- Modal Traslado ---------- */
   const trasladoBtn = document.getElementById("trasladoBtn");
@@ -1203,81 +1201,78 @@ function closeModal(modal) {
   setupModal({ opener: trasladoBtn, modal: trasladoModal, closeBtn: closeTraslado });
 
   /* ---------- Modal Recuerdos ---------- */
- const recuerdosBtn = document.getElementById("recuerdosBtn");
-const recuerdosModal = document.getElementById("recuerdosModal");
-const closeRecuerdos = document.getElementById("closeRecuerdos");
-setupModal({ opener: recuerdosBtn, modal: recuerdosModal, closeBtn: closeRecuerdos });
-  
-/* ---------- Modal Ubicación ---------- */
-const ubicacionBtn = document.getElementById("ubicacionBtn");
-const ubicacionModal = document.getElementById("ubicacionModal");
-const closeUbicacion = document.getElementById("closeUbicacion");
+  const recuerdosBtn = document.getElementById("recuerdosBtn");
+  const recuerdosModal = document.getElementById("recuerdosModal");
+  const closeRecuerdos = document.getElementById("closeRecuerdos");
+  setupModal({ opener: recuerdosBtn, modal: recuerdosModal, closeBtn: closeRecuerdos });
 
-setupModal({ opener: ubicacionBtn, modal: ubicacionModal, closeBtn: closeUbicacion });
+  /* ---------- Modal Ubicación ---------- */
+  const ubicacionBtn = document.getElementById("ubicacionBtn");
+  const ubicacionModal = document.getElementById("ubicacionModal");
+  const closeUbicacion = document.getElementById("closeUbicacion");
+  setupModal({ opener: ubicacionBtn, modal: ubicacionModal, closeBtn: closeUbicacion });
 
+  // Subida de fotos
+  const recuerdosForm = document.getElementById("recuerdosForm");
+  const recuerdosMsg = document.getElementById("recuerdosMsg");
 
-// Subida de fotos (limpia mensajes y evita envíos dobles)
-const recuerdosForm = document.getElementById("recuerdosForm");
-const recuerdosMsg = document.getElementById("recuerdosMsg");
-
-async function readFileAsBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onloadend = () => resolve(reader.result.split(",")[1]);
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-}
-
-recuerdosForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  recuerdosMsg.innerHTML = ""; // limpiar mensajes previos
-  const files = document.getElementById("foto").files;
-  const submitBtn = recuerdosForm.querySelector('button[type="submit"]');
-
-  if (files.length === 0) {
-    recuerdosMsg.textContent = "⚠️ Selecciona al menos una foto.";
-    return;
+  async function readFileAsBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result.split(",")[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
   }
 
-  // 🔒 Bloquear botón y añadir spinner
-  submitBtn.disabled = true;
-  const spinner = document.createElement("span");
-  spinner.classList.add("spinner");
-  submitBtn.appendChild(spinner);
+  recuerdosForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    recuerdosMsg.innerHTML = "";
+    const files = document.getElementById("foto").files;
+    const submitBtn = recuerdosForm.querySelector('button[type="submit"]');
 
-  for (const file of files) {
-    try {
-      const base64 = await readFileAsBase64(file);
-      const response = await fetch("https://script.google.com/macros/s/AKfycbwN9bUuAkucwZ3kpuYLdzDqGfnIgwzyQ-q5Wz5qxleE4LRKk5_A0nZ459TZrk4E9WZDvQ/exec", {
-        method: "POST",
-        body: new URLSearchParams({
-          foto: base64,
-          nombreArchivo: file.name,
-          mimeType: file.type
-        })
-      });
-      const result = await response.json();
-      if (result.status === "ok") {
-        recuerdosMsg.innerHTML += `✅ ${file.name} subida correctamente<br>`;
-      } else {
-        recuerdosMsg.innerHTML += `❌ Error al subir ${file.name}<br>`;
-      }
-    } catch (err) {
-      recuerdosMsg.innerHTML += `⚠️ Fallo al subir ${file.name}: ${err.message}<br>`;
+    if (files.length === 0) {
+      recuerdosMsg.textContent = "⚠️ Selecciona al menos una foto.";
+      return;
     }
-  }
 
-  // 🔓 Restaurar botón y quitar spinner
-  submitBtn.disabled = false;
-  spinner.remove();
+    submitBtn.disabled = true;
+    const spinner = document.createElement("span");
+    spinner.classList.add("spinner");
+    submitBtn.appendChild(spinner);
+
+    for (const file of files) {
+      try {
+        const base64 = await readFileAsBase64(file);
+        const response = await fetch("https://script.google.com/macros/s/AKfycbwN9bUuAkucwZ3kpuYLdzDqGfnIgwzyQ-q5Wz5qxleE4LRKk5_A0nZ459TZrk4E9WZDvQ/exec", {
+          method: "POST",
+          body: new URLSearchParams({
+            foto: base64,
+            nombreArchivo: file.name,
+            mimeType: file.type
+          })
+        });
+        const result = await response.json();
+        if (result.status === "ok") {
+          recuerdosMsg.innerHTML += `✅ ${file.name} subida correctamente<br>`;
+        } else {
+          recuerdosMsg.innerHTML += `❌ Error al subir ${file.name}<br>`;
+        }
+      } catch (err) {
+        recuerdosMsg.innerHTML += `⚠️ Fallo al subir ${file.name}: ${err.message}<br>`;
+      }
+    }
+
+    submitBtn.disabled = false;
+    spinner.remove();
+  });
 });
-});
-    
 </script>
+
 
 </body>
 </html>
+
 
 
 
