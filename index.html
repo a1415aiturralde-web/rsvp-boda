@@ -1024,14 +1024,28 @@ window.addEventListener("popstate", (event) => {
     portada.classList.add("hide");
     accesos.classList.add("show");
 
+    // activar animación fecha
+    const dateBox = document.querySelector(".date-box");
+    if (dateBox) {
+      dateBox.classList.remove("show");
+      setTimeout(() => dateBox.classList.add("show"), 100);
+    }
+
     window.scrollTo({ top: 0, behavior: "smooth" });
   } else {
     accesos.classList.remove("show");
     portada.classList.remove("hide");
 
+    // 👇 reiniciar fecha al volver a portada
+    const dateBox = document.querySelector(".date-box");
+    if (dateBox) {
+      dateBox.classList.remove("show");
+    }
+
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 });
+
 
   if (!history.state) {
     history.replaceState({ page: "portada" }, "Portada", "#portada");
@@ -1260,6 +1274,7 @@ recuerdosForm.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
