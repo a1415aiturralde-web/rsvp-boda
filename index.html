@@ -794,7 +794,7 @@
   opacity: 0;
   max-height: 0;
   overflow: hidden;
-  transition: all 0.6s ease;
+  transition: all 1s ease;
 }
 
 #rowAcompanantesNombres.show {
@@ -912,10 +912,11 @@
           <input id="acompanantes" name="acompanantes" type="number" min="0" max="10" value="0" />
         </div>
 
-        <div class="row">
-          <label for="acompanantesNombres">Nombre y apellidos de los acompañantes</label>
-          <input id="acompanantesNombres" name="acompanantesNombres" type="text" placeholder="Ej. Juan Gómez, María López..." />
-        </div>
+        <div class="row" id="rowAcompanantesNombres">
+  <label for="acompanantesNombres">Nombre y apellidos de los acompañantes</label>
+  <input id="acompanantesNombres" name="acompanantesNombres" type="text" placeholder="Ej. Juan Gómez, María López..." />
+</div>
+
 
         <div class="row">
           <label>¿Utilizarás el servicio de autobús?</label>
@@ -1355,6 +1356,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
