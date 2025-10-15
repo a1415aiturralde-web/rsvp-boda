@@ -790,18 +790,23 @@
 }
 /* Animación para mostrar el campo de acompañantes */
 #rowAcompanantesNombres {
-  display: none;
   opacity: 0;
   max-height: 0;
+  transform: translateY(-10px); /* se desliza un poco hacia abajo */
   overflow: hidden;
-  transition: all 3s ease;
+  transition: 
+    opacity 0.8s ease,
+    max-height 0.8s ease,
+    transform 0.8s ease;
 }
 
+/* Cuando se muestra */
 #rowAcompanantesNombres.show {
-  display: block;
   opacity: 1;
-  max-height: 200px; /* ajusta si pones más de un campo */
+  max-height: 200px;
+  transform: translateY(0);
 }
+
 
 
 
@@ -1356,6 +1361,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
