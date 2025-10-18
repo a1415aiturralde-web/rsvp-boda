@@ -31,11 +31,6 @@
 <meta property="og:url" content="https://www.bodalejandroyandrea.com">
 
 
-
-
-
-
-
   <style>
     :root {
       --brand: #b87b5a;
@@ -208,19 +203,32 @@
       transform: scale(1.05);
     }
 
-    .actions { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 20px; }
-    button[type="submit"] {
-      padding: 12px 18px;
-      border: 0;
-      border-radius: 999px;
-      background: var(--brand);
-      color: #fff;
-      font-weight: 600;
-      font-size: 15px;
-      cursor: pointer;
-      box-shadow: 0 6px 14px rgba(184,123,90,.28);
-    }
-    button[type="submit"]:hover { filter: brightness(.97); }
+   .actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+/* Botón de Enviar confirmación (ahora granate, igual que el de Recuerdos) */
+button[type="submit"] {
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: #a00034; /* granate */
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.2); /* igual que el de Recuerdos */
+  transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  filter: brightness(0.9);
+  transform: translateY(-2px);
+}
 
     .footer { padding: 12px 24px 24px; text-align: center; font-size: 12px; color: #000; }
 
@@ -779,6 +787,33 @@
   opacity: 1;
   transform: translateY(0);      /* vuelve a su sitio */
 }
+    .asistencia-title h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+/* Animación para mostrar el campo de acompañantes */
+#rowAcompanantesNombres {
+  opacity: 0;
+  max-height: 0;
+  transform: translateY(-10px); /* se desliza un poco hacia abajo */
+  overflow: hidden;
+  transition: 
+    opacity 0.8s ease,
+    max-height 0.8s ease,
+    transform 0.8s ease;
+}
+
+/* Cuando se muestra */
+#rowAcompanantesNombres.show {
+  opacity: 1;
+  max-height: 200px;
+  transform: translateY(0);
+}
 
 
 
@@ -857,61 +892,81 @@
 
   <!-- Aquí siguen tus modales (Asistencia, Traslado, Recuerdos) tal cual los tienes -->
 
-  <!-- Modal Asistencia -->
+<!-- Modal Asistencia -->
 <div id="asistenciaModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="asistenciaTitle">
   <div class="asistencia-content">
-   <button id="closeAsistencia" aria-label="Cerrar formulario" class="close-btn">
-  <img src="mi_foto_boda_v36.png" alt="Cerrar">
-</button>
+    <button id="closeAsistencia" aria-label="Cerrar formulario" class="close-btn">
+      <img src="mi_foto_boda_v36.png" alt="Cerrar">
+    </button>
 
-   <div class="asistencia-title">
-  <img src="mi_foto_boda_v32.png" alt="Cuestionario de asistencia">
+    <div class="asistencia-title">
+      <img src="mi_foto_boda_v32.png" alt="Cuestionario de asistencia">
+      <h3>Cuestionario de asistencia</h3>
+    </div>
+
+    <form id="rsvpForm" action="https://script.google.com/macros/s/AKfycbyR0kDkPjKhyVGAqirWjeG7KxL917Tz1tfJOo17r6v06V4JT2cPcjjHyYR8_CvZ_Ab-Kg/exec" method="POST" novalidate>
+      <div class="grid">
+
+        <div class="row">
+          <label for="nombre">Nombre y apellidos *</label>
+          <input id="nombre" name="nombre" type="text" required placeholder="Ej. Ana Pérez" />
+        </div>
+
+        <div class="row">
+          <label>¿Asistirás a la boda? *</label>
+          <div class="radio-row">
+            <label class="chip"><input type="radio" name="asistencia" value="sí" required /><span>Sí</span></label>
+            <label class="chip"><input type="radio" name="asistencia" value="no" required /><span>No</span></label>
+          </div>
+        </div>
+
+        <div class="row">
+          <label for="acompanantes">¿Cuántos acompañantes?</label>
+          <input id="acompanantes" name="acompanantes" type="number" min="0" max="10" value="0" />
+        </div>
+
+        <div class="row" id="rowAcompanantesNombres">
+  <label for="acompanantesNombres">Nombre y apellidos de los acompañantes</label>
+  <input id="acompanantesNombres" name="acompanantesNombres" type="text" placeholder="Ej. Juan Gómez, María López..." />
 </div>
-      <form id="rsvpForm" action="https://script.google.com/macros/s/AKfycbyR0kDkPjKhyVGAqirWjeG7KxL917Tz1tfJOo17r6v06V4JT2cPcjjHyYR8_CvZ_Ab-Kg/exec" method="POST" novalidate>
-        <div class="grid">
-          <div class="row">
-            <label for="nombre">Nombre y apellidos *</label>
-            <input id="nombre" name="nombre" type="text" required placeholder="Ej. Ana Pérez" />
-          </div>
-          <div class="row">
-            <label>¿Asistirás a la boda? *</label>
-            <div class="radio-row">
-              <label class="chip"><input type="radio" name="asistencia" value="sí" required /><span>Sí</span></label>
-              <label class="chip"><input type="radio" name="asistencia" value="no" required /><span>No</span></label>
-            </div>
-          </div>
-          <div class="row">
-            <label for="acompanantes">¿Cuántos acompañantes?</label>
-            <input id="acompanantes" name="acompanantes" type="number" min="0" max="10" value="0" />
-          </div>
-          <div class="row">
-            <label>¿Utilizarás el servicio de autobús?</label>
-            <div class="radio-row">
-              <label class="chip"><input type="radio" name="autobus" value="sí" /><span>Sí</span></label>
-              <label class="chip"><input type="radio" name="autobus" value="no" /><span>No</span></label>
-            </div>
-          </div>
-        </div>
+
+
         <div class="row">
-          <label for="alergias">¿Tienes alguna alergia, intolerancia o preferencia alimentaria?</label>
-          <input id="alergias" name="alergias" type="text" placeholder="Ej. sin gluten, frutos secos, vegetariano..." />
+          <label>¿Utilizarás el servicio de autobús?</label>
+          <div class="radio-row">
+            <label class="chip"><input type="radio" name="autobus" value="sí" /><span>Sí</span></label>
+            <label class="chip"><input type="radio" name="autobus" value="no" /><span>No</span></label>
+          </div>
         </div>
-        <div class="row">
-          <label for="mensaje">¿Qué canción te gusta para que suene en la fiesta?</label>
-          <textarea id="mensaje" name="mensaje" placeholder=" "></textarea>
-        </div>
-        <div class="actions"><button type="submit">Enviar confirmación</button></div>
-      </form>
-      <div class="success" id="successBox" role="status" aria-live="polite">
-        <h3>¡Gracias por tu respuesta! 💌</h3>
-        <p>Hemos registrado tu confirmación. Puedes cerrar esta página.</p>
+
       </div>
-      <div class="error" id="errorBox" role="alert">
-        <h3>Vaya, algo no ha ido bien…</h3>
-        <p>Inténtalo de nuevo en unos segundos o avisa a los novios.</p>
+
+      <div class="row">
+        <label for="alergias">¿Tienes alguna alergia, intolerancia o preferencia alimentaria?</label>
+        <input id="alergias" name="alergias" type="text" placeholder="Ej. sin gluten, frutos secos, vegetariano..." />
       </div>
+
+      <div class="row">
+        <label for="mensaje">¿Qué canción te gusta para que suene en la fiesta?</label>
+        <textarea id="mensaje" name="mensaje" placeholder=" "></textarea>
+      </div>
+
+      <div class="actions">
+        <button type="submit">Enviar confirmación</button>
+      </div>
+    </form>
+
+    <div class="success" id="successBox" role="status" aria-live="polite">
+      <h3>¡Gracias por tu respuesta! 💌</h3>
+      <p>Hemos registrado tu confirmación. Puedes cerrar esta página.</p>
+    </div>
+
+    <div class="error" id="errorBox" role="alert">
+      <h3>Vaya, algo no ha ido bien…</h3>
+      <p>Inténtalo de nuevo en unos segundos o avisa a los novios.</p>
     </div>
   </div>
+</div>
 
 <!-- Modal Traslado -->
 <div id="trasladoModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="trasladoTitle">
@@ -1217,6 +1272,24 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   })();
+     /* ---------- Mostrar/ocultar campo de acompañantes (con animación) ---------- */
+  const inputAcompanantes = document.getElementById("acompanantes");
+  const rowAcompanantesNombres = document.getElementById("rowAcompanantesNombres");
+  const inputAcompanantesNombres = document.getElementById("acompanantesNombres");
+
+  if (inputAcompanantes && rowAcompanantesNombres) {
+    inputAcompanantes.addEventListener("input", () => {
+      const num = parseInt(inputAcompanantes.value, 10);
+      if (num > 0) {
+        rowAcompanantesNombres.classList.add("show");
+      } else {
+        rowAcompanantesNombres.classList.remove("show");
+        inputAcompanantesNombres.value = "";
+      }
+    });
+  }
+
+
 
   /* ---------- Modal Traslado ---------- */
   const trasladoBtn = document.getElementById("trasladoBtn");
@@ -1295,7 +1368,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 </body>
-</html>
 </html>
 
 
