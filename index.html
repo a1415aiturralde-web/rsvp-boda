@@ -186,8 +186,14 @@
   width: auto;
 }
     .date-box .join { margin: 0; font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; letter-spacing: 2px; color: #000; }
-    .date-box span { font-size: 26px; font-weight: 700; letter-spacing: 6px; color: #000; text-shadow: 1px 1px 3px rgba(255,255,255,0.6); }
-
+  .date-box span {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  color: #000;
+  text-shadow: 1px 1px 3px rgba(255,255,255,0.6);
+  white-space: nowrap;
+}
     @media (max-width: 600px) {
       .date-box { padding: 24px 32px; gap: 8px; }
       .date-box .join { font-size: 18px; letter-spacing: 1.5px; }
@@ -956,6 +962,7 @@ asistenciaRadios.forEach(radio => {
   </script>
 </body>
 </html>
+
 
 
 
