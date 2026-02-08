@@ -164,16 +164,27 @@
     }
 
     /* === RECUADRO FECHA === */
-    .date-box {
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      margin: 20px auto; padding: 28px 50px; gap: 10px;
-      background:
-        linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.25)),
-        url("mi_foto_boda_v41.png");
-      background-size: cover; background-position: center; background-repeat: no-repeat;
-      border-radius: 20px; border: 2px solid #000; box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-      font-family: 'Cinzel', serif; color: #000; text-align: center; letter-spacing: 3px; width: fit-content;
-    }
+    /* === FECHA (solo contenido) === */
+.date-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 18px;
+  gap: 10px;
+
+  font-family: 'Cinzel', serif;
+  color: #000;
+  text-align: center;
+  letter-spacing: 3px;
+
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  width: auto;
+}
     .date-box .join { margin: 0; font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; letter-spacing: 2px; color: #000; }
     .date-box span { font-size: 26px; font-weight: 700; letter-spacing: 6px; color: #000; text-shadow: 1px 1px 3px rgba(255,255,255,0.6); }
 
@@ -182,6 +193,16 @@
       .date-box .join { font-size: 18px; letter-spacing: 1.5px; }
       .date-box span { font-size: 24px; letter-spacing: 5px; }
     }
+    /* === MARCO FECHA + CUENTA ATRÁS === */
+.countdown-frame {
+  border: 2px solid #000;
+  border-radius: 22px;
+  padding: 32px 36px 36px;
+  margin: 30px auto 0;
+  max-width: 720px;
+  box-sizing: border-box;
+  text-align: center;
+}
 
     .wedding-day-title {
       font-family: 'Cinzel', serif; font-size: 15px; font-weight: 700; color: #000; text-align: center;
@@ -448,18 +469,23 @@
 
   <!-- Cuenta atrás -->
   <section class="countdown-section">
-      <div class="date-box fade-in">
-        <h2 class="join">Únete a nosotros el</h2>
-        <span>17 · 10 · 2026</span>
-      </div>
+    <div class="countdown-frame">
 
-      <h3 class="wedding-day-title">Cuenta atrás</h3>
-      <div id="countdown">
-        <div class="time-box"><span id="days">0</span><small>Días</small></div>
-        <div class="time-box"><span id="hours">0</span><small>Horas</small></div>
-        <div class="time-box"><span id="minutes">0</span><small>Min</small></div>
-        <div class="time-box"><span id="seconds">0</span><small>Seg</small></div>
-      </div>
+  <div class="date-box fade-in">
+    <h2 class="join">Únete a nosotros el</h2>
+    <span>17 · 10 · 2026</span>
+  </div>
+
+  <h3 class="wedding-day-title">Cuenta atrás</h3>
+
+  <div id="countdown">
+    <div class="time-box"><span id="days">0</span><small>Días</small></div>
+    <div class="time-box"><span id="hours">0</span><small>Horas</small></div>
+    <div class="time-box"><span id="minutes">0</span><small>Min</small></div>
+    <div class="time-box"><span id="seconds">0</span><small>Seg</small></div>
+  </div>
+
+</div>
     </section>
    </div>
 
@@ -930,6 +956,7 @@ asistenciaRadios.forEach(radio => {
   </script>
 </body>
 </html>
+
 
 
 
