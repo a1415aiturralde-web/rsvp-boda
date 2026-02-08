@@ -37,27 +37,25 @@ body {
   background-color: #edf4e8;
 
   background-image:
-    /* sombras suaves tipo pliegue */
-    repeating-linear-gradient(
-      -45deg,
-      rgba(0, 0, 0, 0.035) 0px,
-      rgba(0, 0, 0, 0.035) 1px,
-      transparent 1px,
-      transparent 6px
-    ),
-    repeating-linear-gradient(
-      45deg,
-      rgba(0, 0, 0, 0.02) 0px,
-      rgba(0, 0, 0, 0.02) 1px,
-      transparent 1px,
-      transparent 8px
-    ),
     radial-gradient(
       1200px 800px at 50% -10%,
-      rgba(0, 0, 0, 0.06),
+      rgba(0, 0, 0, 0.04),
       rgba(0, 0, 0, 0) 60%
-    );
+    ),
+    url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'>\
+<filter id='paper'>\
+<feTurbulence type='turbulence' baseFrequency='0.02' numOctaves='2' seed='8'/>\
+<feColorMatrix type='saturate' values='0'/>\
+<feComponentTransfer>\
+<feFuncA type='table' tableValues='0 0.12'/>\
+</feComponentTransfer>\
+</filter>\
+<rect width='100%' height='100%' filter='url(#paper)'/>\
+</svg>");
 
+  background-repeat: no-repeat, repeat;
+  background-size: cover, 400px 400px;
   background-blend-mode: multiply;
 }
     @keyframes fadeIn { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
@@ -970,6 +968,7 @@ asistenciaRadios.forEach(radio => {
   </script>
 </body>
 </html>
+
 
 
 
