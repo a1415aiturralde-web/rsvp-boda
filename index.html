@@ -123,6 +123,23 @@
       box-sizing: border-box;
     }
     .subtitle-box p + p { margin-top: 15px; }
+    .hero-box {
+  text-align: center;
+  padding: 40px 30px 50px;
+  border: 2px solid #000;
+  border-radius: 25px;
+  max-width: 900px;
+  margin: 60px auto 40px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.25)),
+    url("mi_foto_boda_v41.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  animation: fadeUp 2s ease-in-out;
+  box-sizing: border-box;
+}
 
     /* === CUENTA ATRÁS === */
     .countdown-section { text-align: center; margin: 20px auto 40px; padding: 20px; max-width: 600px; }
@@ -422,20 +439,21 @@
   </nav>
 
   <!-- 💫 CONTENEDOR PRINCIPAL -->
-  <div id="page-wrapper">
-    <header>
-      <h1 class="title">Alejandro<br>&<br>Andrea</h1>
-      <div class="title-line"></div>
-    </header>
+  
+ <div class="hero-box">
+  <header>
+    <h1 class="title">Alejandro<br>&<br>Andrea</h1>
+    <div class="title-line"></div>
+  </header>
 
-    <!-- Cuenta atrás -->
-    <section class="countdown-section">
+  <!-- Cuenta atrás -->
+  <section class="countdown-section">
       <div class="date-box fade-in">
         <h2 class="join">Únete a nosotros el</h2>
         <span>17 · 10 · 2026</span>
       </div>
 
-      <h3 class="wedding-day-title">Cuenta atras</h3>
+      <h3 class="wedding-day-title">Cuenta atrás</h3>
       <div id="countdown">
         <div class="time-box"><span id="days">0</span><small>Días</small></div>
         <div class="time-box"><span id="hours">0</span><small>Horas</small></div>
@@ -443,6 +461,7 @@
         <div class="time-box"><span id="seconds">0</span><small>Seg</small></div>
       </div>
     </section>
+   </div>
 
     <div class="subtitle-box">
       <p class="subtitle">¡Bienvenidos a nuestro espacio de boda!</p>
@@ -911,6 +930,7 @@ asistenciaRadios.forEach(radio => {
   </script>
 </body>
 </html>
+
 
 
 
