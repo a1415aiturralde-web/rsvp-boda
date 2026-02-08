@@ -37,35 +37,22 @@ body {
   background-color: #edf4e8;
 
   background-image:
-    /* manchas grandes de color */
     url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' width='600' height='600'>\
 <filter id='wash'>\
 <feTurbulence type='turbulence' baseFrequency='0.012' numOctaves='2' seed='4'/>\
-<feColorMatrix type='matrix' values='\
-1 0 0 0 0 \
-0 1 0 0 0 \
-0 0 1 0 0 \
-0 0 0 0.25 0'/>\
+<feColorMatrix type='matrix' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.25 0'/>\
 </filter>\
 <rect width='100%' height='100%' filter='url(#wash)' fill='%23d6e4cc'/>\
 </svg>"),
-
-    /* manchas medianas */
     url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'>\
 <filter id='wash2'>\
 <feTurbulence type='turbulence' baseFrequency='0.025' numOctaves='2' seed='9'/>\
-<feColorMatrix type='matrix' values='\
-1 0 0 0 0 \
-0 1 0 0 0 \
-0 0 1 0 0 \
-0 0 0 0.18 0'/>\
+<feColorMatrix type='matrix' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.18 0'/>\
 </filter>\
 <rect width='100%' height='100%' filter='url(#wash2)' fill='%23e3eddc'/>\
 </svg>"),
-
-    /* puntitos / grano */
     url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'>\
 <filter id='grain'>\
@@ -80,6 +67,7 @@ body {
 
   background-repeat: repeat;
   background-size: 600px 600px, 400px 400px, 300px 300px;
+  background-position: 0 0, 120px 80px, 60px 140px;
   background-blend-mode: multiply;
 }
     @keyframes fadeIn { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
@@ -992,6 +980,7 @@ asistenciaRadios.forEach(radio => {
   </script>
 </body>
 </html>
+
 
 
 
