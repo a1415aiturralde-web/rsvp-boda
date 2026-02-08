@@ -774,6 +774,27 @@
         }
       });
     }
+    const asistenciaRadios = document.querySelectorAll('input[name="asistencia"]');
+
+asistenciaRadios.forEach(radio => {
+  radio.addEventListener('change', () => {
+    const attending = radio.value === "sí";
+
+    const camposCondicionales = [
+      document.getElementById("acompanantes"),
+      document.getElementById("rowAcompanantesNombres"),
+      document.getElementById("alergias"),
+      document.getElementById("mensaje"),
+      document.querySelector('input[name="autobus"]')?.closest('.row')
+    ];
+
+    camposCondicionales.forEach(campo => {
+      if (!campo) return;
+      const row = campo.closest('.row') || campo;
+      row.style.display = attending ? "block" : "none";
+    });
+  });
+});
 
     /* Campo acompañantes */
     const acompanantesInput = document.getElementById("acompanantes");
@@ -890,6 +911,7 @@
   </script>
 </body>
 </html>
+
 
 
 
