@@ -398,7 +398,7 @@ footer {
       position: fixed; top: 20px; right: 25px; font-size: 26px; color: #6b4a2b;
       background: rgba(255, 255, 255, 0.95); border: 2px solid #6b4a2b; border-radius: 10px;
       padding: 8px 12px; cursor: pointer; z-index: 5000;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: background 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: background 0.3s ease, transform 0.2s ease; opacity 0.3s ease;
     }
     .menu-toggle:hover { background: #f8f1e3; transform: scale(1.05); }
 
@@ -494,7 +494,7 @@ footer {
 .fade-scroll {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 1s ease, transform 1s ease;
+  transition: opacity 3s ease, transform 3s ease;
 }
 
 .fade-scroll.show {
@@ -570,19 +570,19 @@ footer {
 
     <!-- Accesos -->
     <div class="icon-container">
-      <button type="button" class="icon-button" id="ubicacionBtn">
+    <button type="button" class="icon-button fade-scroll" id="ubicacionBtn">
         <img src="mi_foto_boda_v33.png" alt="Ubicación" class="icon-img">
         <span>Ubicación</span>
       </button>
-      <button type="button" class="icon-button" id="asistenciaBtn">
+      <button type="button" class="icon-button fade-scroll" id="asistenciaBtn">
         <img src="mi_foto_boda_v26.png" alt="Asistencia" class="icon-img">
         <span>Asistencia</span>
       </button>
-      <button type="button" class="icon-button" id="trasladoBtn">
+      <button type="button" class="icon-button fade-scroll" id="trasladoBtn">
         <img src="mi_foto_boda_v27.png" alt="Traslado" class="icon-img">
         <span>Traslado</span>
       </button>
-      <button type="button" class="icon-button" id="recuerdosBtn">
+      <button type="button" class="icon-button fade-scroll" id="recuerdosBtn">
         <img src="recuerdos.png" alt="Recuerdos" class="icon-img">
         <span>Recuerdos</span>
       </button>
@@ -1037,6 +1037,7 @@ fadeElements.forEach(el => fadeObserver.observe(el));
   </script>
 </body>
 </html>
+
 
 
 
