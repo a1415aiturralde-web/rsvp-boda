@@ -482,19 +482,21 @@ footer {
 }
 
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-  /* === FADE IN AL HACER SCROLL === */
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === FADE IN AL HACER SCROLL === */
 .fade-scroll {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 3s ease, transform 3s ease;
+  transition: opacity 1s ease, transform 1s ease;
 }
 
 .fade-scroll.show {
@@ -1037,6 +1039,7 @@ fadeElements.forEach(el => fadeObserver.observe(el));
   </script>
 </body>
 </html>
+
 
 
 
