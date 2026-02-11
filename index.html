@@ -982,6 +982,12 @@ asistenciaRadios.forEach(radio => {
         }
       });
     }
+    /* Cerrar menú hamburguesa al hacer scroll (solo si está abierto) */
+window.addEventListener("scroll", () => {
+  if (menuDropdown && menuDropdown.classList.contains("show")) {
+    menuDropdown.classList.remove("show");
+  }
+});
 
     /* Aparición suave de botones (opcional) */
     const modalButtons = document.querySelectorAll('.icon-button');
@@ -1002,6 +1008,7 @@ asistenciaRadios.forEach(radio => {
   </script>
 </body>
 </html>
+
 
 
 
