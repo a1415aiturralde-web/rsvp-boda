@@ -503,6 +503,10 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
+    /* === Bloquear scroll del fondo cuando hay modal === */
+body.modal-open {
+  overflow: hidden;
+}
 
   </style>
 </head>
@@ -772,6 +776,7 @@ footer {
     function closeAllModals() {
       modales.forEach(modal => modal.classList.remove("show"));
       if (pageWrapper) pageWrapper.classList.remove("blurred");
+      document.body.classList.remove("modal-open");
       history.pushState(null, "", location.href.split("#")[0]);
       const menuToggle = document.getElementById("menuToggle");
       if (menuToggle) menuToggle.style.display = "block";
@@ -787,6 +792,7 @@ footer {
       openBtn.addEventListener("click", () => {
         modal.classList.add("show");
         if (pageWrapper) pageWrapper.classList.add("blurred");
+        document.body.classList.add("modal-open");
         if (menuToggle) menuToggle.style.display = "none";
         history.pushState({ modal: modalId }, "", "#" + modalId);
       });
@@ -1044,6 +1050,7 @@ fadeElements.forEach(el => fadeObserver.observe(el));
   </script>
 </body>
 </html>
+
 
 
 
