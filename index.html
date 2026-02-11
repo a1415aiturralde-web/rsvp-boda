@@ -490,6 +490,17 @@ footer {
         opacity: 1;
         transform: translateY(0);
     }
+  /* === FADE IN AL HACER SCROLL === */
+.fade-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-scroll.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
   </style>
 </head>
@@ -510,7 +521,7 @@ footer {
 
   <!-- 💫 CONTENEDOR PRINCIPAL -->
   
- <div class="hero-box">
+ <div class="hero-box fade-scroll">
   <header>
     <h1 class="title">Alejandro<br>&<br>Andrea</h1>
     <div class="title-line"></div>
@@ -538,7 +549,7 @@ footer {
     </section>
    </div>
 
-    <div class="subtitle-box">
+    <div class="subtitle-box fade-scroll">
       <p class="subtitle">¡Bienvenidos a nuestro espacio de boda!</p>
       <p class="subtitle">
         Nos hace una enorme ilusión que nos acompañéis en este momento tan especial de nuestras vidas.
@@ -549,7 +560,7 @@ footer {
     </div>
 
     <!-- Foto -->
-    <div class="boda-foto">
+   <div class="boda-foto fade-scroll">
       <img src="mi_foto_boda_v39.JPG" alt="Foto de compromiso Alejandro y Andrea">
     </div>
     <span id="ubicacion"></span>
@@ -578,7 +589,7 @@ footer {
     </div>
 
     <!-- Logo -->
-    <div class="logo-fecha">
+    <div class="logo-fecha fade-scroll">
       <img src="mi_foto_boda_v31.png" alt="Logo Alejandro y Andrea">
     </div>
   
@@ -1004,10 +1015,29 @@ window.addEventListener("scroll", () => {
       btn.style.transitionDelay = `${index * 0.2}s`;
       observer.observe(btn);
     });
+    /* Fade in al hacer scroll */
+const fadeElements = document.querySelectorAll('.fade-scroll');
+
+const fadeObserver = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        fadeObserver.unobserve(entry.target); // solo una vez
+      }
+    });
+  },
+  {
+    threshold: 0.2
+  }
+);
+
+fadeElements.forEach(el => fadeObserver.observe(el));
   });
   </script>
 </body>
 </html>
+
 
 
 
